@@ -7,7 +7,7 @@ public class Task {
 
   public String name;
   public String description;
-  public String day;
+  public DayEnum day;
   public Boolean complete;
 
   /**
@@ -16,13 +16,12 @@ public class Task {
    * @param name        the name of the task
    * @param description the description of the task
    * @param day         the day of the task
-   * @param complete    the completion status of the task
    */
-  public Task(String name, String description, String day, Boolean complete) {
+  public Task(String name, String description, DayEnum day) {
     this.name = name;
     this.description = description;
     this.day = day;
-    this.complete = complete;
+    this.complete = false;
   }
 
   public void markComplete() {
