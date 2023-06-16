@@ -24,7 +24,7 @@ import javafx.util.converter.LocalTimeStringConverter;
 public class Driver extends Application {
   @Override
   public void start(Stage stage) {
-    Theme theme = new Theme(new Color(1, 1, 1, 1),
+    Theme theme = new Theme(new Color(0, 1, 1, 1),
         new Color(0, 0, 0, 1), "Arial");
 //    Week week = new Week("Best Week", theme);
     Task task1 = new Task("OOD HW", DayEnum.SUNDAY);
