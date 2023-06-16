@@ -45,6 +45,10 @@ public class Driver extends Application {
     }
   }
 
+  /**
+   * Main Method
+   * @param args cmd-line arguments
+   */
   public static void main(String[] args) {
     launch();
   }
