@@ -6,7 +6,7 @@ public class Event {
 
   public String name;
   public String description;
-  public String day;
+  public DayEnum day;
   public LocalTime startTime;
   public LocalTime duration;
 
@@ -19,7 +19,7 @@ public class Event {
    * @param startTime   the start time of the event
    * @param duration    the duration of the event
    */
-  public Event(String name, String description, String day, LocalTime startTime,
+  public Event(String name, String description, DayEnum day, LocalTime startTime,
                LocalTime duration) {
     this.name = name;
     this.description = description;

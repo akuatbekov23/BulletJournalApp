@@ -10,7 +10,7 @@ public class WeekView implements Viewer {
 
   public WeekView(Controller controller) {
     this.loader = new FXMLLoader();
-    this.loader.setLocation(getClass().getClassLoader().getResource("board.fxml"));
+    this.loader.setLocation(getClass().getClassLoader().getResource("weekView.fxml"));
     this.loader.setController(controller);
   }
 
