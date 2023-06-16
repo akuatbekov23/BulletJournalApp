@@ -1,6 +1,7 @@
 package cs3500.pa05.controller;
 
 import cs3500.pa05.model.Week;
+import cs3500.pa05.viewer.DayView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -22,12 +23,10 @@ public class JournalController implements Controller {
   }
 
   private void initialize() {
-//    weekTitle.setText(week.getTitle());
-    weekTitle.setText("BEST WEEK");
-//
-//    for (int i = 0; i < 7; i++) {
-//      week.getDay(i);
-//      weekGrid.getChildren().get(i);
-//    }
+    weekTitle.setText(week.getTitle());
+
+    for (int i = 0; i < 7; i++) {
+      weekGrid.add(new DayView(week.getDay(i)), i, 0);
+    }
   }
 }

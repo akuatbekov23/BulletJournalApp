@@ -24,8 +24,26 @@ public class Task {
     this.complete = false;
   }
 
+  public Task(String name, DayEnum day) {
+    this.name = name;
+    this.description = "";
+    this.day = day;
+    this.complete = false;
+  }
+
   public void markComplete() {
     this.complete = true;
   }
 
+  public String getName() {
+    return this.name;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
+
+  public Boolean getComplete() {
+    return this.complete;
+  }
 }

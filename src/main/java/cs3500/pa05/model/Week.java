@@ -1,5 +1,6 @@
 package cs3500.pa05.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.paint.Color;
 
@@ -26,6 +27,23 @@ public class Week {
     this.days = days;
     this.taskQueue = taskQueue;
     this.theme = theme;
+  }
+
+  public Week(String title, Theme theme) {
+    this.title = title;
+    this.days = initDays();
+    this.taskQueue = new ArrayList<>();
+    this.theme = theme;
+  }
+
+  private Day[] initDays() {
+    Day[] days = new Day[7];
+    DayEnum[] dayEnums = new DayEnum[] {DayEnum.SUNDAY, DayEnum.MONDAY, DayEnum.TUESDAY,
+        DayEnum.WEDNESDAY, DayEnum.THURSDAY, DayEnum.FRIDAY, DayEnum.SATURDAY};
+    for (int i = 0; i < dayEnums.length; i++) {
+      days[i] = new Day(dayEnums[i]);
+    }
+    return days;
   }
 
   /**
