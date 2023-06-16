@@ -1,5 +1,6 @@
 package cs3500.pa05.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,6 +29,14 @@ public class Day {
     this.maxTask = maxTask;
     this.events = events;
     this.tasks = tasks;
+  }
+
+  public Day(DayEnum day) {
+    this.day = day;
+    this.maxEvent = 3;
+    this.maxTask = 3;
+    this.events = new ArrayList<>();
+    this.tasks = new ArrayList<>();
   }
 
   /**

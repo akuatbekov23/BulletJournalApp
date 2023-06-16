@@ -27,4 +27,20 @@ public class Event {
     this.startTime = startTime;
     this.duration = duration;
   }
+
+  public String getName() {
+    return this.name;
+  }
+
+  public String getDescription() {
+    return this.description;
+  }
+
+  public LocalTime getStartTime() {
+    return this.startTime;
+  }
+
+  public LocalTime  getDuration() {
+    return this.duration;
+  }
 }
