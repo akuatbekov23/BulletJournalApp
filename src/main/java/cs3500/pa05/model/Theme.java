@@ -2,6 +2,9 @@ package cs3500.pa05.model;
 
 import javafx.scene.paint.Color;
 
+/**
+ * Represents a theme.
+ */
 public class Theme {
 
   public Color backgroundColor;

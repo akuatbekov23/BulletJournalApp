@@ -12,6 +12,9 @@ import javafx.application.Application;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+/**
+ * Represents a driver for the journal.
+ */
 public class Driver extends Application {
   @Override
   public void start(Stage stage) {

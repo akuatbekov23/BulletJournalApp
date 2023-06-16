@@ -2,6 +2,9 @@ package cs3500.pa05.model;
 
 import java.time.LocalTime;
 
+/**
+ * Represents an event.
+ */
 public class Event {
 
   public String name;
