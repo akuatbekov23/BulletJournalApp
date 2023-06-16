@@ -1,4 +1,13 @@
 package cs3500.pa05.controller;
 
-public record WeekJson() {
+import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
+
+/**
+ * Represents a week in JSON format.
+ */
+public record WeekJson(
+    @JsonProperty("Title") String title,
+    @JsonProperty("Days") List<DayJson> days
+) {
 }

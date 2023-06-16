@@ -18,6 +18,9 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalTimeStringConverter;
 
+/**
+ * Represents a driver for the journal.
+ */
 public class Driver extends Application {
   @Override
   public void start(Stage stage) {
