@@ -2,6 +2,7 @@ package cs3500.pa05.controller;
 
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
+import cs3500.pa05.viewer.EventView;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;

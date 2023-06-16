@@ -1,12 +1,16 @@
 package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.Event;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class EventView extends VBox {
   public EventView(Event event) {
+    this.setPadding(new Insets(0, 0, 10, 0));
     this.setAlignment(Pos.TOP_LEFT);
     Label eventLabel = new Label("Event");
     Label name = new Label(event.getName());
