@@ -2,19 +2,19 @@ package cs3500.pa05.viewer;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class ButtonView extends VBox {
+public class ButtonView extends BlockView {
 
   public ButtonView() {
-    this.setAlignment(Pos.TOP_CENTER);
-
+    super();
     HBox addEventContainer = new HBox();
     addEventContainer.setAlignment(Pos.TOP_CENTER);
-    addEventContainer.setMinWidth(80); // looks ugly cause it's going by comp_size calcualtion
-    addEventContainer.setMinHeight(80);
+    addEventContainer.setMinWidth(110); // looks ugly cause it's going by comp_size calcualtion
+    addEventContainer.setMinHeight(110);
 
     Button addEvent = new Button("+");
     addEvent.setAlignment(Pos.CENTER);

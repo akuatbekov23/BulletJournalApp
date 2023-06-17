@@ -8,10 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class EventView extends VBox {
+public class EventView extends BlockView {
   public EventView(Event event) {
-    this.setPadding(new Insets(0, 0, 10, 0));
-    this.setAlignment(Pos.TOP_LEFT);
+    super();
     Label eventLabel = new Label("Event");
     Label name = new Label(event.getName());
     Label startTime = new Label("Start time: " + event.getStartTime());

@@ -6,7 +6,9 @@ import cs3500.pa05.model.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class DayView extends VBox {
   public DayView(Day day) {

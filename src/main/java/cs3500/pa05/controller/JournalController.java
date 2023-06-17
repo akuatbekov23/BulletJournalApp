@@ -52,17 +52,21 @@ public class JournalController implements Controller {
 
   private void initialize() {
     Theme theme = week.getTheme();
-    weekGrid.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekPane2.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekPane3.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekSplitPane.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekVBox1.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekVBox2.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekVBox3.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekScrollPane.setBackground(Background.fill(theme.getBackgroundColor()));
-    weekHBox1.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekGrid.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekPane2.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekPane3.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekSplitPane.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekVBox1.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekVBox2.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekVBox3.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekScrollPane.setBackground(Background.fill(theme.getBackgroundColor()));
+//    weekHBox1.setBackground(Background.fill(theme.getBackgroundColor()));
+
     weekTitle.setText(week.getTitle());
+
+    weekTitle.setStyle("-fx-text-fill: WHITE");
+    weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
 
     for (int i = 0; i < 7; i++) {
       weekGrid.add(new DayView(week.getDay(i)), i, 0);
