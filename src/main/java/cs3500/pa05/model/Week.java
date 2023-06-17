@@ -82,6 +82,4 @@ public class Week {
   public Theme getTheme() {
     return this.theme;
   }
-
-
 }
