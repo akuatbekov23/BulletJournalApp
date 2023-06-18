@@ -41,7 +41,7 @@ public class JournalController implements Controller {
   @FXML
   private ScrollPane weekScrollPane;
   @FXML
-  private HBox weekHBox1;
+  private HBox titleHBox;
   @FXML
   private Button themeButton1;
   @FXML
@@ -65,13 +65,32 @@ public class JournalController implements Controller {
       weekGrid.add(new DayView(week.getDay(i)), i, 0);
     }
 
+    // Create the theme buttons
+    Button themeButton1 = new Button("Theme 1");
+    Button themeButton2 = new Button("Theme 2");
+    Button themeButton3 = new Button("Theme 3");
+
+    themeButton1.setStyle("-fx-background-color: #000000;"); // Set the background color to black
+
+    themeButton1.setStyle("-fx-background-color: #ff0000;"); // Set the background color to black
+
+    themeButton1.setStyle("-fx-background-color: #0000ff;"); // Set the background color to black
+
+
+    // Create an HBox to contain the theme buttons
+    HBox themeButtonsContainer = new HBox(themeButton1, themeButton2, themeButton3);
+    //
+    //themeButtonsContainer.setSpacing(10);
+    //themeButtonsContainer.setPadding(new Insets(10));
+    titleHBox.getChildren().add(themeButtonsContainer);
+
+
     // Set event handlers for the theme buttons
     themeButton1.setOnAction(event -> changeTheme(Theme.THEME_1));
     themeButton2.setOnAction(event -> changeTheme(Theme.THEME_2));
     themeButton3.setOnAction(event -> changeTheme(Theme.THEME_3));
+    themeButtonsContainer.setAlignment(Pos.TOP_LEFT);
 
-    // Add the theme buttons container to weekVBox3
-    // weekVBox3.getChildren().add(themeButtonsContainer);
 
   }
 
@@ -84,6 +103,7 @@ public class JournalController implements Controller {
     // Update the background of the anchor panes
     weekPane1.setBackground(new Background
         (new BackgroundFill(theme.getBackgroundColor(), null, null)));
+    
   }
 
 

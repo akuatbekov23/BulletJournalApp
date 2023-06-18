@@ -11,8 +11,8 @@ public class Theme {
       Color.rgb(0, 0, 0), "Arial");
   public static final Theme THEME_2 = new Theme(Color.rgb(0, 0, 0),
       Color.rgb(255, 255, 255), "Calibri");
-  public static final Theme THEME_3 = new Theme(new Color(0, 0, 0, 1),
-      new Color(1, 1, 1, 1), "Arial");
+  public static final Theme THEME_3 = new Theme(new Color(0.477, 0.030, 0.9, 1),
+      new Color(0, 0, 0, 1), "Bauhaus 93");
 
   public Color backgroundColor;
   public Color fontColor;
