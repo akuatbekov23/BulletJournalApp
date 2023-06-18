@@ -12,7 +12,7 @@ public class Theme {
   public static final Theme THEME_2 = new Theme(Color.rgb(0, 0, 0),
       Color.rgb(255, 0, 0), "Calibri");
   public static final Theme THEME_3 = new Theme(new Color(0, 0.7, 1, 1),
-      new Color(0.7, 0.3, 0, 1), "Bauhaus 93");
+      Color.rgb(180, 120, 0), "Gill Sans");
 
   public Color backgroundColor;
   public Color fontColor;
@@ -90,7 +90,6 @@ public class Theme {
     int r = (int) (color.getRed() * 255);
     int g = (int) (color.getGreen() * 255);
     int b = (int) (color.getBlue() * 255);
-    int a = (int) (color.getOpacity() * 255);
 
     return String.format("#%02X%02X%02X", r, g, b);
   }
