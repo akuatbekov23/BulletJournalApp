@@ -13,7 +13,7 @@ public class ButtonView extends BlockView {
     super();
     HBox addEventContainer = new HBox();
     addEventContainer.setAlignment(Pos.TOP_CENTER);
-    addEventContainer.setMinWidth(110); // looks ugly cause it's going by comp_size calcualtion
+    addEventContainer.setMinWidth(110); // looks ugly because it's going by comp_size calculation
     addEventContainer.setMinHeight(110);
 
     Button addEvent = new Button("+");
