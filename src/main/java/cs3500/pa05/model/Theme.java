@@ -7,10 +7,21 @@ import javafx.scene.paint.Color;
  */
 public class Theme {
 
+  /**
+   * Represents theme 1.
+   */
   public static final Theme THEME_1 = new Theme(Color.rgb(255, 255, 255),
       Color.rgb(0, 0, 0), "Arial");
+
+  /**
+   * Represents theme 2.
+   */
   public static final Theme THEME_2 = new Theme(Color.rgb(0, 0, 0),
-      Color.rgb(255, 0, 0), "Calibri");
+      Color.rgb(255, 0, 0), "Times New Roman");
+
+  /**
+   * Represents theme 3.
+   */
   public static final Theme THEME_3 = new Theme(new Color(0, 0.7, 1, 1),
       Color.rgb(180, 120, 0), "Gill Sans");
 
@@ -33,6 +44,8 @@ public class Theme {
 
   /**
    * update the background color of the theme.
+   *
+   * @param backgroundColor the background color of the theme
    */
   public void updateBackgroundColor(Color backgroundColor) {
     this.backgroundColor = backgroundColor;
@@ -49,6 +62,8 @@ public class Theme {
 
   /**
    * update the font color of the theme.
+   *
+   * @param fontColor the font color of the theme
    */
   public void updateFontColor(Color fontColor) {
     this.fontColor = fontColor;
@@ -65,6 +80,8 @@ public class Theme {
 
   /**
    * update the font family of the theme.
+   *
+   * @param fontFamily the font family of the theme
    */
   public void updateFontFamily(String fontFamily) {
     this.fontFamily = fontFamily;
@@ -80,17 +97,4 @@ public class Theme {
     return this.fontFamily;
   }
 
-  public String getStyleSheet() {
-    return "-fx-font-family: " + this.fontFamily + ";\n"
-        + "-fx-text-fill: " + colorToHex(this.fontColor) + ";\n";
-
-  }
-
-  public static String colorToHex(Color color) {
-    int r = (int) (color.getRed() * 255);
-    int g = (int) (color.getGreen() * 255);
-    int b = (int) (color.getBlue() * 255);
-
-    return String.format("#%02X%02X%02X", r, g, b);
-  }
 }

@@ -16,7 +16,6 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalTimeStringConverter;
 
 /**
  * Represents a driver for the journal.
@@ -25,7 +24,7 @@ public class Driver extends Application {
   @Override
   public void start(Stage stage) {
     Theme theme = new Theme(Color.rgb(255, 255, 255),
-        new Color(0, 0, 0, 1), "Arial");
+         Color.rgb(0, 0, 0), "Arial");
 //    Week week = new Week("Best Week", theme);
     Task task1 = new Task("OOD HW", DayEnum.SUNDAY);
     Event event1 = new Event("OOD Lecture", "",
