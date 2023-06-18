@@ -3,7 +3,9 @@ package cs3500.pa05.controller;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
+import cs3500.pa05.viewer.TaskQueueView;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,7 +29,7 @@ public class JournalController implements Controller {
   @FXML
   private Scene weekScene;
   @FXML
-  private Label weekTitle;
+  private VBox taskQueue;
   @FXML
   private GridPane weekGrid;
   @FXML
@@ -70,10 +72,15 @@ public class JournalController implements Controller {
     initialize();
   }
 
-
   private void initialize() {
+    // Week View
     for (int i = 0; i < 7; i++) {
       weekGrid.add(new DayView(week.getDay(i)), i, 0);
+    }
+
+    // Task Queue
+    for (int i = 0; i < week.getTaskQueue().size(); i++) {
+      taskQueue.getChildren().add(new TaskQueueView(week.getTaskQueue().get(i)));
     }
 
     // Create the theme buttons
@@ -86,14 +93,18 @@ public class JournalController implements Controller {
     themeButton3.setStyle("-fx-background-color: #00ffff;");
 
     HBox themeButtonsContainer = new HBox(themeButton1, themeButton2, themeButton3);
+    themeButtonsContainer.setAlignment(Pos.CENTER_LEFT);
+    themeButtonsContainer.setSpacing(10);
+    themeButtonsContainer.setPadding(new Insets(0, 40, 0, 0));
 
     titleHBox.getChildren().add(themeButtonsContainer);
 
     themeButton1.setOnAction(event -> setTheme(Theme.THEME_1));
     themeButton2.setOnAction(event -> setTheme(Theme.THEME_2));
     themeButton3.setOnAction(event -> setTheme(Theme.THEME_3));
-    titleHBox.setAlignment(Pos.TOP_LEFT);
 
+    Label weekTitle = new Label(week.getTitle());
+    titleHBox.getChildren().add(weekTitle);
 
   }
 
@@ -124,6 +135,4 @@ public class JournalController implements Controller {
       }
     }
   }
-
-
 }
