@@ -6,6 +6,7 @@ import cs3500.pa05.viewer.DayView;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,9 +18,13 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class JournalController implements Controller {
   private Week week;
+
+  @FXML
+  private Scene weekScene;
   @FXML
   private Label weekTitle;
   @FXML
@@ -70,11 +75,11 @@ public class JournalController implements Controller {
     Button themeButton2 = new Button("Theme 2");
     Button themeButton3 = new Button("Theme 3");
 
-    themeButton1.setStyle("-fx-background-color: #000000;"); // Set the background color to black
+    themeButton1.setStyle("-fx-background-color: #ffffff;"); // Set the background color to black
 
-    themeButton1.setStyle("-fx-background-color: #ff0000;"); // Set the background color to black
+    themeButton2.setStyle("-fx-background-color: #000000;"); // Set the background color to black
 
-    themeButton1.setStyle("-fx-background-color: #0000ff;"); // Set the background color to black
+    themeButton3.setStyle("-fx-background-color: #00ffff;"); // Set the background color to black
 
 
     // Create an HBox to contain the theme buttons
@@ -89,7 +94,7 @@ public class JournalController implements Controller {
     themeButton1.setOnAction(event -> changeTheme(Theme.THEME_1));
     themeButton2.setOnAction(event -> changeTheme(Theme.THEME_2));
     themeButton3.setOnAction(event -> changeTheme(Theme.THEME_3));
-    themeButtonsContainer.setAlignment(Pos.TOP_LEFT);
+    titleHBox.setAlignment(Pos.TOP_LEFT);
 
 
   }
@@ -103,7 +108,21 @@ public class JournalController implements Controller {
     // Update the background of the anchor panes
     weekPane1.setBackground(new Background
         (new BackgroundFill(theme.getBackgroundColor(), null, null)));
-    
+    traverseSceneGraph(weekScene.getRoot(), theme);
+  }
+
+  private void traverseSceneGraph(Parent parent, Theme theme) {
+    for (javafx.scene.Node node : parent.getChildrenUnmodifiable()) {
+      if (node instanceof Label) {
+        Label label = (Label) node;
+
+        // Set the desired font family and font color
+        label.setFont(javafx.scene.text.Font.font(theme.fontFamily));
+        label.setTextFill(theme.fontColor);
+      } else if (node instanceof Parent) {
+        traverseSceneGraph((Parent) node, theme);
+      }
+    }
   }
 
 

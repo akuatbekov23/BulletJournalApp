@@ -10,9 +10,9 @@ public class Theme {
   public static final Theme THEME_1 = new Theme(Color.rgb(255, 255, 255),
       Color.rgb(0, 0, 0), "Arial");
   public static final Theme THEME_2 = new Theme(Color.rgb(0, 0, 0),
-      Color.rgb(255, 255, 255), "Calibri");
-  public static final Theme THEME_3 = new Theme(new Color(0.477, 0.030, 0.9, 1),
-      new Color(0, 0, 0, 1), "Bauhaus 93");
+      Color.rgb(255, 0, 0), "Calibri");
+  public static final Theme THEME_3 = new Theme(new Color(0, 0.7, 1, 1),
+      new Color(0.7, 0.3, 0, 1), "Bauhaus 93");
 
   public Color backgroundColor;
   public Color fontColor;
@@ -80,4 +80,18 @@ public class Theme {
     return this.fontFamily;
   }
 
+  public String getStyleSheet() {
+    return "-fx-font-family: " + this.fontFamily + ";\n"
+        + "-fx-text-fill: " + colorToHex(this.fontColor) + ";\n";
+
+  }
+
+  public static String colorToHex(Color color) {
+    int r = (int) (color.getRed() * 255);
+    int g = (int) (color.getGreen() * 255);
+    int b = (int) (color.getBlue() * 255);
+    int a = (int) (color.getOpacity() * 255);
+
+    return String.format("#%02X%02X%02X", r, g, b);
+  }
 }
