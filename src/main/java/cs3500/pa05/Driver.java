@@ -24,12 +24,14 @@ import javafx.util.converter.LocalTimeStringConverter;
 public class Driver extends Application {
   @Override
   public void start(Stage stage) {
-    Theme theme = new Theme(new Color(0.2, 0.2, 0.2, 1),
-        new Color(0.8, 0.8, 0.8, 1), "Arial");
+    Theme theme = new Theme(new Color(0, 0, 0, 1),
+        new Color(1, 1, 1, 1), "Arial");
 //    Week week = new Week("Best Week", theme);
     Task task1 = new Task("OOD HW", DayEnum.SUNDAY);
-    Event event1 = new Event("OOD Lecture", "", DayEnum.SUNDAY, LocalTime.now(), LocalTime.now());
-    Day[] days = new Day[] {new Day(DayEnum.SUNDAY, 3, 3, new ArrayList<>(List.of(event1)),
+    Event event1 = new Event("OOD Lecture", "",
+        DayEnum.SUNDAY, LocalTime.now(), LocalTime.now());
+    Day[] days = new Day[] {new Day(DayEnum.SUNDAY, 3,
+        3, new ArrayList<>(List.of(event1)),
         new ArrayList<>(List.of(task1))), new Day(DayEnum.MONDAY),
         new Day(DayEnum.TUESDAY), new Day(DayEnum.WEDNESDAY), new Day(DayEnum.THURSDAY),
         new Day(DayEnum.FRIDAY), new Day(DayEnum.SATURDAY)};

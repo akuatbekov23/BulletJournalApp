@@ -7,6 +7,13 @@ import javafx.scene.paint.Color;
  */
 public class Theme {
 
+  public static final Theme THEME_1 = new Theme(Color.rgb(255, 255, 255),
+      Color.rgb(0, 0, 0), "Arial");
+  public static final Theme THEME_2 = new Theme(Color.rgb(0, 0, 0),
+      Color.rgb(255, 255, 255), "Calibri");
+  public static final Theme THEME_3 = new Theme(new Color(0, 0, 0, 1),
+      new Color(1, 1, 1, 1), "Arial");
+
   public Color backgroundColor;
   public Color fontColor;
   public String fontFamily;

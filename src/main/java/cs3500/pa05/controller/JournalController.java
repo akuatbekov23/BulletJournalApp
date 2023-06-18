@@ -3,9 +3,11 @@ package cs3500.pa05.controller;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
-import cs3500.pa05.viewer.EventView;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.SplitPane;
@@ -40,6 +42,13 @@ public class JournalController implements Controller {
   private ScrollPane weekScrollPane;
   @FXML
   private HBox weekHBox1;
+  @FXML
+  private Button themeButton1;
+  @FXML
+  private Button themeButton2;
+  @FXML
+  private Button themeButton3;
+
 
   public JournalController(Week week) {
     this.week = week;
@@ -50,26 +59,32 @@ public class JournalController implements Controller {
     initialize();
   }
 
+
   private void initialize() {
-    Theme theme = week.getTheme();
-//    weekGrid.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekPane2.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekPane3.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekSplitPane.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekVBox1.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekVBox2.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekVBox3.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekScrollPane.setBackground(Background.fill(theme.getBackgroundColor()));
-//    weekHBox1.setBackground(Background.fill(theme.getBackgroundColor()));
-
-    weekTitle.setText(week.getTitle());
-
-    weekTitle.setStyle("-fx-text-fill: WHITE");
-    weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
-
     for (int i = 0; i < 7; i++) {
       weekGrid.add(new DayView(week.getDay(i)), i, 0);
     }
+
+    // Set event handlers for the theme buttons
+    themeButton1.setOnAction(event -> changeTheme(Theme.THEME_1));
+    themeButton2.setOnAction(event -> changeTheme(Theme.THEME_2));
+    themeButton3.setOnAction(event -> changeTheme(Theme.THEME_3));
+
+    // Add the theme buttons container to weekVBox3
+    // weekVBox3.getChildren().add(themeButtonsContainer);
+
   }
+
+  private void changeTheme(Theme theme) {
+    // Change the theme of the scene
+    Scene scene = weekGrid.getScene();
+    scene.getStylesheets().clear();
+
+
+    // Update the background of the anchor panes
+    weekPane1.setBackground(new Background
+        (new BackgroundFill(theme.getBackgroundColor(), null, null)));
+  }
+
+
 }
