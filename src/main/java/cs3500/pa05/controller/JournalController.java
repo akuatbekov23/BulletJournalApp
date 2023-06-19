@@ -132,6 +132,7 @@ public class JournalController implements Controller {
         weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
             week.getMaxEvents(), week.getMaxTasks()), i, 0);
       }
+      traverseSceneGraph(weekScene.getRoot(), week.getTheme());
     });
 
     setTheme(week.getTheme());
