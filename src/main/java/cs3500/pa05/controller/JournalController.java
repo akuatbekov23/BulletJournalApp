@@ -72,6 +72,9 @@ public class JournalController implements Controller {
     initialize();
   }
 
+  /**
+   * Initializes the GUI.
+   */
   private void initialize() {
     // Week View
     for (int i = 0; i < 7; i++) {
