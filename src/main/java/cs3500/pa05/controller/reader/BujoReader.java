@@ -11,10 +11,10 @@ import java.util.Scanner;
 
 public class BujoReader implements Reader {
   @Override
-  public JsonNode read(File file) {
+  public JsonNode read() {
     Scanner sc;
     try {
-      sc = new Scanner(new FileInputStream(file));
+      sc = new Scanner(new FileInputStream(new File("src/main/resources/save.bujo")));
     } catch (FileNotFoundException e) {
       throw new RuntimeException(e);
     }
@@ -23,6 +23,8 @@ public class BujoReader implements Reader {
     while (sc.hasNextLine()) {
       content.append(sc.nextLine()).append("\n");
     }
+
+    System.out.println(content.toString());
 
     try {
       return new ObjectMapper().readTree(content.toString());

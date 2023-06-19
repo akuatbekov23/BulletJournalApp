@@ -5,7 +5,7 @@ import java.time.LocalTime;
 /**
  * Represents an event.
  */
-public class Events {
+public class Event {
 
   public String name;
   public String description;
@@ -22,8 +22,8 @@ public class Events {
    * @param startTime   the start time of the event
    * @param duration    the duration of the event
    */
-  public Events(String name, String description, DayEnum day, LocalTime startTime,
-                LocalTime duration) {
+  public Event(String name, String description, DayEnum day, LocalTime startTime,
+               LocalTime duration) {
     this.name = name;
     this.description = description;
     this.day = day;
@@ -33,6 +33,10 @@ public class Events {
 
   public String getName() {
     return this.name;
+  }
+
+  public String getDay() {
+    return this.day.toString();
   }
 
   public String getDescription() {

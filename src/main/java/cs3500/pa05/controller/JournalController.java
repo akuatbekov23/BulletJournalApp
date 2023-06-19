@@ -1,9 +1,17 @@
 package cs3500.pa05.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import cs3500.pa05.controller.reader.BujoReader;
+import cs3500.pa05.controller.writer.BujoWriter;
+import cs3500.pa05.model.Day;
+import cs3500.pa05.model.Event;
+import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
 import cs3500.pa05.viewer.TaskQueueView;
+import java.util.ArrayList;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,11 +19,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -35,28 +40,7 @@ public class JournalController implements Controller {
   @FXML
   private AnchorPane weekPane1;
   @FXML
-  private AnchorPane weekPane2;
-  @FXML
-  private AnchorPane weekPane3;
-  @FXML
-  private SplitPane weekSplitPane;
-  @FXML
-  private VBox weekVBox1;
-  @FXML
-  private VBox weekVBox2;
-  @FXML
-  private VBox weekVBox3;
-  @FXML
-  private ScrollPane weekScrollPane;
-  @FXML
   private HBox titleHBox;
-  @FXML
-  private Button themeButton1;
-  @FXML
-  private Button themeButton2;
-  @FXML
-  private Button themeButton3;
-
 
   /**
    * Constructs a new JournalController.
@@ -92,7 +76,16 @@ public class JournalController implements Controller {
     themeButton2.setStyle("-fx-background-color: #000000;");
     themeButton3.setStyle("-fx-background-color: #c0c0c0;");
 
-    HBox themeButtonsContainer = new HBox(themeButton1, themeButton2, themeButton3);
+
+    Button saveBtn = new Button("Save");
+    Button loadBtn = new Button("Load");
+    saveBtn.setOnAction(e -> new BujoWriter().write(convertWeekToJson(week)));
+    loadBtn.setOnAction(e -> new BujoReader().read());
+
+
+
+    HBox themeButtonsContainer = new HBox(themeButton1, themeButton2,
+        themeButton3, saveBtn, loadBtn);
     themeButtonsContainer.setAlignment(Pos.CENTER_LEFT);
     themeButtonsContainer.setSpacing(10);
     themeButtonsContainer.setPadding(new Insets(0, 40, 0, 0));
@@ -106,6 +99,41 @@ public class JournalController implements Controller {
     Label weekTitle = new Label(week.getTitle());
     titleHBox.getChildren().add(weekTitle);
 
+    setTheme(week.getTheme());
+  }
+
+  private JsonNode convertWeekToJson(Week week) {
+    List<DayJson> dayJson = new ArrayList<>();
+    for (int i = 0; i < 7; i++) {
+      Day day = week.getDay(i);
+      List<EventJson> events = new ArrayList<>();
+      for (int j = 0; j < day.getEvents().size(); j++) {
+        Event e = day.getEvents().get(j);
+        events.add(new EventJson(e.getName(), e.getDescription(), e.getDay(),
+            e.getStartTime().toString(), e.getDuration().toString()));
+
+      }
+      List<TaskJson> tasks = new ArrayList<>();
+      for (int j = 0; j < day.getTasks().size(); j++) {
+        Task t = day.getTasks().get(j);
+        tasks.add(new TaskJson(t.getName(), t.getDescription(), t.getDay(), t.getComplete()));
+      }
+      dayJson.add(new DayJson(day.getDay(), day.getMaxEvent(), day.getMaxTask(), events, tasks));
+    }
+    WeekJson weekJson = new WeekJson(week.getTitle(), dayJson);
+
+    List<TaskJson> taskQueueJson = new ArrayList<>();
+    for (int i = 0; i < week.getTaskQueue().size(); i++) {
+      Task t = week.getTaskQueue().get(i);
+      taskQueueJson.add(new TaskJson(t.getName(), t.getDescription(), t.getDay(), t.getComplete()));
+    }
+    Theme theme = week.getTheme();
+    ThemeJson themeJson = new ThemeJson(theme.getBackgroundColor().toString(),
+        theme.getFontColor().toString(), theme.getFontFamily());
+    JsonNode finalJson = JsonUtils.serializeRecord(new JournalJson(weekJson, taskQueueJson,
+        themeJson));
+
+    return finalJson;
   }
 
   /**
@@ -114,8 +142,7 @@ public class JournalController implements Controller {
    * @param theme the theme to set to
    */
   private void setTheme(Theme theme) {
-    weekPane1.setBackground(new Background
-        (new BackgroundFill(theme.getBackgroundColor(), null, null)));
+    weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     traverseSceneGraph(weekScene.getRoot(), theme);
   }
 

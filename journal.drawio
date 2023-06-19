@@ -198,7 +198,7 @@
         <mxCell id="bpn0PppQa9wN2ntteYz--75" value="+ maxTask: int" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="bpn0PppQa9wN2ntteYz--43">
           <mxGeometry y="82" width="160" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="bpn0PppQa9wN2ntteYz--74" value="+ events: List&lt;Event&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="bpn0PppQa9wN2ntteYz--43">
+        <mxCell id="bpn0PppQa9wN2ntteYz--74" value="+ event: List&lt;Event&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="bpn0PppQa9wN2ntteYz--43">
           <mxGeometry y="108" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="bpn0PppQa9wN2ntteYz--86" value="+ tasks: List&lt;Tasks&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="bpn0PppQa9wN2ntteYz--43">
@@ -361,7 +361,7 @@
         <mxCell id="bpn0PppQa9wN2ntteYz--99" value="+ maxTask: int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="bpn0PppQa9wN2ntteYz--103">
           <mxGeometry y="92" width="240" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="bpn0PppQa9wN2ntteYz--107" value="+ events: List&amp;lt;EventJson&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="bpn0PppQa9wN2ntteYz--103">
+        <mxCell id="bpn0PppQa9wN2ntteYz--107" value="+ event: List&amp;lt;EventJson&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="bpn0PppQa9wN2ntteYz--103">
           <mxGeometry y="118" width="240" height="26" as="geometry" />
         </mxCell>
         <mxCell id="bpn0PppQa9wN2ntteYz--110" value="+ tasks: List&amp;lt;Tasks&amp;gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="bpn0PppQa9wN2ntteYz--103">

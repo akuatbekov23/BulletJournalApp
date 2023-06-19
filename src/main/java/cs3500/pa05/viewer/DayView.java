@@ -1,7 +1,7 @@
 package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.Day;
-import cs3500.pa05.model.Events;
+import cs3500.pa05.model.Event;
 import cs3500.pa05.model.Task;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -14,7 +14,7 @@ public class DayView extends VBox {
     this.setAlignment(Pos.TOP_CENTER);
     Label dayOfTheWeek = new Label(day.getDay());
     this.getChildren().add(dayOfTheWeek);
-    for (Events e : day.getEvents()) {
+    for (Event e : day.getEvents()) {
       this.getChildren().add(new EventView(e));
     }
     for (Task t : day.getTasks()) {

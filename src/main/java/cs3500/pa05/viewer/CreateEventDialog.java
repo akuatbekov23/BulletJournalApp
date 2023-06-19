@@ -1,7 +1,5 @@
 package cs3500.pa05.viewer;
 
-import cs3500.pa05.model.Events;
-import java.time.LocalTime;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;

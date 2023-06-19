@@ -39,6 +39,10 @@ public class Task {
     return this.name;
   }
 
+  public String getDay() {
+    return this.day.toString();
+  }
+
   public String getDescription() {
     return this.description;
   }

@@ -11,7 +11,7 @@ public class Day {
   public DayEnum day;
   public int maxEvent;
   public int maxTask;
-  public List<Events> events;
+  public List<Event> events;
   public List<Task> tasks;
 
   /**
@@ -23,7 +23,7 @@ public class Day {
    * @param events   the list of events
    * @param tasks    the list of tasks
    */
-  public Day(DayEnum day, int maxEvent, int maxTask, List<Events> events, List<Task> tasks) {
+  public Day(DayEnum day, int maxEvent, int maxTask, List<Event> events, List<Task> tasks) {
     this.day = day;
     this.maxEvent = maxEvent;
     this.maxTask = maxTask;
@@ -72,10 +72,10 @@ public class Day {
   }
 
   /**
-   * adds an event to the list of events.
+   * adds an event to the list of event.
    */
-  public void addEvent(Events events) {
-    this.events.add(events);
+  public void addEvent(Event event) {
+    this.events.add(event);
   }
 
   /**
@@ -95,11 +95,11 @@ public class Day {
   }
 
   /**
-   * get Events
+   * get Event
    *
    * @return the list of events
    */
-  public List<Events> getEvents() {
+  public List<Event> getEvents() {
     return this.events;
   }
 

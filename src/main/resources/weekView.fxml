@@ -46,7 +46,7 @@
                   <children>
                      <VBox fx:id="weekVBox3" alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: transparent; -fx-background: transparent;">
                         <children>
-                           <HBox fx:id="titleHBox" alignment="TOP_CENTER" prefWidth="900.0" />
+                           <HBox fx:id="titleHBox" alignment="TOP_CENTER" prefWidth="1030.0" />
                            <ScrollPane prefHeight="640.0" prefWidth="1030.0" style="-fx-backgroud: transparent; -fx-background-color: transparent;">
                               <content>
                                  <GridPane fx:id="weekGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: transparent;">
