@@ -22,12 +22,12 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
@@ -43,6 +43,12 @@ public class JournalController implements Controller {
 
   @FXML
   private Scene weekScene;
+  @FXML
+  private TextField searchBar;
+  @FXML
+  private Label clear;
+  @FXML
+  private Label weekTitle;
   @FXML
   private VBox taskQueue;
   @FXML
@@ -78,6 +84,8 @@ public class JournalController implements Controller {
     taskQueue.getChildren().clear();
     noteTextArea.setText(week.getNotes());
 
+    weekTitle.setText(week.getTitle());
+
     // Week View
     for (int i = 0; i < 7; i++) {
       weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue), i, 0);
@@ -88,11 +96,10 @@ public class JournalController implements Controller {
       taskQueue.getChildren().add(new TaskQueueView(week.getTaskQueue().get(i)));
     }
 
-
     // Create the theme buttons
-    Button themeButton1 = new Button("Light Mode");
-    Button themeButton2 = new Button("Dark Mode");
-    Button themeButton3 = new Button("Funky Mode");
+    Button themeButton1 = new Button("Light");
+    Button themeButton2 = new Button("Dark");
+    Button themeButton3 = new Button("Funky");
 
     themeButton1.setStyle("-fx-background-color: #ffffff;");
     themeButton2.setStyle("-fx-background-color: #000000;");
@@ -103,23 +110,51 @@ public class JournalController implements Controller {
     saveBtn.setOnAction(e -> new BujoWriter().write(convertWeekToJson(week)));
     loadBtn.setOnAction(e -> load());
 
-    HBox themeButtonsContainer = new HBox(themeButton1, themeButton2,
+    titleHBox.getChildren().addAll(themeButton1, themeButton2,
         themeButton3, saveBtn, loadBtn);
-    themeButtonsContainer.setAlignment(Pos.CENTER_LEFT);
-    themeButtonsContainer.setSpacing(10);
-
-    titleHBox.getChildren().add(themeButtonsContainer);
 
     themeButton1.setOnAction(event -> setTheme(Theme.THEME_1));
     themeButton2.setOnAction(event -> setTheme(Theme.THEME_2));
     themeButton3.setOnAction(event -> setTheme(Theme.THEME_3));
 
-    Label weekTitle = new Label(week.getTitle());
-    titleHBox.getChildren().add(weekTitle);
-
     noteTextArea.setOnKeyTyped(e -> week.updateNotes(noteTextArea.getText()));
 
+    //Search Bar
+    searchBar.setOnKeyTyped(e -> search(searchBar.getText()));
+
+    clear.setOnMouseClicked(e -> {
+      searchBar.setText("");
+      clear.setVisible(false);
+      weekGrid.getChildren().clear();
+      // Week View
+      for (int i = 0; i < 7; i++) {
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue), i, 0);
+      }
+    });
+
     setTheme(week.getTheme());
+  }
+
+  private void search(String query) {
+    System.out.println(query);
+    if (!query.equals("")) {
+      clear.setVisible(true);
+
+      weekGrid.getChildren().clear();
+      // Week View
+      for (int i = 0; i < 7; i++) {
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
+            taskQueue, query.toLowerCase()), i, 0);
+      }
+    } else {
+      clear.setVisible(false);
+      weekGrid.getChildren().clear();
+      // Week View
+      for (int i = 0; i < 7; i++) {
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue), i, 0);
+      }
+    }
+    traverseSceneGraph(weekScene.getRoot(), week.getTheme());
   }
 
   private void load() {

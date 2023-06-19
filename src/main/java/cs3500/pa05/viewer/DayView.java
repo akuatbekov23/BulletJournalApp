@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 public class DayView extends VBox {
   public DayView(Day day, List<Task> taskQueue, VBox taskQueueBox) {
@@ -23,6 +24,23 @@ public class DayView extends VBox {
       this.getChildren().add(new TaskView(t, day, taskQueue, taskQueueBox));
     }
     this.getChildren().add(new ButtonView());
+  }
 
+  public DayView(Day day, List<Task> taskQueue, VBox taskQueueBox, String query) {
+    this.setPadding(new Insets(10));
+    this.setAlignment(Pos.TOP_CENTER);
+    Label dayOfTheWeek = new Label(day.getDay());
+    dayOfTheWeek.setPadding(new Insets(10));
+    this.getChildren().add(dayOfTheWeek);
+    for (Events e : day.getEvents()) {
+      this.getChildren().add(new EventView(e, day));
+    }
+    for (Task t : day.getTasks()) {
+      if (t.getDescription().toLowerCase().contains(query) || t.getName().toLowerCase().contains(query)
+          || t.day.toString().toLowerCase().contains(query)) {
+        this.getChildren().add(new TaskView(t, day, taskQueue, taskQueueBox));
+      }
+    }
+    this.getChildren().add(new ButtonView());
   }
 }
