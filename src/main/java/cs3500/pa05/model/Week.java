@@ -27,6 +27,13 @@ public class Week {
     this.days = days;
     this.taskQueue = taskQueue;
     this.theme = theme;
+
+    for (Day day: days) {
+      List<Task> tasks = day.getTasks();
+      for (Task t : tasks) {
+        addTaskQueue(t);
+      }
+    }
   }
 
   public Week(String title, Theme theme) {
@@ -44,6 +51,14 @@ public class Week {
       days[i] = new Day(dayEnums[i]);
     }
     return days;
+  }
+
+  public void addTaskQueue(Task task) {
+    this.taskQueue.add(task);
+  }
+
+  public List<Task> getTaskQueue() {
+    return taskQueue;
   }
 
   /**
