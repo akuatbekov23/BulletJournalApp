@@ -50,8 +50,11 @@
                   <children>
                      <HBox fx:id="titleHBox" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                         <VBox.margin>
-                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           <Insets />
                         </VBox.margin>
+                        <padding>
+                           <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                        </padding>
                      </HBox>
                      <GridPane fx:id="weekGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: transparent; -fx-text-fill: RED;">
                        <columnConstraints>
