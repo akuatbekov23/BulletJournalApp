@@ -18,7 +18,7 @@ public class CreateEventDialog extends Dialog {
 
   public CreateEventDialog() {
     super();
-    this.setTitle("Create a New Event");
+    this.setTitle("Create a New Events");
 
     buildUI();
   }

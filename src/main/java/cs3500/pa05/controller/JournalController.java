@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import cs3500.pa05.controller.reader.BujoReader;
 import cs3500.pa05.controller.writer.BujoWriter;
 import cs3500.pa05.model.Day;
-import cs3500.pa05.model.Event;
+import cs3500.pa05.model.Events;
 import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
@@ -111,7 +111,7 @@ public class JournalController implements Controller {
       Day day = week.getDay(i);
       List<EventJson> events = new ArrayList<>();
       for (int j = 0; j < day.getEvents().size(); j++) {
-        Event e = day.getEvents().get(j);
+        Events e = day.getEvents().get(j);
         events.add(new EventJson(e.getName(), e.getDescription(), e.getDay(),
             e.getStartTime().toString(), e.getDuration().toString()));
 

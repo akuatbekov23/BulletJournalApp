@@ -3,7 +3,7 @@ package cs3500.pa05;
 import cs3500.pa05.controller.Controller;
 import cs3500.pa05.controller.JournalController;
 import cs3500.pa05.model.DayEnum;
-import cs3500.pa05.model.Event;
+import cs3500.pa05.model.Events;
 import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.model.Day;
@@ -27,10 +27,10 @@ public class Driver extends Application {
          Color.rgb(0, 0, 0), "Arial");
 //    Week week = new Week("Best Week", theme);
     Task task1 = new Task("OOD HW", DayEnum.SUNDAY);
-    Event event1 = new Event("OOD Lecture", "",
+    Events events1 = new Events("OOD Lecture", "",
         DayEnum.SUNDAY, LocalTime.now(), LocalTime.now());
     Day[] days = new Day[] {new Day(DayEnum.SUNDAY, 3,
-        3, new ArrayList<>(List.of(event1)),
+        3, new ArrayList<>(List.of(events1)),
         new ArrayList<>(List.of(task1))), new Day(DayEnum.MONDAY),
         new Day(DayEnum.TUESDAY), new Day(DayEnum.WEDNESDAY), new Day(DayEnum.THURSDAY),
         new Day(DayEnum.FRIDAY), new Day(DayEnum.SATURDAY)};
