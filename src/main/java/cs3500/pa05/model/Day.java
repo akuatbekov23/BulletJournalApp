@@ -118,7 +118,7 @@ public class Day {
     this.tasks.removeIf(task -> task == t);
   }
 
-  public void removeIfFound(Event e) {
-    this.events.removeIf(ev -> Objects.equals(ev, e));
+  public void removeIfFound(Events e) {
+    this.events.removeIf(ev -> ev == e);
   }
 }

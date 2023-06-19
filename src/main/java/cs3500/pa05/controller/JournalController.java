@@ -22,7 +22,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -73,9 +72,15 @@ public class JournalController implements Controller {
    * Initializes the GUI.
    */
   private void initialize() {
+    // reset
+    weekGrid.getChildren().clear();
+    titleHBox.getChildren().clear();
+    taskQueue.getChildren().clear();
+    noteTextArea.setText(week.getNotes());
+
     // Week View
     for (int i = 0; i < 7; i++) {
-      weekGrid.add(new DayView(week.getDay(i)), i, 0);
+      weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue), i, 0);
     }
 
     // Task Queue
@@ -83,7 +88,6 @@ public class JournalController implements Controller {
       taskQueue.getChildren().add(new TaskQueueView(week.getTaskQueue().get(i)));
     }
 
-    noteTextArea.setText(week.getNotes());
 
     // Create the theme buttons
     Button themeButton1 = new Button("Light Mode");
@@ -119,11 +123,8 @@ public class JournalController implements Controller {
   }
 
   private void load() {
-    Week newWeek = convertJsonToWeek(new BujoReader().read());
-    week = newWeek;
-    week.update(newWeek);
-    setTheme(newWeek.getTheme());
-    noteTextArea.setText(week.getNotes());
+    week.update(convertJsonToWeek(new BujoReader().read()));
+    initialize();
   }
 
   private Week convertJsonToWeek(JsonNode jsonNode) {
@@ -158,6 +159,7 @@ public class JournalController implements Controller {
       taskQueue.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
           task.completed()));
     }
+    System.out.println(taskQueue.size());
 
     ThemeJson themeJson = mapper.convertValue(weekJson.theme(), ThemeJson.class);
     return new Week(weekJson.title(), days, taskQueue, new Theme(Color.web(themeJson.backgroundColor()),

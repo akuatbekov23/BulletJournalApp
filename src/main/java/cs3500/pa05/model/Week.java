@@ -27,7 +27,7 @@ public class Week {
   public Week(String title, Day[] days, List<Task> taskQueue, Theme theme, String notes) {
     this.title = title;
     this.days = days;
-    this.taskQueue = taskQueue;
+    this.taskQueue = new ArrayList<>();
     this.theme = theme;
     this.notes = notes;
 
