@@ -8,6 +8,8 @@ import java.util.List;
  */
 public record WeekJson(
     @JsonProperty("Title") String title,
-    @JsonProperty("Days") List<DayJson> days
+    @JsonProperty("Days") List<DayJson> days,
+    @JsonProperty("Task Queue") List<TaskJson> taskQueue,
+    @JsonProperty("Theme") ThemeJson theme
 ) {
 }

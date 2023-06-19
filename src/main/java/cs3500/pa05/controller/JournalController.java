@@ -1,15 +1,18 @@
 package cs3500.pa05.controller;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cs3500.pa05.controller.reader.BujoReader;
 import cs3500.pa05.controller.writer.BujoWriter;
 import cs3500.pa05.model.Day;
+import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Events;
 import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
 import cs3500.pa05.viewer.TaskQueueView;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
@@ -24,6 +27,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 
 /**
  * Represents a controller for the journal.
@@ -83,9 +87,12 @@ public class JournalController implements Controller {
     Button saveBtn = new Button("Save");
     Button loadBtn = new Button("Load");
     saveBtn.setOnAction(e -> new BujoWriter().write(convertWeekToJson(week)));
-    loadBtn.setOnAction(e -> new BujoReader().read());
-
-
+    loadBtn.setOnAction(e -> {
+      Week newWeek = convertJsonToWeek(new BujoReader().read());
+      week = newWeek;
+      week.update(newWeek);
+      setTheme(newWeek.getTheme());
+    });
 
     HBox themeButtonsContainer = new HBox(themeButton1, themeButton2,
         themeButton3, saveBtn, loadBtn);
@@ -105,6 +112,44 @@ public class JournalController implements Controller {
     setTheme(week.getTheme());
   }
 
+  private Week convertJsonToWeek(JsonNode jsonNode) {
+    ObjectMapper mapper = new ObjectMapper();
+    WeekJson weekJson = mapper.convertValue(jsonNode, WeekJson.class);
+
+    Day[] days = new Day[7];
+    for (int i = 0; i < 7; i++) {
+      DayJson dayJson = mapper.convertValue(weekJson.days().get(i), DayJson.class);
+
+      List<Events> events = new ArrayList<>();
+      for (int j = 0; j < dayJson.events().size(); j++) {
+        EventJson event = mapper.convertValue(dayJson.events().get(j), EventJson.class);
+        events.add(new Events(event.name(), event.description(), DayEnum.valueOf(event.day()),
+            LocalTime.parse(event.startTime()), LocalTime.parse(event.duration())));
+      }
+      List<Task> tasks = new ArrayList<>();
+      for (int j = 0; j < dayJson.tasks().size(); j++) {
+        TaskJson task = mapper.convertValue(dayJson.tasks().get(j), TaskJson.class);
+        tasks.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
+            task.completed()));
+      }
+
+      Day day = new Day(DayEnum.valueOf(dayJson.day()), dayJson.maxEvents(), dayJson.maxTasks(),
+          events, tasks);
+      days[i] = day;
+    }
+
+    List<Task> taskQueue = new ArrayList<>();
+    for (int j = 0; j < weekJson.taskQueue().size(); j++) {
+      TaskJson task = mapper.convertValue(weekJson.taskQueue().get(j), TaskJson.class);
+      taskQueue.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
+          task.completed()));
+    }
+
+    ThemeJson themeJson = mapper.convertValue(weekJson.theme(), ThemeJson.class);
+    return new Week(weekJson.title(), days, taskQueue, new Theme(Color.web(themeJson.backgroundColor()),
+        Color.web(themeJson.fontColor()), themeJson.fontFamily()));
+  }
+
   private JsonNode convertWeekToJson(Week week) {
     List<DayJson> dayJson = new ArrayList<>();
     for (int i = 0; i < 7; i++) {
@@ -114,7 +159,6 @@ public class JournalController implements Controller {
         Events e = day.getEvents().get(j);
         events.add(new EventJson(e.getName(), e.getDescription(), e.getDay(),
             e.getStartTime().toString(), e.getDuration().toString()));
-
       }
       List<TaskJson> tasks = new ArrayList<>();
       for (int j = 0; j < day.getTasks().size(); j++) {
@@ -123,7 +167,6 @@ public class JournalController implements Controller {
       }
       dayJson.add(new DayJson(day.getDay(), day.getMaxEvent(), day.getMaxTask(), events, tasks));
     }
-    WeekJson weekJson = new WeekJson(week.getTitle(), dayJson);
 
     List<TaskJson> taskQueueJson = new ArrayList<>();
     for (int i = 0; i < week.getTaskQueue().size(); i++) {
@@ -133,10 +176,8 @@ public class JournalController implements Controller {
     Theme theme = week.getTheme();
     ThemeJson themeJson = new ThemeJson(theme.getBackgroundColor().toString(),
         theme.getFontColor().toString(), theme.getFontFamily());
-    JsonNode finalJson = JsonUtils.serializeRecord(new JournalJson(weekJson, taskQueueJson,
-        themeJson));
 
-    return finalJson;
+    return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson, themeJson));
   }
 
   /**
@@ -145,6 +186,7 @@ public class JournalController implements Controller {
    * @param theme the theme to set to
    */
   private void setTheme(Theme theme) {
+    week.updateTheme(theme);
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     traverseSceneGraph(weekScene.getRoot(), theme);
   }

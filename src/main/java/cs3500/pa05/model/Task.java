@@ -17,7 +17,7 @@ public class Task {
    * @param description the description of the task
    * @param day         the day of the task
    */
-  public Task(String name, String description, DayEnum day) {
+  public Task(String name, String description, DayEnum day, Boolean complete) {
     this.name = name;
     this.description = description;
     this.day = day;

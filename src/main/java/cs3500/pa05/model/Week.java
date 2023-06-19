@@ -1,5 +1,6 @@
 package cs3500.pa05.model;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.paint.Color;
@@ -96,5 +97,18 @@ public class Week {
    */
   public Theme getTheme() {
     return this.theme;
+  }
+
+  public void updateTheme(Theme theme) {
+    this.theme = theme;
+  }
+
+  public void update(Week newWeek) {
+    title = newWeek.getTitle();
+    for (int i = 0; i < 7; i++) {
+      days[i] = newWeek.getDay(i);
+    }
+    taskQueue = newWeek.getTaskQueue();
+    theme = newWeek.getTheme();
   }
 }
