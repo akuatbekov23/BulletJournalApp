@@ -9,7 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class TaskView extends BlockView {
-  public TaskView(Task task, Day day, List<Task> taskQueue, VBox taskQueueBox) {
+  public TaskView(Task task, Day day, List<Task> taskQueue, VBox taskQueueBox, MaxView maxView) {
     super();
     Label taskLabel = new Label("Task");
     Label name = new Label(task.getName());
@@ -20,7 +20,8 @@ public class TaskView extends BlockView {
       this.getChildren().add(description);
     }
     Button delete = new Button("Delete");
-    delete.setOnAction(new TaskDeleteHandler(task, day, this, taskQueue, taskQueueBox));
+    delete.setOnAction(new TaskDeleteHandler(task, day, this, taskQueue,
+        taskQueueBox, maxView));
     this.getChildren().add(delete);
   }
 }

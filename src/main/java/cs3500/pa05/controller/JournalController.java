@@ -88,7 +88,8 @@ public class JournalController implements Controller {
 
     // Week View
     for (int i = 0; i < 7; i++) {
-      weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue), i, 0);
+      weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
+          week.getMaxEvents(), week.getMaxTasks()), i, 0);
     }
 
     // Task Queue
@@ -128,7 +129,8 @@ public class JournalController implements Controller {
       weekGrid.getChildren().clear();
       // Week View
       for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue), i, 0);
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
+            week.getMaxEvents(), week.getMaxTasks()), i, 0);
       }
     });
 
@@ -143,15 +145,16 @@ public class JournalController implements Controller {
       weekGrid.getChildren().clear();
       // Week View
       for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
-            taskQueue, query.toLowerCase()), i, 0);
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
+            query.toLowerCase(), week.getMaxEvents(), week.getMaxTasks()), i, 0);
       }
     } else {
       clear.setVisible(false);
       weekGrid.getChildren().clear();
       // Week View
       for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue), i, 0);
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
+            week.getMaxEvents(), week.getMaxTasks()), i, 0);
       }
     }
     traverseSceneGraph(weekScene.getRoot(), week.getTheme());
@@ -183,8 +186,7 @@ public class JournalController implements Controller {
             task.completed()));
       }
 
-      Day day = new Day(DayEnum.valueOf(dayJson.day()), dayJson.maxEvents(), dayJson.maxTasks(),
-          events, tasks);
+      Day day = new Day(DayEnum.valueOf(dayJson.day()), events, tasks);
       days[i] = day;
     }
 
@@ -198,7 +200,8 @@ public class JournalController implements Controller {
 
     ThemeJson themeJson = mapper.convertValue(weekJson.theme(), ThemeJson.class);
     return new Week(weekJson.title(), days, taskQueue, new Theme(Color.web(themeJson.backgroundColor()),
-        Color.web(themeJson.fontColor()), themeJson.fontFamily()), weekJson.notes());
+        Color.web(themeJson.fontColor()), themeJson.fontFamily()), weekJson.notes(),
+        weekJson.maxEvents(), weekJson.maxTasks());
   }
 
   private JsonNode convertWeekToJson(Week week) {
@@ -216,7 +219,7 @@ public class JournalController implements Controller {
         Task t = day.getTasks().get(j);
         tasks.add(new TaskJson(t.getName(), t.getDescription(), t.getDay(), t.getComplete()));
       }
-      dayJson.add(new DayJson(day.getDay(), day.getMaxEvent(), day.getMaxTask(), events, tasks));
+      dayJson.add(new DayJson(day.getDay(), events, tasks));
     }
 
     List<TaskJson> taskQueueJson = new ArrayList<>();
@@ -229,7 +232,7 @@ public class JournalController implements Controller {
         theme.getFontColor().toString(), theme.getFontFamily());
 
     return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson,
-        themeJson, week.getNotes()));
+        themeJson, week.getNotes(), week.getMaxEvents(), week.getMaxTasks()));
   }
 
   /**

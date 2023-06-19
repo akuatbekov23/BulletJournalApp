@@ -2,6 +2,7 @@ package cs3500.pa05.controller;
 
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.Task;
+import cs3500.pa05.viewer.MaxView;
 import java.util.List;
 import java.util.Objects;
 import javafx.event.Event;
@@ -17,14 +18,16 @@ public class TaskDeleteHandler implements EventHandler {
   private
   List<Task> taskQueueList;
   private VBox taskQueue;
+  private MaxView maxView;
 
   public TaskDeleteHandler(Task task, Day day, Parent parent,
-                           List<Task> taskQueueList, VBox taskQueue) {
+                           List<Task> taskQueueList, VBox taskQueue, MaxView maxView) {
     this.task = task;
     this.day = day;
     this.parent = parent;
     this.taskQueueList = taskQueueList;
     this.taskQueue = taskQueue;
+    this.maxView = maxView;
   }
 
   /**
@@ -45,5 +48,6 @@ public class TaskDeleteHandler implements EventHandler {
     }
     taskQueueList.remove(remove);
     taskQueue.getChildren().remove(remove);
+    maxView.subtract();
   }
 }

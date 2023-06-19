@@ -11,6 +11,8 @@ public record WeekJson(
     @JsonProperty("Days") List<DayJson> days,
     @JsonProperty("Task Queue") List<TaskJson> taskQueue,
     @JsonProperty("Theme") ThemeJson theme,
-    @JsonProperty("Notes") String notes
+    @JsonProperty("Notes") String notes,
+    @JsonProperty("maxEvents") int maxEvents,
+    @JsonProperty("maxTasks") int maxTasks
 ) {
 }

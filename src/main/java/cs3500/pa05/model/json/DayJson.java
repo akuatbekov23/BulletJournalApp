@@ -8,8 +8,6 @@ import java.util.List;
  */
 public record DayJson(
     @JsonProperty("Day") String day,
-    @JsonProperty("Max Events") int maxEvents,
-    @JsonProperty("Max Tasks") int maxTasks,
     @JsonProperty("Events") List<EventJson> events,
     @JsonProperty("Tasks") List<TaskJson> tasks
 ) {
