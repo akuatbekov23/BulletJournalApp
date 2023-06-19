@@ -84,13 +84,13 @@ public class JournalController implements Controller {
     }
 
     // Create the theme buttons
-    Button themeButton1 = new Button("Theme 1");
-    Button themeButton2 = new Button("Theme 2");
-    Button themeButton3 = new Button("Theme 3");
+    Button themeButton1 = new Button("Light Mode");
+    Button themeButton2 = new Button("Dark Mode");
+    Button themeButton3 = new Button("Funky Mode");
 
     themeButton1.setStyle("-fx-background-color: #ffffff;");
     themeButton2.setStyle("-fx-background-color: #000000;");
-    themeButton3.setStyle("-fx-background-color: #00ffff;");
+    themeButton3.setStyle("-fx-background-color: #c0c0c0;");
 
     HBox themeButtonsContainer = new HBox(themeButton1, themeButton2, themeButton3);
     themeButtonsContainer.setAlignment(Pos.CENTER_LEFT);
