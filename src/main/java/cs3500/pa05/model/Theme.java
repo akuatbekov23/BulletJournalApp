@@ -17,13 +17,13 @@ public class Theme {
    * Represents theme 2.
    */
   public static final Theme THEME_2 = new Theme(Color.rgb(0, 0, 0),
-      Color.rgb(255, 0, 0), "Times New Roman");
+      Color.rgb(255, 0, 0), "Britannic Bold");
 
   /**
    * Represents theme 3.
    */
-  public static final Theme THEME_3 = new Theme(new Color(0, 0.7, 1, 1),
-      Color.rgb(180, 120, 0), "Gill Sans");
+  public static final Theme THEME_3 = new Theme( Color.rgb(192, 192, 192),
+      Color.rgb(0, 70, 0), "Times New Roman");
 
   public Color backgroundColor;
   public Color fontColor;
