@@ -9,16 +9,14 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
-public class CreateEventDialog extends Dialog {
+public class CreateTaskDialog extends Dialog {
 
   private TextField title;
   private TextField description;
-  private TextField start;
-  private TextField duration;
 
-  public CreateEventDialog() {
+  public CreateTaskDialog() {
     super();
-    this.setTitle("Create a New Event");
+    this.setTitle("Create a New Task");
 
     buildUI();
   }
@@ -48,23 +46,14 @@ public class CreateEventDialog extends Dialog {
 
     title = new TextField();
     description = new TextField();
-    start = new TextField();
-    duration = new TextField();
 
     grid.add(title, 1, 0);
     GridPane.setHgrow(this.title, Priority.ALWAYS);
     grid.add(description, 1, 1);
     GridPane.setHgrow(this.description, Priority.ALWAYS);
-    grid.add(start, 1, 2);
-    GridPane.setHgrow(this.start, Priority.ALWAYS);
-    grid.add(duration, 1, 3);
-    GridPane.setHgrow(this.duration, Priority.ALWAYS);
 
     content.getChildren().add(grid);
 
     return content;
-
   }
-
-
 }
