@@ -6,7 +6,7 @@
 
 ## Section 2: Headlining Features
 - Task Queue
-- Themes
+- Themes (Click button twice sometimes:)
 
 
 ## Section 3: Power Ups
