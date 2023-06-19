@@ -42,6 +42,8 @@ public class Driver extends Application {
     Viewer viewer = new WeekView(controller);
     try {
       stage.setScene(viewer.load());
+      stage.setTitle("Journal");
+      stage.setResizable(false);
       controller.run();
       stage.show();
     } catch (IllegalStateException e) {
