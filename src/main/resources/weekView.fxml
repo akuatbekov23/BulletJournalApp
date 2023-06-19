@@ -33,9 +33,10 @@
                               </content></ScrollPane>
                         </children>
                      </VBox>
-                     <VBox fx:id="weekVBox2" alignment="TOP_CENTER" layoutX="-3.0" layoutY="480.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="250.0">
+                     <VBox fx:id="weekVBox2" layoutX="-3.0" layoutY="480.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="250.0">
                         <children>
-                           <TextArea fx:id="noteTextArea" prefHeight="200.0" prefWidth="200.0" text="Notes:" />
+                           <Label text=" Notes:" />
+                           <TextArea fx:id="noteTextArea" prefHeight="247.0" prefWidth="250.0" />
                         </children>
                      </VBox>
                   </children></AnchorPane>
