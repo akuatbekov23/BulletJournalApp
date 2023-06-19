@@ -3,9 +3,11 @@ package cs3500.pa05.controller;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
+import cs3500.pa05.viewer.TaskQueueView;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,10 +20,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * Represents a controller for the journal.
+ */
 public class JournalController implements Controller {
   private Week week;
+
   @FXML
-  private Label weekTitle;
+  private Scene weekScene;
+  @FXML
+  private VBox taskQueue;
   @FXML
   private GridPane weekGrid;
   @FXML
@@ -50,6 +58,11 @@ public class JournalController implements Controller {
   private Button themeButton3;
 
 
+  /**
+   * Constructs a new JournalController.
+   *
+   * @param week the week to use
+   */
   public JournalController(Week week) {
     this.week = week;
   }
@@ -59,10 +72,15 @@ public class JournalController implements Controller {
     initialize();
   }
 
-
   private void initialize() {
+    // Week View
     for (int i = 0; i < 7; i++) {
       weekGrid.add(new DayView(week.getDay(i)), i, 0);
+    }
+
+    // Task Queue
+    for (int i = 0; i < week.getTaskQueue().size(); i++) {
+      taskQueue.getChildren().add(new TaskQueueView(week.getTaskQueue().get(i)));
     }
 
     // Create the theme buttons
@@ -70,41 +88,51 @@ public class JournalController implements Controller {
     Button themeButton2 = new Button("Theme 2");
     Button themeButton3 = new Button("Theme 3");
 
-    themeButton1.setStyle("-fx-background-color: #000000;"); // Set the background color to black
+    themeButton1.setStyle("-fx-background-color: #ffffff;");
+    themeButton2.setStyle("-fx-background-color: #000000;");
+    themeButton3.setStyle("-fx-background-color: #00ffff;");
 
-    themeButton1.setStyle("-fx-background-color: #ff0000;"); // Set the background color to black
-
-    themeButton1.setStyle("-fx-background-color: #0000ff;"); // Set the background color to black
-
-
-    // Create an HBox to contain the theme buttons
     HBox themeButtonsContainer = new HBox(themeButton1, themeButton2, themeButton3);
-    //
-    //themeButtonsContainer.setSpacing(10);
-    //themeButtonsContainer.setPadding(new Insets(10));
+    themeButtonsContainer.setAlignment(Pos.CENTER_LEFT);
+    themeButtonsContainer.setSpacing(10);
+    themeButtonsContainer.setPadding(new Insets(0, 40, 0, 0));
+
     titleHBox.getChildren().add(themeButtonsContainer);
 
+    themeButton1.setOnAction(event -> setTheme(Theme.THEME_1));
+    themeButton2.setOnAction(event -> setTheme(Theme.THEME_2));
+    themeButton3.setOnAction(event -> setTheme(Theme.THEME_3));
 
-    // Set event handlers for the theme buttons
-    themeButton1.setOnAction(event -> changeTheme(Theme.THEME_1));
-    themeButton2.setOnAction(event -> changeTheme(Theme.THEME_2));
-    themeButton3.setOnAction(event -> changeTheme(Theme.THEME_3));
-    themeButtonsContainer.setAlignment(Pos.TOP_LEFT);
-
+    Label weekTitle = new Label(week.getTitle());
+    titleHBox.getChildren().add(weekTitle);
 
   }
 
-  private void changeTheme(Theme theme) {
-    // Change the theme of the scene
-    Scene scene = weekGrid.getScene();
-    scene.getStylesheets().clear();
-
-
-    // Update the background of the anchor panes
+  /**
+   * Changes the theme of the journal.
+   *
+   * @param theme the theme to set to
+   */
+  private void setTheme(Theme theme) {
     weekPane1.setBackground(new Background
         (new BackgroundFill(theme.getBackgroundColor(), null, null)));
-    
+    traverseSceneGraph(weekScene.getRoot(), theme);
   }
 
-
+  /**
+   * Traverses the scene graph and sets the font family and font color of all labels.
+   *
+   * @param parent the parent node
+   * @param theme  the theme to set to
+   */
+  private void traverseSceneGraph(Parent parent, Theme theme) {
+    for (javafx.scene.Node node : parent.getChildrenUnmodifiable()) {
+      if (node instanceof Label label) {
+        label.setFont(javafx.scene.text.Font.font(theme.fontFamily));
+        label.setTextFill(theme.fontColor);
+      } else if (node instanceof Parent) {
+        traverseSceneGraph((Parent) node, theme);
+      }
+    }
+  }
 }

@@ -19,17 +19,20 @@
            <items>
              <AnchorPane fx:id="weekPane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: transparent;">
                   <children>
-                     <VBox fx:id="weekVBox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="380.0" style="-fx-background-color: transparent;">
+                     <VBox fx:id="weekVBox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="250.0" style="-fx-background-color: transparent;">
                         <children>
                            <Label fx:id="taskDeque" alignment="CENTER" prefHeight="45.0" prefWidth="380.0">
                               <font>
                                  <Font size="24.0" />
                               </font>
                            </Label>
-                           <ScrollPane fx:id="weekScrollPane" prefHeight="435.0" prefWidth="245.0" style="-fx-background: transparent; -fx-background-color: transparent;" />
+                           <ScrollPane fx:id="weekScrollPane" prefHeight="435.0" prefWidth="250.0" style="-fx-background: transparent; -fx-background-color: transparent;">
+                              <content>
+                                 <VBox fx:id="taskQueue" prefHeight="200.0" prefWidth="250.0" />
+                              </content></ScrollPane>
                         </children>
                      </VBox>
-                     <VBox fx:id="weekVBox2" alignment="TOP_CENTER" layoutX="-3.0" layoutY="480.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="380.0">
+                     <VBox fx:id="weekVBox2" alignment="TOP_CENTER" layoutX="-3.0" layoutY="480.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="250.0">
                         <children>
                            <Label fx:id="notesTitle" alignment="TOP_CENTER" prefHeight="27.0" prefWidth="418.0">
                               <font>
@@ -43,15 +46,7 @@
                   <children>
                      <VBox fx:id="weekVBox3" alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: transparent; -fx-background: transparent;">
                         <children>
-                           <HBox fx:id="titleHBox" alignment="TOP_CENTER" prefWidth="900.0">
-                              <children>
-                                 <Label fx:id="weekTitle" alignment="CENTER" prefHeight="80.0" prefWidth="200.0">
-                                    <font>
-                                       <Font size="18.0" />
-                                    </font>
-                                 </Label>
-                              </children>
-                           </HBox>
+                           <HBox fx:id="titleHBox" alignment="TOP_CENTER" prefWidth="900.0" />
                            <ScrollPane prefHeight="640.0" prefWidth="1030.0" style="-fx-backgroud: transparent; -fx-background-color: transparent;">
                               <content>
                                  <GridPane fx:id="weekGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: transparent;">
