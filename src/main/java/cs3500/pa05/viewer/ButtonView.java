@@ -1,11 +1,12 @@
 package cs3500.pa05.viewer;
 
+import cs3500.pa05.controller.CreateEventHandler;
+import cs3500.pa05.model.Activity;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Background;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
 
 public class ButtonView extends BlockView {
 
@@ -13,10 +14,15 @@ public class ButtonView extends BlockView {
     super();
     HBox addEventContainer = new HBox();
     addEventContainer.setAlignment(Pos.TOP_CENTER);
-    addEventContainer.setMinWidth(110); // looks ugly because it's going by comp_size calculation
+    addEventContainer.setMinWidth(110);
     addEventContainer.setMinHeight(110);
 
-    Button addEvent = new Button("+");
+    ComboBox comboBox = new ComboBox();
+    comboBox.getItems().add(Activity.EVENT);
+    comboBox.getItems().add(Activity.TASK);
+    comboBox.setOnAction(new CreateEventHandler());
+
+    Button addEvent = new Button("+", comboBox);
     addEvent.setAlignment(Pos.CENTER);
     addEvent.setMaxHeight(Double.MAX_VALUE);
     addEvent.setMaxWidth(Double.MAX_VALUE);
@@ -24,7 +30,6 @@ public class ButtonView extends BlockView {
     addEventContainer.getChildren().add(addEvent);
     HBox.setHgrow(addEvent, Priority.ALWAYS);
     this.getChildren().add(addEventContainer);
-    // functionality goes here: addEvent.setOnAction(value);
 
 
   }
