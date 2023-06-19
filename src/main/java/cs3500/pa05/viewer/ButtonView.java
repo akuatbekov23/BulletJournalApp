@@ -17,7 +17,7 @@ public class ButtonView extends BlockView {
     addEventContainer.setMinWidth(110);
     addEventContainer.setMinHeight(110);
 
-    ComboBox comboBox = new ComboBox();
+    ComboBox<Activity> comboBox = new ComboBox<>();
     comboBox.getItems().add(Activity.EVENT);
     comboBox.getItems().add(Activity.TASK);
     comboBox.setOnAction(new CreateEventHandler());
@@ -30,7 +30,5 @@ public class ButtonView extends BlockView {
     addEventContainer.getChildren().add(addEvent);
     HBox.setHgrow(addEvent, Priority.ALWAYS);
     this.getChildren().add(addEventContainer);
-
-
   }
 }
