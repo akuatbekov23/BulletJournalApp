@@ -203,6 +203,8 @@ public class JournalController implements Controller {
   private void setTheme(Theme theme) {
     week.updateTheme(theme);
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
+    noteTextArea.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
+    noteTextArea.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
     traverseSceneGraph(weekScene.getRoot(), theme);
   }
 
@@ -215,8 +217,8 @@ public class JournalController implements Controller {
   private void traverseSceneGraph(Parent parent, Theme theme) {
     for (javafx.scene.Node node : parent.getChildrenUnmodifiable()) {
       if (node instanceof Label label) {
-        label.setFont(javafx.scene.text.Font.font(theme.fontFamily));
-        label.setStyle("-fx-text-fill: " + toHexString(theme.fontColor));
+        label.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
+        label.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
       } else if (node instanceof Parent) {
         traverseSceneGraph((Parent) node, theme);
       }

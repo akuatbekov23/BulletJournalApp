@@ -25,9 +25,9 @@ public class Theme {
   public static final Theme THEME_3 = new Theme( Color.rgb(192, 192, 192),
       Color.rgb(0, 70, 0), "Times New Roman");
 
-  public Color backgroundColor;
-  public Color fontColor;
-  public String fontFamily;
+  private Color backgroundColor;
+  private Color fontColor;
+  private String fontFamily;
 
   /**
    * Constructs a theme.
