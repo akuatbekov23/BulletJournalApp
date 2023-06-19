@@ -94,7 +94,6 @@ public class JournalController implements Controller {
     themeButton2.setStyle("-fx-background-color: #000000;");
     themeButton3.setStyle("-fx-background-color: #c0c0c0;");
 
-
     Button saveBtn = new Button("Save");
     Button loadBtn = new Button("Load");
     saveBtn.setOnAction(e -> new BujoWriter().write(convertWeekToJson(week)));
@@ -104,7 +103,6 @@ public class JournalController implements Controller {
         themeButton3, saveBtn, loadBtn);
     themeButtonsContainer.setAlignment(Pos.CENTER_LEFT);
     themeButtonsContainer.setSpacing(10);
-    themeButtonsContainer.setPadding(new Insets(0, 40, 0, 0));
 
     titleHBox.getChildren().add(themeButtonsContainer);
 
@@ -204,8 +202,8 @@ public class JournalController implements Controller {
    */
   private void setTheme(Theme theme) {
     week.updateTheme(theme);
-    traverseSceneGraph(weekScene.getRoot(), theme);
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
+    traverseSceneGraph(weekScene.getRoot(), theme);
   }
 
   /**
@@ -218,10 +216,18 @@ public class JournalController implements Controller {
     for (javafx.scene.Node node : parent.getChildrenUnmodifiable()) {
       if (node instanceof Label label) {
         label.setFont(javafx.scene.text.Font.font(theme.fontFamily));
-        label.setTextFill(theme.fontColor);
+        label.setStyle("-fx-text-fill: " + toHexString(theme.fontColor));
       } else if (node instanceof Parent) {
         traverseSceneGraph((Parent) node, theme);
       }
     }
+  }
+
+  private static String toHexString(Color color) {
+    int r = ((int) Math.round(color.getRed()     * 255)) << 24;
+    int g = ((int) Math.round(color.getGreen()   * 255)) << 16;
+    int b = ((int) Math.round(color.getBlue()    * 255)) << 8;
+    int a = ((int) Math.round(color.getOpacity() * 255));
+    return String.format("#%08X", (r + g + b + a));
   }
 }

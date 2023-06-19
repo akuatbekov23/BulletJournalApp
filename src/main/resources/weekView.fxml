@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,20 +19,20 @@
            <items>
              <AnchorPane fx:id="weekPane2" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" style="-fx-background-color: transparent;">
                   <children>
-                     <VBox fx:id="weekVBox1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="250.0" style="-fx-background-color: transparent;">
+                     <VBox fx:id="weekVBox1" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="250.0" style="-fx-background-color: transparent;">
                         <children>
-                           <Label fx:id="taskDeque" alignment="CENTER" prefHeight="45.0" prefWidth="380.0" text="Task Queue:" />
-                           <ScrollPane fx:id="weekScrollPane" prefHeight="435.0" prefWidth="250.0" style="-fx-background: transparent; -fx-background-color: transparent;">
-                              <content>
-                                 <VBox fx:id="taskQueue" prefHeight="200.0" prefWidth="250.0" />
-                              </content></ScrollPane>
+                           <Label fx:id="taskDeque" alignment="CENTER" prefHeight="45.0" text="Task Queue:" />
+                           <VBox fx:id="taskQueue" prefWidth="250.0" />
                         </children>
                      </VBox>
-                     <VBox fx:id="weekVBox2" alignment="TOP_CENTER" layoutX="-3.0" layoutY="480.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-background: transparent;">
+                     <VBox fx:id="weekVBox2" alignment="TOP_CENTER" layoutY="480.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-background: transparent;">
                         <children>
-                           <Label text="Notes:" />
-                           <TextArea fx:id="noteTextArea" prefHeight="247.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent;" />
+                           <Label style="-fx-text-fill: black;" text="Quotes &amp; Notes:" />
+                           <TextArea fx:id="noteTextArea" prefHeight="247.0" prefWidth="250.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent; -fx-text-fill: black; -fx-faint-focus-color: #00000010;" />
                         </children>
+                        <padding>
+                           <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        </padding>
                      </VBox>
                   </children></AnchorPane>
              <AnchorPane fx:id="weekPane3" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="1030.0" style="-fx-background-color: transparent;">
@@ -40,24 +40,20 @@
                      <VBox fx:id="weekVBox3" alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" style="-fx-background-color: transparent; -fx-background: transparent;">
                         <children>
                            <HBox fx:id="titleHBox" alignment="TOP_CENTER" prefWidth="1030.0" />
-                           <ScrollPane prefHeight="640.0" prefWidth="1030.0" style="-fx-backgroud: transparent; -fx-background-color: transparent;">
-                              <content>
-                                 <GridPane fx:id="weekGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: transparent;">
-                                   <columnConstraints>
-                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                   </columnConstraints>
-                                   <rowConstraints>
-                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                   </rowConstraints>
-                                 </GridPane>
-                              </content>
-                           </ScrollPane>
+                           <GridPane fx:id="weekGrid" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1000.0" style="-fx-background-color: transparent; -fx-text-fill: RED;">
+                             <columnConstraints>
+                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                               <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                             </columnConstraints>
+                             <rowConstraints>
+                               <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                             </rowConstraints>
+                           </GridPane>
                         </children>
                      </VBox>
                   </children>

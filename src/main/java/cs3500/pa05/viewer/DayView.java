@@ -13,6 +13,7 @@ public class DayView extends VBox {
     this.setPadding(new Insets(10));
     this.setAlignment(Pos.TOP_CENTER);
     Label dayOfTheWeek = new Label(day.getDay());
+    dayOfTheWeek.setPadding(new Insets(10));
     this.getChildren().add(dayOfTheWeek);
     for (Events e : day.getEvents()) {
       this.getChildren().add(new EventView(e));
