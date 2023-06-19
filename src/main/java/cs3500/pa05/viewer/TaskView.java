@@ -1,13 +1,13 @@
 package cs3500.pa05.viewer;
 
+import cs3500.pa05.controller.TaskDeleteHandler;
+import cs3500.pa05.model.Day;
 import cs3500.pa05.model.Task;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 
 public class TaskView extends BlockView {
-  public TaskView(Task task) {
+  public TaskView(Task task, Day day) {
     super();
     Label taskLabel = new Label("Task");
     Label name = new Label(task.getName());
@@ -17,5 +17,8 @@ public class TaskView extends BlockView {
       Label description = new Label(task.getDescription());
       this.getChildren().add(description);
     }
+    Button delete = new Button("Delete");
+    delete.setOnAction(new TaskDeleteHandler(task, day, this));
+    this.getChildren().add(delete);
   }
 }

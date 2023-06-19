@@ -16,10 +16,10 @@ public class DayView extends VBox {
     dayOfTheWeek.setPadding(new Insets(10));
     this.getChildren().add(dayOfTheWeek);
     for (Events e : day.getEvents()) {
-      this.getChildren().add(new EventView(e));
+      this.getChildren().add(new EventView(e, day));
     }
     for (Task t : day.getTasks()) {
-      this.getChildren().add(new TaskView(t));
+      this.getChildren().add(new TaskView(t, day));
     }
     this.getChildren().add(new ButtonView());
 

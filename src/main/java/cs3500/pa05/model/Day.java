@@ -2,6 +2,8 @@ package cs3500.pa05.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import javafx.event.Event;
 
 /**
  * Represents a day in the week.
@@ -112,4 +114,11 @@ public class Day {
     return this.tasks;
   }
 
+  public void removeIfFound(Task t) {
+    this.tasks.removeIf(task -> task == t);
+  }
+
+  public void removeIfFound(Event e) {
+    this.events.removeIf(ev -> Objects.equals(ev, e));
+  }
 }
