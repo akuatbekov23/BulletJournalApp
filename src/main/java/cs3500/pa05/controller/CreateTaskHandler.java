@@ -21,8 +21,6 @@ public class CreateTaskHandler implements EventHandler {
     if (result.isPresent()) {
       result.get();
     }
-
-
   }
 }
 

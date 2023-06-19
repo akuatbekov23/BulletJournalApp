@@ -1,4 +1,4 @@
-package cs3500.pa05.controller;
+package cs3500.pa05.model.json;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -22,6 +22,5 @@ public class CreateEventHandler implements EventHandler {
       result.get();
     }
 
-
   }
 }

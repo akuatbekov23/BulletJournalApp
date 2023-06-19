@@ -16,8 +16,8 @@ public class Theme {
   /**
    * Represents theme 2.
    */
-  public static final Theme THEME_2 = new Theme(Color.rgb(0, 0, 0),
-      Color.rgb(255, 0, 0), "Britannic Bold");
+  public static final Theme THEME_2 = new Theme(Color.rgb(50, 50, 50),
+      Color.rgb(200, 100, 0), "Britannic Bold");
 
   /**
    * Represents theme 3.

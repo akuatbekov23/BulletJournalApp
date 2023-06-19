@@ -10,6 +10,12 @@ import cs3500.pa05.model.Events;
 import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
+import cs3500.pa05.model.json.DayJson;
+import cs3500.pa05.model.json.EventJson;
+import cs3500.pa05.model.json.JsonUtils;
+import cs3500.pa05.model.json.TaskJson;
+import cs3500.pa05.model.json.ThemeJson;
+import cs3500.pa05.model.json.WeekJson;
 import cs3500.pa05.viewer.DayView;
 import cs3500.pa05.viewer.TaskQueueView;
 import java.time.LocalTime;
@@ -22,6 +28,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
@@ -45,6 +52,8 @@ public class JournalController implements Controller {
   private AnchorPane weekPane1;
   @FXML
   private HBox titleHBox;
+  @FXML
+  private TextArea noteTextArea;
 
   /**
    * Constructs a new JournalController.
@@ -74,6 +83,8 @@ public class JournalController implements Controller {
       taskQueue.getChildren().add(new TaskQueueView(week.getTaskQueue().get(i)));
     }
 
+    noteTextArea.setText(week.getNotes());
+
     // Create the theme buttons
     Button themeButton1 = new Button("Light Mode");
     Button themeButton2 = new Button("Dark Mode");
@@ -87,12 +98,7 @@ public class JournalController implements Controller {
     Button saveBtn = new Button("Save");
     Button loadBtn = new Button("Load");
     saveBtn.setOnAction(e -> new BujoWriter().write(convertWeekToJson(week)));
-    loadBtn.setOnAction(e -> {
-      Week newWeek = convertJsonToWeek(new BujoReader().read());
-      week = newWeek;
-      week.update(newWeek);
-      setTheme(newWeek.getTheme());
-    });
+    loadBtn.setOnAction(e -> load());
 
     HBox themeButtonsContainer = new HBox(themeButton1, themeButton2,
         themeButton3, saveBtn, loadBtn);
@@ -109,7 +115,17 @@ public class JournalController implements Controller {
     Label weekTitle = new Label(week.getTitle());
     titleHBox.getChildren().add(weekTitle);
 
+    noteTextArea.setOnKeyTyped(e -> week.updateNotes(noteTextArea.getText()));
+
     setTheme(week.getTheme());
+  }
+
+  private void load() {
+    Week newWeek = convertJsonToWeek(new BujoReader().read());
+    week = newWeek;
+    week.update(newWeek);
+    setTheme(newWeek.getTheme());
+    noteTextArea.setText(week.getNotes());
   }
 
   private Week convertJsonToWeek(JsonNode jsonNode) {
@@ -147,7 +163,7 @@ public class JournalController implements Controller {
 
     ThemeJson themeJson = mapper.convertValue(weekJson.theme(), ThemeJson.class);
     return new Week(weekJson.title(), days, taskQueue, new Theme(Color.web(themeJson.backgroundColor()),
-        Color.web(themeJson.fontColor()), themeJson.fontFamily()));
+        Color.web(themeJson.fontColor()), themeJson.fontFamily()), weekJson.notes());
   }
 
   private JsonNode convertWeekToJson(Week week) {
@@ -177,7 +193,8 @@ public class JournalController implements Controller {
     ThemeJson themeJson = new ThemeJson(theme.getBackgroundColor().toString(),
         theme.getFontColor().toString(), theme.getFontFamily());
 
-    return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson, themeJson));
+    return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson,
+        themeJson, week.getNotes()));
   }
 
   /**
@@ -187,8 +204,8 @@ public class JournalController implements Controller {
    */
   private void setTheme(Theme theme) {
     week.updateTheme(theme);
-    weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     traverseSceneGraph(weekScene.getRoot(), theme);
+    weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
   }
 
   /**

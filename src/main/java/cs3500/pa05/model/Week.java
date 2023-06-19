@@ -14,6 +14,7 @@ public class Week {
   public Day[] days;
   public List<Task> taskQueue;
   public Theme theme;
+  public String notes;
 
   /**
    * Constructs a week.
@@ -23,11 +24,12 @@ public class Week {
    * @param taskQueue the task queue
    * @param theme     the theme of the week
    */
-  public Week(String title, Day[] days, List<Task> taskQueue, Theme theme) {
+  public Week(String title, Day[] days, List<Task> taskQueue, Theme theme, String notes) {
     this.title = title;
     this.days = days;
     this.taskQueue = taskQueue;
     this.theme = theme;
+    this.notes = notes;
 
     for (Day day: days) {
       List<Task> tasks = day.getTasks();
@@ -42,6 +44,7 @@ public class Week {
     this.days = initDays();
     this.taskQueue = new ArrayList<>();
     this.theme = theme;
+    this.notes = "";
   }
 
   private Day[] initDays() {
@@ -80,6 +83,14 @@ public class Week {
     return this.title;
   }
 
+  public String getNotes() {
+    return this.notes;
+  }
+
+  public void updateNotes(String notes) {
+    this.notes = notes;
+  }
+
   /**
    * Gets the day
    *
@@ -104,11 +115,12 @@ public class Week {
   }
 
   public void update(Week newWeek) {
-    title = newWeek.getTitle();
+    this.title = newWeek.getTitle();
     for (int i = 0; i < 7; i++) {
-      days[i] = newWeek.getDay(i);
+      this.days[i] = newWeek.getDay(i);
     }
-    taskQueue = newWeek.getTaskQueue();
-    theme = newWeek.getTheme();
+    this.taskQueue = newWeek.getTaskQueue();
+    this.theme = newWeek.getTheme();
+    this.notes = newWeek.getNotes();;
   }
 }
