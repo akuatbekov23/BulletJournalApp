@@ -15,11 +15,12 @@ public class CreateEventHandler implements EventHandler {
   @Override
   public void handle(Event event) {
 
-    Dialog popup = new CreateEventDialog();
+    Dialog popup = new CreateEventDialog(new Events(null, null,
+        null, null, null));
     Optional<Events> result = popup.showAndWait();
 
     if (result.isPresent()) {
-      result.get();
+      Events events = result.get();
     }
 
   }

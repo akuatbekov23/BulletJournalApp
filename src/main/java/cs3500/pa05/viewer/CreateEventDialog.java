@@ -1,5 +1,11 @@
 package cs3500.pa05.viewer;
 
+import cs3500.pa05.model.DayEnum;
+import cs3500.pa05.model.Events;
+import java.time.LocalTime;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
@@ -8,16 +14,20 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.LocalTimeStringConverter;
 
 public class CreateEventDialog extends Dialog {
 
+  private final Events events;
   private TextField title = new TextField();
   private TextField description = new TextField();
   private TextField start = new TextField();
   private TextField duration = new TextField();
+  private TextField day = new TextField();
 
-  public CreateEventDialog() {
+  public CreateEventDialog(Events events) {
     super();
+    this.events = events;
     this.setTitle("Create a New Events");
 
     buildUI();
@@ -28,6 +38,22 @@ public class CreateEventDialog extends Dialog {
     getDialogPane().setContent(pane);
 
     getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
+
+    Button button = (Button) getDialogPane().lookupButton(ButtonType.FINISH);
+    button.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
+
+      @Override
+      public void handle(ActionEvent event) {
+        if (!validate()) {
+          event.consume();
+        }
+      }
+
+      private boolean validate() {
+        return (title.getText().isEmpty() || start.getText().isEmpty() || duration.getText().isEmpty());
+      }
+    });
+
   }
 
   private Pane buildDialog() {
@@ -37,6 +63,7 @@ public class CreateEventDialog extends Dialog {
     Label descriptionLabel = new Label("Desc: ");
     Label startLabel = new Label("Start Time: ");
     Label durationLabel = new Label("Duration: ");
+    Label dayLabel = new Label("Day: ");
 
     GridPane grid = new GridPane();
     grid.setHgap(10);
@@ -45,6 +72,7 @@ public class CreateEventDialog extends Dialog {
     grid.add(descriptionLabel, 0, 1);
     grid.add(startLabel, 0, 2);
     grid.add(durationLabel, 0, 3);
+    grid.add(dayLabel, 0, 4);
 
     grid.add(title, 1, 0);
     GridPane.setHgrow(this.title, Priority.ALWAYS);
@@ -54,11 +82,34 @@ public class CreateEventDialog extends Dialog {
     GridPane.setHgrow(this.start, Priority.ALWAYS);
     grid.add(duration, 1, 3);
     GridPane.setHgrow(this.duration, Priority.ALWAYS);
+    grid.add(day, 1, 4);
+    GridPane.setHgrow(this.day, Priority.ALWAYS);
 
     content.getChildren().add(grid);
 
     return content;
 
+  }
+
+  private void setTask() {
+    events.name = title.getText();
+    events.description = description.getText();
+    String dayString = day.getText();
+    if (dayString.equals("Monday")) {
+      events.day = DayEnum.MONDAY;
+    } else if (dayString.equals("Tuesday")) {
+      events.day = DayEnum.TUESDAY;
+    } else if (dayString.equals("Wednesday")) {
+      events.day = DayEnum.WEDNESDAY;
+    } else if (dayString.equals("Thursday")) {
+      events.day = DayEnum.THURSDAY;
+    } else if (dayString.equals("Friday")) {
+      events.day = DayEnum.FRIDAY;
+    } else if (dayString.equals("Saturday")) {
+      events.day = DayEnum.SATURDAY;
+    } else if (dayString.equals("Sunday")) {
+      events.day = DayEnum.SUNDAY;
+    }
   }
 
 
