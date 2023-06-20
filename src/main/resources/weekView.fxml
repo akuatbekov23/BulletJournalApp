@@ -68,6 +68,11 @@
                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
+                           <HBox fx:id="topLeftHBox" prefHeight="100.0" prefWidth="200.0">
+                              <children>
+                                 <ImageView fx:id="topLeftImage" fitHeight="43.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" />
+                              </children>
+                           </HBox>
                            <HBox fx:id="titleHBox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10.0" GridPane.columnIndex="1">
                               <padding>
                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -93,11 +98,6 @@
                                        <Cursor fx:constant="CLOSED_HAND" />
                                     </cursor>
                                  </Label>
-                              </children>
-                           </HBox>
-                           <HBox fx:id="topLeftHBox" prefHeight="100.0" prefWidth="200.0">
-                              <children>
-                                 <ImageView fx:id="topLeftImage" fitHeight="43.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </HBox>
                         </children>
