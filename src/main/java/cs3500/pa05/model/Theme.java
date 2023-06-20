@@ -1,6 +1,5 @@
 package cs3500.pa05.model;
 
-import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.image.Image;
@@ -12,22 +11,54 @@ import javafx.scene.paint.Color;
 public class Theme {
 
   /**
+   * List of Images for Theme 1
+   */
+  public static final List<Image> THEME_1_IMAGES = new ArrayList<>();
+
+  /**
+   * List of Images for Theme 2
+   */
+  public static final List<Image> THEME_2_IMAGES = new ArrayList<>();
+
+  /**
+   * List of Images for Theme 3
+   */
+  public static final List<Image> THEME_3_IMAGES = new ArrayList<>();
+
+
+  static {
+    THEME_1_IMAGES.add(new Image("file:notesBottomRight.png"));
+    THEME_1_IMAGES.add(new Image("file:notesQuotes.png"));
+    THEME_1_IMAGES.add(new Image("file:notesTopLeft.png"));
+
+    THEME_2_IMAGES.add(new Image("file:starsBottomLeft.png"));
+    THEME_2_IMAGES.add(new Image("file:starQuotes.png"));
+    THEME_2_IMAGES.add(new Image("file:starsTopLeft.png"));
+
+    THEME_3_IMAGES.add(new Image("file:shrekBottomRight.png"));
+    THEME_3_IMAGES.add(new Image("file:shrekQuotes.png"));
+    THEME_3_IMAGES.add(new Image("file:shrekTopLeft.png"));
+  }
+
+
+  /**
    * Represents theme 1.
    */
   public static final Theme THEME_1 = new Theme(Color.rgb(255, 255, 255),
-      Color.rgb(0, 0, 0), "Arial", null);
+      Color.rgb(0, 0, 0), "Arial", THEME_1_IMAGES);
 
   /**
    * Represents theme 2.
    */
   public static final Theme THEME_2 = new Theme(Color.rgb(50, 50, 50),
-      Color.rgb(200, 100, 0), "Britannic Bold", null);
+      Color.rgb(200, 100, 0), "Britannic Bold", THEME_2_IMAGES);
 
   /**
    * Represents theme 3.
    */
   public static final Theme THEME_3 = new Theme(Color.rgb(192, 192, 192),
-      Color.rgb(0, 70, 0), "Times New Roman", null);
+      Color.rgb(0, 70, 0), "Times New Roman", THEME_3_IMAGES);
+
 
 
 
@@ -123,6 +154,18 @@ public class Theme {
    */
   public void updateImages(List<Image> images) {
     this.images = images;
+  }
+
+
+  /**
+   * adds the image to the image list in the theme
+   *
+   * @param imagePath the path of the image
+   */
+  public void addImageToTheme(String imagePath) {
+    Image image = new Image("file:" + imagePath);
+    this.images.add(image);
+    updateImages(this.images);
   }
 
 

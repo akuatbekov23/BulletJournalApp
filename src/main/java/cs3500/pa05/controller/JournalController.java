@@ -29,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
@@ -60,6 +61,14 @@ public class JournalController implements Controller {
   private HBox titleHBox;
   @FXML
   private TextArea noteTextArea;
+  @FXML
+  private ImageView notesImage1;
+  @FXML
+  private ImageView notesImage2;
+  @FXML
+  private ImageView topLeftImage;
+  @FXML
+  private ImageView bottomRightImage;
 
   /**
    * Constructs a new JournalController.
@@ -279,6 +288,10 @@ public class JournalController implements Controller {
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     noteTextArea.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
     noteTextArea.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
+    notesImage1.setImage(theme.getImages().get(1));
+    notesImage2.setImage(theme.getImages().get(1));
+    topLeftImage.setImage(theme.getImages().get(2));
+    bottomRightImage.setImage(theme.getImages().get(0));
     traverseSceneGraph(weekScene.getRoot(), theme);
   }
 

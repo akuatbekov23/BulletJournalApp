@@ -1,5 +1,7 @@
 package cs3500.pa05;
 
+import static cs3500.pa05.model.Theme.THEME_1_IMAGES;
+
 import cs3500.pa05.controller.Controller;
 import cs3500.pa05.controller.JournalController;
 import cs3500.pa05.model.DayEnum;
@@ -24,7 +26,7 @@ public class Driver extends Application {
   @Override
   public void start(Stage stage) {
     Theme theme = new Theme(Color.rgb(255, 255, 255),
-         Color.rgb(0, 0, 0), "Arial");
+         Color.rgb(0, 0, 0), "Arial", THEME_1_IMAGES);
     Task task1 = new Task("OOD HW", DayEnum.SUNDAY);
     Task task2 = new Task("OOD HW 2", DayEnum.MONDAY);
     Events events1 = new Events("OOD Lecture", "",
