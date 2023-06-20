@@ -28,6 +28,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
@@ -201,7 +202,8 @@ public class JournalController implements Controller {
 
     ThemeJson themeJson = mapper.convertValue(weekJson.theme(), ThemeJson.class);
     return new Week(weekJson.title(), days, taskQueue, new Theme(Color.web(themeJson.backgroundColor()),
-        Color.web(themeJson.fontColor()), themeJson.fontFamily()), weekJson.notes(),
+        Color.web(themeJson.fontColor()), themeJson.fontFamily(),
+        parseImages(themeJson.images())), weekJson.notes(),
         weekJson.maxEvents(), weekJson.maxTasks());
   }
 
@@ -230,10 +232,41 @@ public class JournalController implements Controller {
     }
     Theme theme = week.getTheme();
     ThemeJson themeJson = new ThemeJson(theme.getBackgroundColor().toString(),
-        theme.getFontColor().toString(), theme.getFontFamily());
+        theme.getFontColor().toString(), theme.getFontFamily(), imagesToStrings(theme.getImages()));
 
     return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson,
         themeJson, week.getNotes(), week.getMaxEvents(), week.getMaxTasks()));
+  }
+
+  /**
+   * Turns list of images to lists of strings
+   *
+   * @param images list of images
+   * @return list of strings
+   */
+  private List<String> imagesToStrings(List<Image> images) {
+    List<String> imageStrings = new ArrayList<>();
+    for (Image image : images) {
+      imageStrings.add(image.getUrl());
+    }
+    return imageStrings;
+  }
+
+  /**
+   * parse the images from the json array.
+   *
+   * @param imagesJsonArray the images json array
+   * @return the images
+   */
+  public List<Image> parseImages(List<String> imagesJsonArray) {
+    List<Image> images = new ArrayList<>();
+
+    for (String imageUrl : imagesJsonArray) {
+      Image image = new Image(imageUrl);
+      images.add(image);
+    }
+
+    return images;
   }
 
   /**
