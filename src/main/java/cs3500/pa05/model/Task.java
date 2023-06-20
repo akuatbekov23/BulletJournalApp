@@ -1,5 +1,8 @@
 package cs3500.pa05.model;
 
+import javafx.beans.property.Property;
+import javafx.beans.property.StringProperty;
+
 /**
  * Represents a task.
  */

@@ -207,7 +207,7 @@ public class JournalController implements Controller {
       for (int j = 0; j < dayJson.tasks().size(); j++) {
         TaskJson task = mapper.convertValue(dayJson.tasks().get(j), TaskJson.class);
         tasks.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
-            task.completed()));
+            task.completed())); // fix this
       }
 
       Day day = new Day(DayEnum.valueOf(dayJson.day()), events, tasks);
