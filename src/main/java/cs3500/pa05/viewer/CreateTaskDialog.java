@@ -16,19 +16,16 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 public class CreateTaskDialog extends Dialog {
-
-  private final Task task;
+  private DayEnum dayEnum;
+  private Task task;
   private TextField title;
   private TextField description;
 
-  private TextField day;
-  public CreateTaskDialog(Task task) {
+  public CreateTaskDialog(DayEnum dayEnum) {
     super();
-    this.task = task;
     this.setTitle("Create a New Task");
-
+    this.dayEnum = dayEnum;
     buildUI();
-    setTask();
     setResultConverter();
   }
 
@@ -49,7 +46,7 @@ public class CreateTaskDialog extends Dialog {
       }
 
       private boolean validate() {
-        return (title.getText().isEmpty() || day.getText().isEmpty());
+        return (title.getText().isEmpty());
       }
     });
 
@@ -60,59 +57,32 @@ public class CreateTaskDialog extends Dialog {
 
     Label titleLabel = new Label("Title: ");
     Label descriptionLabel = new Label("Desc: ");
-    Label dayLabel = new Label("Day: ");
 
     GridPane grid = new GridPane();
     grid.setHgap(10);
     grid.setVgap(5);
     grid.add(titleLabel, 0, 0);
     grid.add(descriptionLabel, 0, 1);
-    grid.add(dayLabel, 0, 2);
 
     title = new TextField();
     description = new TextField();
-    day = new TextField();
 
     grid.add(title, 1, 0);
     GridPane.setHgrow(this.title, Priority.ALWAYS);
     grid.add(description, 1, 1);
     GridPane.setHgrow(this.description, Priority.ALWAYS);
-    grid.add(day, 1, 2);
-    GridPane.setHgrow(this.day, Priority.ALWAYS);
 
     content.getChildren().add(grid);
 
     return content;
   }
 
-  private void setTask() {
-    task.name = title.getText();
-    task.description = description.getText();
-    String dayString = day.getText();
-    if (dayString.equals("Monday")) {
-      task.day = DayEnum.MONDAY;
-    } else if (dayString.equals("Tuesday")) {
-      task.day = DayEnum.TUESDAY;
-    } else if (dayString.equals("Wednesday")) {
-      task.day = DayEnum.WEDNESDAY;
-    } else if (dayString.equals("Thursday")) {
-      task.day = DayEnum.THURSDAY;
-    } else if (dayString.equals("Friday")) {
-      task.day = DayEnum.FRIDAY;
-    } else if (dayString.equals("Saturday")) {
-      task.day = DayEnum.SATURDAY;
-    } else if (dayString.equals("Sunday")) {
-      task.day = DayEnum.SUNDAY;
-    }
-  }
-
   public void setResultConverter() {
     Callback<ButtonType, Task> taskResult = new Callback<ButtonType, Task>() {
-
       @Override
       public Task call(ButtonType param) {
         if (param == ButtonType.FINISH) {
-          return task;
+          return new Task(title.getText(), description.getText(), dayEnum, false);
         } else {
           return null;
         }

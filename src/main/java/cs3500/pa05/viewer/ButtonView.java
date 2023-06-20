@@ -5,10 +5,10 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
+import cs3500.pa05.model.Day;
 
 public class ButtonView extends BlockView {
-
-  public ButtonView() {
+  public ButtonView(Day day) {
     super();
     HBox addEventContainer = new HBox();
     addEventContainer.setAlignment(Pos.TOP_CENTER);
@@ -19,7 +19,7 @@ public class ButtonView extends BlockView {
     addEvent.setAlignment(Pos.CENTER);
     addEvent.setMaxHeight(Double.MAX_VALUE);
     addEvent.setMaxWidth(Double.MAX_VALUE);
-    addEvent.setOnAction(new ChooseNewHandler());
+    addEvent.setOnAction(new ChooseNewHandler(day));
 
     addEventContainer.getChildren().add(addEvent);
     HBox.setHgrow(addEvent, Priority.ALWAYS);

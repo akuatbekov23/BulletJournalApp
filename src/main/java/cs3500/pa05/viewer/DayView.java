@@ -24,7 +24,7 @@ public class DayView extends VBox {
     for (Task t : day.getTasks()) {
       this.getChildren().add(new TaskView(t, day, taskQueue, taskQueueBox, maxTasksView));
     }
-    this.getChildren().addAll(new ButtonView(), maxEventsView, maxTasksView);
+    this.getChildren().addAll(new ButtonView(day), maxEventsView, maxTasksView);
   }
 
   public DayView(Day day, List<Task> taskQueue, VBox taskQueueBox, String query,
@@ -45,6 +45,6 @@ public class DayView extends VBox {
         this.getChildren().add(new TaskView(t, day, taskQueue, taskQueueBox, maxTasksView));
       }
     }
-    this.getChildren().addAll(new ButtonView(), maxEventsView, maxTasksView);
+    this.getChildren().addAll(new ButtonView(day), maxEventsView, maxTasksView);
   }
 }
