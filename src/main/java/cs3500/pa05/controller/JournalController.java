@@ -111,10 +111,12 @@ public class JournalController implements Controller {
     Button themeButton1 = new Button("Light");
     Button themeButton2 = new Button("Dark");
     Button themeButton3 = new Button("Funky");
+    Button customThemeButton = new Button("Custom");
 
     themeButton1.setStyle("-fx-background-color: #ffffff;");
     themeButton2.setStyle("-fx-background-color: #000000;");
     themeButton3.setStyle("-fx-background-color: #c0c0c0;");
+    customThemeButton.setStyle("-fx-background-color: #2f2fff;");
 
     Button saveBtn = new Button("Save");
     Button loadBtn = new Button("Load");
@@ -122,11 +124,13 @@ public class JournalController implements Controller {
     loadBtn.setOnAction(e -> load());
 
     titleHBox.getChildren().addAll(themeButton1, themeButton2,
-        themeButton3, saveBtn, loadBtn);
+        themeButton3, customThemeButton, saveBtn, loadBtn);
 
     themeButton1.setOnAction(event -> setTheme(Theme.THEME_1));
     themeButton2.setOnAction(event -> setTheme(Theme.THEME_2));
     themeButton3.setOnAction(event -> setTheme(Theme.THEME_3));
+
+    customThemeButton.setOnAction(event -> customizeTheme());
 
     noteTextArea.setOnKeyTyped(e -> week.updateNotes(noteTextArea.getText()));
 
@@ -146,6 +150,10 @@ public class JournalController implements Controller {
     });
 
     setTheme(week.getTheme());
+  }
+
+
+  private void customizeTheme() {
   }
 
   private void search(String query) {
