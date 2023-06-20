@@ -27,17 +27,17 @@ public class Theme {
 
 
   static {
-    THEME_1_IMAGES.add(new Image("file:notesBottomRight.png"));
-    THEME_1_IMAGES.add(new Image("file:notesQuotes.png"));
-    THEME_1_IMAGES.add(new Image("file:notesTopLeft.png"));
+    THEME_1_IMAGES.add(new Image("notesBottomRight.png"));
+    THEME_1_IMAGES.add(new Image("notesQuotes.png"));
+    THEME_1_IMAGES.add(new Image("notesTopLeft.png"));
 
-    THEME_2_IMAGES.add(new Image("file:starsBottomLeft.png"));
-    THEME_2_IMAGES.add(new Image("file:starQuotes.png"));
-    THEME_2_IMAGES.add(new Image("file:starsTopLeft.png"));
+    THEME_2_IMAGES.add(new Image("starsBottomLeft.png"));
+    THEME_2_IMAGES.add(new Image("starQuotes.png"));
+    THEME_2_IMAGES.add(new Image("starsTopLeft.png"));
 
-    THEME_3_IMAGES.add(new Image("file:shrekBottomRight.png"));
-    THEME_3_IMAGES.add(new Image("file:shrekQuotes.png"));
-    THEME_3_IMAGES.add(new Image("file:shrekTopLeft.png"));
+    THEME_3_IMAGES.add(new Image("shrekBottomRight.png"));
+    THEME_3_IMAGES.add(new Image("shrekQuotes.png"));
+    THEME_3_IMAGES.add(new Image("shrekTopLeft.png"));
   }
 
 
