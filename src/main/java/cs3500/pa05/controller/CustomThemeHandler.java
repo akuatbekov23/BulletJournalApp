@@ -1,6 +1,7 @@
 package cs3500.pa05.controller;
 
 import cs3500.pa05.model.Events;
+import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.viewer.CreateEventDialog;
 import cs3500.pa05.viewer.CustomThemeDialog;
@@ -21,6 +22,11 @@ public class CustomThemeHandler implements EventHandler {
   public void handle(Event event) {
     Dialog popup = new CustomThemeDialog(new Theme(null, null, null, null));
 
+    Optional<Theme> result = popup.showAndWait();
+
+    result.ifPresent((Theme theme) -> {
+      themes.add(theme);
+    });
 
   }
 }
