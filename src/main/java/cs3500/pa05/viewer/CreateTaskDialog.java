@@ -13,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 
 public class CreateTaskDialog extends Dialog {
 
@@ -28,6 +29,7 @@ public class CreateTaskDialog extends Dialog {
 
     buildUI();
     setTask();
+    setResultConverter();
   }
 
   private void buildUI() {
@@ -102,5 +104,20 @@ public class CreateTaskDialog extends Dialog {
     } else if (dayString.equals("Sunday")) {
       task.day = DayEnum.SUNDAY;
     }
+  }
+
+  public void setResultConverter() {
+    Callback<ButtonType, Task> taskResult = new Callback<ButtonType, Task>() {
+
+      @Override
+      public Task call(ButtonType param) {
+        if (param == ButtonType.FINISH) {
+          return task;
+        } else {
+          return null;
+        }
+      }
+    };
+    setResultConverter(taskResult);
   }
 }

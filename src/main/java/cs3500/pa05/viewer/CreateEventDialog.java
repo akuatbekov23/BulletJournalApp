@@ -31,6 +31,7 @@ public class CreateEventDialog extends Dialog {
     this.setTitle("Create a New Events");
 
     buildUI();
+    setEvents();
   }
 
   private void buildUI() {
@@ -91,7 +92,7 @@ public class CreateEventDialog extends Dialog {
 
   }
 
-  private void setTask() {
+  private void setEvents() {
     events.name = title.getText();
     events.description = description.getText();
     String dayString = day.getText();
