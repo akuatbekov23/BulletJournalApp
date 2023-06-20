@@ -38,7 +38,7 @@ public class ChooseNewDialog extends Dialog {
     Button newTask = new Button("New Task");
     grid.add(newEvent, 1, 0);
     grid.add(newTask, 1, 1);
-    newEvent.setOnAction(new CreateEventHandler(day.getEvents()));
+    newEvent.setOnAction(new CreateEventHandler(day.getEvents(), DayEnum.valueOf(day.getDay())));
     newTask.setOnAction(new CreateTaskHandler(day.getTasks(), DayEnum.valueOf(day.getDay())));
 
     content.getChildren().add(grid);

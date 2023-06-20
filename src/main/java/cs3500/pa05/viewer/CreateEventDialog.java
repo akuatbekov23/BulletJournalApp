@@ -3,6 +3,8 @@ package cs3500.pa05.viewer;
 import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Events;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -17,24 +19,19 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 public class CreateEventDialog extends Dialog {
-
-  private final Events events;
+  private DayEnum dayEnum;
   private TextField title = new TextField();
   private TextField description = new TextField();
   private TextField start = new TextField();
   private TextField duration = new TextField();
-  private TextField day = new TextField();
+  private Label warning = new Label("Invalid date format!");
 
-  /**
-   * @param events the Event to edit
-   */
-  public CreateEventDialog(Events events) {
+  public CreateEventDialog(DayEnum dayEnum) {
     super();
-    this.events = events;
     this.setTitle("Create a New Event");
+    this.dayEnum = dayEnum;
 
     buildUI();
-    setEvents();
     setResultConverter();
   }
 
@@ -64,8 +61,20 @@ public class CreateEventDialog extends Dialog {
        * @return boolean on whether the text fields are empty
        */
       private boolean validate() {
-        return (title.getText().isEmpty() || start.getText().isEmpty() || duration.getText().isEmpty()
-            || day.getText().isEmpty());
+        warning.setVisible(false);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+
+        boolean validTime = false;
+        try {
+          LocalTime.parse(start.getText(), formatter);
+          LocalTime.parse(duration.getText(), formatter);
+        } catch (DateTimeParseException e) {
+          validTime = true;
+          warning.setVisible(true);
+        }
+
+        return title.getText().isEmpty() || start.getText().isEmpty()
+            || duration.getText().isEmpty() || validTime;
       }
     });
 
@@ -81,7 +90,7 @@ public class CreateEventDialog extends Dialog {
     Label descriptionLabel = new Label("Desc: ");
     Label startLabel = new Label("Start Time: ");
     Label durationLabel = new Label("Duration: ");
-    Label dayLabel = new Label("Day: ");
+    warning.setVisible(false);
 
     GridPane grid = new GridPane();
     grid.setHgap(10);
@@ -90,20 +99,18 @@ public class CreateEventDialog extends Dialog {
     grid.add(descriptionLabel, 0, 1);
     grid.add(startLabel, 0, 2);
     grid.add(durationLabel, 0, 3);
-    grid.add(dayLabel, 0, 4);
+    grid.add(warning, 0, 4);
 
     grid.add(title, 1, 0);
     GridPane.setHgrow(this.title, Priority.ALWAYS);
     grid.add(description, 1, 1);
     GridPane.setHgrow(this.description, Priority.ALWAYS);
-    start.setPromptText("Enter as: hh/mm");
+    start.setPromptText("Enter as: HH:mm");
     grid.add(start, 1, 2);
     GridPane.setHgrow(this.start, Priority.ALWAYS);
-    duration.setPromptText("Enter as: hh/mm");
+    duration.setPromptText("Enter as: HH:mm");
     grid.add(duration, 1, 3);
     GridPane.setHgrow(this.duration, Priority.ALWAYS);
-    grid.add(day, 1, 4);
-    GridPane.setHgrow(this.day, Priority.ALWAYS);
 
     content.getChildren().add(grid);
 
@@ -112,45 +119,19 @@ public class CreateEventDialog extends Dialog {
   }
 
   /**
-   * sets the Event
-   */
-  private void setEvents() {
-    events.name = title.getText();
-    events.description = description.getText();
-    String hour = start.getText().substring(0, 1);
-    String minutes = start.getText().substring(1);
-    events.startTime = LocalTime.of(Integer.parseInt(hour), Integer.parseInt(minutes));
-    String durHour = duration.getText().substring(0, 1);
-    String durMin = duration.getText().substring(1);
-    events.duration = LocalTime.of(Integer.parseInt(durHour), Integer.parseInt(durMin));
-    String dayString = day.getText();
-    if (dayString.equals("Monday")) {
-      events.day = DayEnum.MONDAY;
-    } else if (dayString.equals("Tuesday")) {
-      events.day = DayEnum.TUESDAY;
-    } else if (dayString.equals("Wednesday")) {
-      events.day = DayEnum.WEDNESDAY;
-    } else if (dayString.equals("Thursday")) {
-      events.day = DayEnum.THURSDAY;
-    } else if (dayString.equals("Friday")) {
-      events.day = DayEnum.FRIDAY;
-    } else if (dayString.equals("Saturday")) {
-      events.day = DayEnum.SATURDAY;
-    } else if (dayString.equals("Sunday")) {
-      events.day = DayEnum.SUNDAY;
-    }
-  }
-
-  /**
    * returns the Event made
    */
   public void setResultConverter() {
     Callback<ButtonType, Events> eventsResult = new Callback<ButtonType, Events>() {
-
       @Override
       public Events call(ButtonType param) {
         if (param == ButtonType.FINISH) {
-          return events;
+          DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+          LocalTime startTime = LocalTime.parse(start.getText(), formatter);
+          LocalTime durationTime = LocalTime.parse(duration.getText(), formatter);
+
+          return new Events(title.getText(), description.getText(), dayEnum,
+              startTime, durationTime);
         } else {
           return null;
         }

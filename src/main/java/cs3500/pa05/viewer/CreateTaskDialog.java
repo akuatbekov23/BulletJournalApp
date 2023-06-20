@@ -17,7 +17,6 @@ import javafx.util.Callback;
 
 public class CreateTaskDialog extends Dialog {
   private DayEnum dayEnum;
-  private Task task;
   private TextField title;
   private TextField description;
 

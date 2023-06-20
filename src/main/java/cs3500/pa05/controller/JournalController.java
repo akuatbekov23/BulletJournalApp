@@ -161,7 +161,6 @@ public class JournalController implements Controller {
   }
 
   private void search(String query) {
-    System.out.println(query);
     if (!query.equals("")) {
       clear.setVisible(true);
 
@@ -219,7 +218,6 @@ public class JournalController implements Controller {
       taskQueue.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
           task.completed()));
     }
-    System.out.println(taskQueue.size());
 
     ThemeJson themeJson = mapper.convertValue(weekJson.theme(), ThemeJson.class);
     return new Week(weekJson.title(), days, taskQueue, new Theme(Color.web(themeJson.backgroundColor()),

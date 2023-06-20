@@ -29,9 +29,6 @@ public class CreateTaskHandler implements EventHandler {
     Optional<Task> result = popup.showAndWait();
 
     result.ifPresent((Task task) -> {
-      System.out.println(task.getName());
-      System.out.println(task.getDescription());
-      System.out.println(task.getComplete());
       taskList.add(task);
     });
   }
