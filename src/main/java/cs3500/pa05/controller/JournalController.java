@@ -153,6 +153,11 @@ public class JournalController implements Controller {
   }
 
 
+  /**
+   * handler for the custom theme button. Opens a new window to customize the theme.
+   * The user can select a color for the background and the font. Can select the font family
+   * and can add images to the background. Basically the user creates a new theme.
+   */
   private void customizeTheme() {
   }
 
