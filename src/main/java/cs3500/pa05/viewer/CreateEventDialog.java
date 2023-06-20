@@ -11,10 +11,10 @@ import javafx.scene.layout.VBox;
 
 public class CreateEventDialog extends Dialog {
 
-  private TextField title;
-  private TextField description;
-  private TextField start;
-  private TextField duration;
+  private TextField title = new TextField();
+  private TextField description = new TextField();
+  private TextField start = new TextField();
+  private TextField duration = new TextField();
 
   public CreateEventDialog() {
     super();
@@ -45,11 +45,6 @@ public class CreateEventDialog extends Dialog {
     grid.add(descriptionLabel, 0, 1);
     grid.add(startLabel, 0, 2);
     grid.add(durationLabel, 0, 3);
-
-    title = new TextField();
-    description = new TextField();
-    start = new TextField();
-    duration = new TextField();
 
     grid.add(title, 1, 0);
     GridPane.setHgrow(this.title, Priority.ALWAYS);
