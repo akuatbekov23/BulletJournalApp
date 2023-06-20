@@ -11,8 +11,6 @@ import javafx.event.Event;
 public class Day {
 
   public DayEnum day;
-  public int maxEvent;
-  public int maxTask;
   public List<Events> events;
   public List<Task> tasks;
 
@@ -20,57 +18,19 @@ public class Day {
    * Constructs a day.
    *
    * @param day      the day of the week
-   * @param maxEvent the maximum number of events
-   * @param maxTask  the maximum number of tasks
    * @param events   the list of events
    * @param tasks    the list of tasks
    */
-  public Day(DayEnum day, int maxEvent, int maxTask, List<Events> events, List<Task> tasks) {
+  public Day(DayEnum day, List<Events> events, List<Task> tasks) {
     this.day = day;
-    this.maxEvent = maxEvent;
-    this.maxTask = maxTask;
     this.events = events;
     this.tasks = tasks;
   }
 
   public Day(DayEnum day) {
     this.day = day;
-    this.maxEvent = 3;
-    this.maxTask = 3;
     this.events = new ArrayList<>();
     this.tasks = new ArrayList<>();
-  }
-
-  /**
-   * Updates the maximum number of events.
-   *
-   * @param maxEvent the maximum number of events
-   */
-  public void updateMaxEvent(int maxEvent) {
-    this.maxEvent = maxEvent;
-  }
-
-  /**
-   * Updates the maximum number of tasks.
-   *
-   * @param maxTask the maximum number of tasks
-   */
-  public void updateMaxTask(int maxTask) {
-    this.maxTask = maxTask;
-  }
-
-  /**
-   * returns the Maximum number of events.
-   */
-  public int getMaxEvent() {
-    return this.maxEvent;
-  }
-
-  /**
-   * returns the Maximum number of tasks.
-   */
-  public int getMaxTask() {
-    return this.maxTask;
   }
 
   /**
@@ -118,7 +78,7 @@ public class Day {
     this.tasks.removeIf(task -> task == t);
   }
 
-  public void removeIfFound(Event e) {
-    this.events.removeIf(ev -> Objects.equals(ev, e));
+  public void removeIfFound(Events e) {
+    this.events.removeIf(ev -> ev == e);
   }
 }

@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class EventView extends BlockView {
-  public EventView(Events events, Day day) {
+  public EventView(Events events, Day day, MaxView maxView) {
     super();
     Label eventLabel = new Label("Event");
     Label name = new Label(events.getName());
@@ -19,7 +19,7 @@ public class EventView extends BlockView {
       this.getChildren().add(description);
     }
     Button delete = new Button("Delete");
-    delete.setOnAction(new EventDeleteHandler(events, day, this));
+    delete.setOnAction(new EventDeleteHandler(events, day, this, maxView));
     this.getChildren().add(delete);
   }
 }

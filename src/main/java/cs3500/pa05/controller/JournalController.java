@@ -22,13 +22,14 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
@@ -45,6 +46,12 @@ public class JournalController implements Controller {
   @FXML
   private Scene weekScene;
   @FXML
+  private TextField searchBar;
+  @FXML
+  private Label clear;
+  @FXML
+  private Label weekTitle;
+  @FXML
   private VBox taskQueue;
   @FXML
   private GridPane weekGrid;
@@ -54,6 +61,14 @@ public class JournalController implements Controller {
   private HBox titleHBox;
   @FXML
   private TextArea noteTextArea;
+  @FXML
+  private ImageView notesImage1;
+  @FXML
+  private ImageView notesImage2;
+  @FXML
+  private ImageView topLeftImage;
+  @FXML
+  private ImageView bottomRightImage;
 
   /**
    * Constructs a new JournalController.
@@ -73,9 +88,18 @@ public class JournalController implements Controller {
    * Initializes the GUI.
    */
   private void initialize() {
+    // reset
+    weekGrid.getChildren().clear();
+    titleHBox.getChildren().clear();
+    taskQueue.getChildren().clear();
+    noteTextArea.setText(week.getNotes());
+
+    weekTitle.setText(week.getTitle());
+
     // Week View
     for (int i = 0; i < 7; i++) {
-      weekGrid.add(new DayView(week.getDay(i)), i, 0);
+      weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
+          week.getMaxEvents(), week.getMaxTasks()), i, 0);
     }
 
     // Task Queue
@@ -83,47 +107,81 @@ public class JournalController implements Controller {
       taskQueue.getChildren().add(new TaskQueueView(week.getTaskQueue().get(i)));
     }
 
-    noteTextArea.setText(week.getNotes());
-
     // Create the theme buttons
-    Button themeButton1 = new Button("Light Mode");
-    Button themeButton2 = new Button("Dark Mode");
-    Button themeButton3 = new Button("Funky Mode");
+    Button themeButton1 = new Button("Light");
+    Button themeButton2 = new Button("Dark");
+    Button themeButton3 = new Button("Funky");
+    Button customThemeButton = new Button("Custom");
 
     themeButton1.setStyle("-fx-background-color: #ffffff;");
     themeButton2.setStyle("-fx-background-color: #000000;");
     themeButton3.setStyle("-fx-background-color: #c0c0c0;");
+    customThemeButton.setStyle("-fx-background-color: #2f2fff;");
 
     Button saveBtn = new Button("Save");
     Button loadBtn = new Button("Load");
     saveBtn.setOnAction(e -> new BujoWriter().write(convertWeekToJson(week)));
     loadBtn.setOnAction(e -> load());
 
-    HBox themeButtonsContainer = new HBox(themeButton1, themeButton2,
-        themeButton3, saveBtn, loadBtn);
-    themeButtonsContainer.setAlignment(Pos.CENTER_LEFT);
-    themeButtonsContainer.setSpacing(10);
-
-    titleHBox.getChildren().add(themeButtonsContainer);
+    titleHBox.getChildren().addAll(themeButton1, themeButton2,
+        themeButton3, customThemeButton, saveBtn, loadBtn);
 
     themeButton1.setOnAction(event -> setTheme(Theme.THEME_1));
     themeButton2.setOnAction(event -> setTheme(Theme.THEME_2));
     themeButton3.setOnAction(event -> setTheme(Theme.THEME_3));
 
-    Label weekTitle = new Label(week.getTitle());
-    titleHBox.getChildren().add(weekTitle);
+    customThemeButton.setOnAction(event -> customizeTheme());
 
     noteTextArea.setOnKeyTyped(e -> week.updateNotes(noteTextArea.getText()));
+
+    //Search Bar
+    searchBar.setOnKeyTyped(e -> search(searchBar.getText()));
+
+    clear.setOnMouseClicked(e -> {
+      searchBar.setText("");
+      clear.setVisible(false);
+      weekGrid.getChildren().clear();
+      // Week View
+      for (int i = 0; i < 7; i++) {
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
+            week.getMaxEvents(), week.getMaxTasks()), i, 0);
+      }
+      traverseSceneGraph(weekScene.getRoot(), week.getTheme());
+    });
 
     setTheme(week.getTheme());
   }
 
+
+  private void customizeTheme() {
+  }
+
+  private void search(String query) {
+    System.out.println(query);
+    if (!query.equals("")) {
+      clear.setVisible(true);
+
+      weekGrid.getChildren().clear();
+      // Week View
+      for (int i = 0; i < 7; i++) {
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
+            query.toLowerCase(), week.getMaxEvents(), week.getMaxTasks()), i, 0);
+      }
+    } else {
+      clear.setVisible(false);
+      weekGrid.getChildren().clear();
+      // Week View
+      for (int i = 0; i < 7; i++) {
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(), taskQueue,
+            week.getMaxEvents(), week.getMaxTasks()), i, 0);
+      }
+    }
+    traverseSceneGraph(weekScene.getRoot(), week.getTheme());
+  }
+
   private void load() {
-    Week newWeek = convertJsonToWeek(new BujoReader().read());
-    week = newWeek;
-    week.update(newWeek);
-    setTheme(newWeek.getTheme());
-    noteTextArea.setText(week.getNotes());
+    week.update(convertJsonToWeek(new BujoReader().read()));
+    initialize();
   }
 
   private Week convertJsonToWeek(JsonNode jsonNode) {
@@ -147,8 +205,7 @@ public class JournalController implements Controller {
             task.completed()));
       }
 
-      Day day = new Day(DayEnum.valueOf(dayJson.day()), dayJson.maxEvents(), dayJson.maxTasks(),
-          events, tasks);
+      Day day = new Day(DayEnum.valueOf(dayJson.day()), events, tasks);
       days[i] = day;
     }
 
@@ -158,10 +215,13 @@ public class JournalController implements Controller {
       taskQueue.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
           task.completed()));
     }
+    System.out.println(taskQueue.size());
 
     ThemeJson themeJson = mapper.convertValue(weekJson.theme(), ThemeJson.class);
     return new Week(weekJson.title(), days, taskQueue, new Theme(Color.web(themeJson.backgroundColor()),
-        Color.web(themeJson.fontColor()), themeJson.fontFamily()), weekJson.notes());
+        Color.web(themeJson.fontColor()), themeJson.fontFamily(),
+        parseImages(themeJson.images())), weekJson.notes(),
+        weekJson.maxEvents(), weekJson.maxTasks());
   }
 
   private JsonNode convertWeekToJson(Week week) {
@@ -179,7 +239,7 @@ public class JournalController implements Controller {
         Task t = day.getTasks().get(j);
         tasks.add(new TaskJson(t.getName(), t.getDescription(), t.getDay(), t.getComplete()));
       }
-      dayJson.add(new DayJson(day.getDay(), day.getMaxEvent(), day.getMaxTask(), events, tasks));
+      dayJson.add(new DayJson(day.getDay(), events, tasks));
     }
 
     List<TaskJson> taskQueueJson = new ArrayList<>();
@@ -189,10 +249,41 @@ public class JournalController implements Controller {
     }
     Theme theme = week.getTheme();
     ThemeJson themeJson = new ThemeJson(theme.getBackgroundColor().toString(),
-        theme.getFontColor().toString(), theme.getFontFamily());
+        theme.getFontColor().toString(), theme.getFontFamily(), imagesToStrings(theme.getImages()));
 
     return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson,
-        themeJson, week.getNotes()));
+        themeJson, week.getNotes(), week.getMaxEvents(), week.getMaxTasks()));
+  }
+
+  /**
+   * Turns list of images to lists of strings
+   *
+   * @param images list of images
+   * @return list of strings
+   */
+  private List<String> imagesToStrings(List<Image> images) {
+    List<String> imageStrings = new ArrayList<>();
+    for (Image image : images) {
+      imageStrings.add(image.getUrl());
+    }
+    return imageStrings;
+  }
+
+  /**
+   * parse the images from the json array.
+   *
+   * @param imagesJsonArray the images json array
+   * @return the images
+   */
+  public List<Image> parseImages(List<String> imagesJsonArray) {
+    List<Image> images = new ArrayList<>();
+
+    for (String imageUrl : imagesJsonArray) {
+      Image image = new Image(imageUrl);
+      images.add(image);
+    }
+
+    return images;
   }
 
   /**
@@ -205,6 +296,10 @@ public class JournalController implements Controller {
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     noteTextArea.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
     noteTextArea.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
+    notesImage1.setImage(theme.getImages().get(1));
+    notesImage2.setImage(theme.getImages().get(1));
+    topLeftImage.setImage(theme.getImages().get(2));
+    bottomRightImage.setImage(theme.getImages().get(0));
     traverseSceneGraph(weekScene.getRoot(), theme);
   }
 

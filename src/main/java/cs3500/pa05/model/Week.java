@@ -15,6 +15,8 @@ public class Week {
   public List<Task> taskQueue;
   public Theme theme;
   public String notes;
+  private int maxEvents;
+  private int maxTasks;
 
   /**
    * Constructs a week.
@@ -24,12 +26,15 @@ public class Week {
    * @param taskQueue the task queue
    * @param theme     the theme of the week
    */
-  public Week(String title, Day[] days, List<Task> taskQueue, Theme theme, String notes) {
+  public Week(String title, Day[] days, List<Task> taskQueue, Theme theme, String notes,
+              int maxEvents, int maxTasks) {
     this.title = title;
     this.days = days;
-    this.taskQueue = taskQueue;
+    this.taskQueue = new ArrayList<>();
     this.theme = theme;
     this.notes = notes;
+    this.maxEvents = maxEvents;
+    this.maxTasks = maxTasks;
 
     for (Day day: days) {
       List<Task> tasks = day.getTasks();
@@ -45,6 +50,8 @@ public class Week {
     this.taskQueue = new ArrayList<>();
     this.theme = theme;
     this.notes = "";
+    this.maxEvents = 3;
+    this.maxTasks = 3;
   }
 
   private Day[] initDays() {
@@ -110,6 +117,14 @@ public class Week {
     return this.theme;
   }
 
+  public int getMaxEvents() {
+    return this.maxEvents;
+  }
+
+  public int getMaxTasks() {
+    return this.maxTasks;
+  }
+
   public void updateTheme(Theme theme) {
     this.theme = theme;
   }
@@ -122,5 +137,7 @@ public class Week {
     this.taskQueue = newWeek.getTaskQueue();
     this.theme = newWeek.getTheme();
     this.notes = newWeek.getNotes();;
+    this.maxEvents = newWeek.getMaxEvents();
+    this.maxTasks = newWeek.getMaxEvents();
   }
 }
