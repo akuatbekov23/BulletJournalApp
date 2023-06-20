@@ -93,7 +93,7 @@ public class JournalController implements Controller {
     titleHBox.getChildren().clear();
     taskQueue.getChildren().clear();
     noteTextArea.setText(week.getNotes());
-    weekTitle.setText(week.getTitle());
+    weekTitle.setPromptText("Enter a Week Title!");
 
     // Week View
     for (int i = 0; i < 7; i++) {
