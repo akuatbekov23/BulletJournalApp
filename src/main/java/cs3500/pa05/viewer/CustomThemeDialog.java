@@ -21,13 +21,15 @@ import javafx.stage.Stage;
 
 public class CustomThemeDialog extends Dialog<Theme> {
 
+  private final Theme theme;
   private ColorPicker backgroundColorPicker;
   private ColorPicker fontColorPicker;
   private TextField fontFamilyTextField;
   private ListView<File> imageListView;
 
-  public CustomThemeDialog() {
+  public CustomThemeDialog(Theme theme) {
     super();
+    this.theme = theme;
     this.setTitle("Customize Theme");
 
     buildUI();
