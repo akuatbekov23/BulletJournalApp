@@ -50,7 +50,7 @@ public class JournalController implements Controller {
   @FXML
   private Label clear;
   @FXML
-  private Label weekTitle;
+  private TextArea weekTitle;
   @FXML
   private VBox taskQueue;
   @FXML
@@ -93,7 +93,6 @@ public class JournalController implements Controller {
     titleHBox.getChildren().clear();
     taskQueue.getChildren().clear();
     noteTextArea.setText(week.getNotes());
-
     weekTitle.setText(week.getTitle());
 
     // Week View

@@ -80,7 +80,7 @@
                            </HBox>
                            <HBox alignment="CENTER" prefWidth="179.0" GridPane.columnIndex="2">
                               <children>
-                                 <Label fx:id="weekTitle" contentDisplay="CENTER" text="Week" />
+                                 <TextArea fx:id="weekTitle" prefHeight="200.0" prefWidth="200.0" />
                               </children>
                            </HBox>
                            <HBox fx:id="searchBox" alignment="CENTER_LEFT" GridPane.columnIndex="3">
