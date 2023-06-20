@@ -129,7 +129,7 @@ public class JournalController implements Controller {
     themeButton2.setOnAction(event -> setTheme(Theme.THEME_2));
     themeButton3.setOnAction(event -> setTheme(Theme.THEME_3));
 
-    customThemeButton.setOnAction(event -> customizeTheme());
+    customThemeButton.setOnAction(new CustomThemeHandler(new ArrayList<>()));
 
     noteTextArea.setOnKeyTyped(e -> week.updateNotes(noteTextArea.getText()));
 
