@@ -2,8 +2,6 @@ package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Events;
-import cs3500.pa05.model.Task;
-import java.time.LocalTime;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -16,7 +14,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
-import javafx.util.converter.LocalTimeStringConverter;
 
 public class CreateEventDialog extends Dialog {
 
@@ -27,13 +24,17 @@ public class CreateEventDialog extends Dialog {
   private TextField duration = new TextField();
   private TextField day = new TextField();
 
+  /**
+   * @param events the Event to edit
+   */
   public CreateEventDialog(Events events) {
     super();
     this.events = events;
-    this.setTitle("Create a New Events");
+    this.setTitle("Create a New Event");
 
     buildUI();
     setEvents();
+    setResultConverter();
   }
 
   private void buildUI() {
@@ -53,7 +54,8 @@ public class CreateEventDialog extends Dialog {
       }
 
       private boolean validate() {
-        return (title.getText().isEmpty() || start.getText().isEmpty() || duration.getText().isEmpty());
+        return (title.getText().isEmpty() || start.getText().isEmpty() || duration.getText().isEmpty()
+            || day.getText().isEmpty());
       }
     });
 

@@ -22,6 +22,7 @@ public class CreateTaskHandler implements EventHandler {
 
     if (result.isPresent()) {
       Task task = result.get();
+      // add to the View
     }
   }
 }
