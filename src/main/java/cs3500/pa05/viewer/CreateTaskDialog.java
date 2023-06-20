@@ -26,6 +26,8 @@ public class CreateTaskDialog extends Dialog {
     getDialogPane().setContent(pane);
 
     getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
+
+
   }
 
   private Pane buildDialog() {
@@ -33,16 +35,12 @@ public class CreateTaskDialog extends Dialog {
 
     Label titleLabel = new Label("Title: ");
     Label descriptionLabel = new Label("Desc: ");
-    Label startLabel = new Label("Start Time: ");
-    Label durationLabel = new Label("Duration: ");
 
     GridPane grid = new GridPane();
     grid.setHgap(10);
     grid.setVgap(5);
     grid.add(titleLabel, 0, 0);
     grid.add(descriptionLabel, 0, 1);
-    grid.add(startLabel, 0, 2);
-    grid.add(durationLabel, 0, 3);
 
     title = new TextField();
     description = new TextField();
