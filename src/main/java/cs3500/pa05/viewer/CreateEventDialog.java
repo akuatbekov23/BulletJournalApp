@@ -37,6 +37,9 @@ public class CreateEventDialog extends Dialog {
     setResultConverter();
   }
 
+  /**
+   * builds the Dialog box for creating a new Event
+   */
   private void buildUI() {
     Pane pane = buildDialog();
     getDialogPane().setContent(pane);
@@ -46,6 +49,9 @@ public class CreateEventDialog extends Dialog {
     Button button = (Button) getDialogPane().lookupButton(ButtonType.FINISH);
     button.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 
+      /**
+       * @param event the event which occurred
+       */
       @Override
       public void handle(ActionEvent event) {
         if (validate()) {
@@ -53,6 +59,9 @@ public class CreateEventDialog extends Dialog {
         }
       }
 
+      /**
+       * @return boolean on whether the text fields are empty
+       */
       private boolean validate() {
         return (title.getText().isEmpty() || start.getText().isEmpty() || duration.getText().isEmpty()
             || day.getText().isEmpty());
@@ -61,6 +70,9 @@ public class CreateEventDialog extends Dialog {
 
   }
 
+  /**
+   * @return the basic dialog pane
+   */
   private Pane buildDialog() {
     VBox content = new VBox(10);
 
@@ -96,6 +108,9 @@ public class CreateEventDialog extends Dialog {
 
   }
 
+  /**
+   * sets the Event
+   */
   private void setEvents() {
     events.name = title.getText();
     events.description = description.getText();
@@ -117,6 +132,9 @@ public class CreateEventDialog extends Dialog {
     }
   }
 
+  /**
+   * returns the Event made
+   */
   public void setResultConverter() {
     Callback<ButtonType, Events> eventsResult = new Callback<ButtonType, Events>() {
 

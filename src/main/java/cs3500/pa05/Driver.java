@@ -10,6 +10,7 @@ import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.Theme;
+import cs3500.pa05.viewer.IntroView;
 import cs3500.pa05.viewer.Viewer;
 import cs3500.pa05.viewer.WeekView;
 import java.time.LocalTime;
@@ -41,13 +42,18 @@ public class Driver extends Application {
 //    Week week = new Week("Best Week", theme);
     Controller controller = new JournalController(week);
     Viewer viewer = new WeekView(controller);
+    Viewer intro = new IntroView();
     try {
+      stage.setScene(intro.load());
+      Thread.sleep(2000);
       stage.setScene(viewer.load());
       stage.setTitle("Journal");
       stage.setResizable(false);
       controller.run();
       stage.show();
     } catch (IllegalStateException e) {
+      System.err.println("Unable to load GUI.");
+    } catch (InterruptedException e) {
       System.err.println("Unable to load GUI.");
     }
   }
