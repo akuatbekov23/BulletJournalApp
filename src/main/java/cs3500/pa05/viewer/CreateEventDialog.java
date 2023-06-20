@@ -2,6 +2,7 @@ package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Events;
+import java.time.LocalTime;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -95,8 +96,10 @@ public class CreateEventDialog extends Dialog {
     GridPane.setHgrow(this.title, Priority.ALWAYS);
     grid.add(description, 1, 1);
     GridPane.setHgrow(this.description, Priority.ALWAYS);
+    start.setPromptText("Enter as: hh/mm");
     grid.add(start, 1, 2);
     GridPane.setHgrow(this.start, Priority.ALWAYS);
+    duration.setPromptText("Enter as: hh/mm");
     grid.add(duration, 1, 3);
     GridPane.setHgrow(this.duration, Priority.ALWAYS);
     grid.add(day, 1, 4);
@@ -114,6 +117,12 @@ public class CreateEventDialog extends Dialog {
   private void setEvents() {
     events.name = title.getText();
     events.description = description.getText();
+    String hour = start.getText().substring(0, 1);
+    String minutes = start.getText().substring(1);
+    events.startTime = LocalTime.of(Integer.parseInt(hour), Integer.parseInt(minutes));
+    String durHour = duration.getText().substring(0, 1);
+    String durMin = duration.getText().substring(1);
+    events.duration = LocalTime.of(Integer.parseInt(durHour), Integer.parseInt(durMin));
     String dayString = day.getText();
     if (dayString.equals("Monday")) {
       events.day = DayEnum.MONDAY;

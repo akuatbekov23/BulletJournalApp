@@ -27,7 +27,7 @@ public class Driver extends Application {
   @Override
   public void start(Stage stage) {
     Theme theme = new Theme(Color.rgb(255, 255, 255),
-         Color.rgb(0, 0, 0), "Arial", THEME_1_IMAGES);
+        Color.rgb(0, 0, 0), "Arial", THEME_1_IMAGES);
     Task task1 = new Task("OOD HW", DayEnum.SUNDAY);
     Task task2 = new Task("OOD HW 2", DayEnum.MONDAY);
     Events events1 = new Events("OOD Lecture", "",
@@ -42,18 +42,14 @@ public class Driver extends Application {
 //    Week week = new Week("Best Week", theme);
     Controller controller = new JournalController(week);
     Viewer viewer = new WeekView(controller);
-    Viewer intro = new IntroView();
+
     try {
-      stage.setScene(intro.load());
-      Thread.sleep(2000);
       stage.setScene(viewer.load());
       stage.setTitle("Journal");
       stage.setResizable(false);
       controller.run();
       stage.show();
     } catch (IllegalStateException e) {
-      System.err.println("Unable to load GUI.");
-    } catch (InterruptedException e) {
       System.err.println("Unable to load GUI.");
     }
   }
