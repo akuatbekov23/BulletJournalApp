@@ -2,6 +2,7 @@ package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Events;
+import cs3500.pa05.model.Task;
 import java.time.LocalTime;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,6 +15,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.Callback;
 import javafx.util.converter.LocalTimeStringConverter;
 
 public class CreateEventDialog extends Dialog {
@@ -45,7 +47,7 @@ public class CreateEventDialog extends Dialog {
 
       @Override
       public void handle(ActionEvent event) {
-        if (!validate()) {
+        if (validate()) {
           event.consume();
         }
       }
@@ -111,6 +113,21 @@ public class CreateEventDialog extends Dialog {
     } else if (dayString.equals("Sunday")) {
       events.day = DayEnum.SUNDAY;
     }
+  }
+
+  public void setResultConverter() {
+    Callback<ButtonType, Events> eventsResult = new Callback<ButtonType, Events>() {
+
+      @Override
+      public Events call(ButtonType param) {
+        if (param == ButtonType.FINISH) {
+          return events;
+        } else {
+          return null;
+        }
+      }
+    };
+    setResultConverter(eventsResult);
   }
 
 

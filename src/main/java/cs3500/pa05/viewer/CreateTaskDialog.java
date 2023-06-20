@@ -43,7 +43,7 @@ public class CreateTaskDialog extends Dialog {
 
       @Override
       public void handle(ActionEvent event) {
-        if (!validate()) {
+        if (validate()) {
           event.consume();
         }
       }
