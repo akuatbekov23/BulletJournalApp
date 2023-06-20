@@ -117,12 +117,6 @@ public class CreateEventDialog extends Dialog {
   private void setEvents() {
     events.name = title.getText();
     events.description = description.getText();
-    String hour = start.getText().substring(0, 1);
-    String minutes = start.getText().substring(1);
-    events.startTime = LocalTime.of(Integer.parseInt(hour), Integer.parseInt(minutes));
-    String durHour = duration.getText().substring(0, 1);
-    String durMin = duration.getText().substring(1);
-    events.duration = LocalTime.of(Integer.parseInt(durHour), Integer.parseInt(durMin));
     String dayString = day.getText();
     if (dayString.equals("Monday")) {
       events.day = DayEnum.MONDAY;
