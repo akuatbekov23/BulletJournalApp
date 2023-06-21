@@ -34,6 +34,11 @@ public class Task {
     this.complete = false;
   }
 
+  @Override
+  public String toString() {
+    return this.name + ", Completed: " + this.complete;
+  }
+
   public void markComplete() {
     this.complete = true;
   }
