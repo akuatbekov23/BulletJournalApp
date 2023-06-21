@@ -21,20 +21,12 @@ public class Week {
   private int maxTasks;
   private StringProperty weeklyOverview;
 
-  /**
-   * Constructs a week.
-   *
-   * @param title     the title of the week
-   * @param days      the days of the week
-   * @param taskQueue the task queue
-   * @param theme     the theme of the week
-   */
-  public Week(String title, Day[] days, List<Task> taskQueue, List<Theme> themes,
+  public Week(String title, Day[] days, List<Theme> themes,
               int theme, String notes, int maxEvents, int maxTasks) {
     this.title = title;
     this.days = days;
-    this.themes = FXCollections.observableArrayList(themes);
-    this.taskQueue = FXCollections.observableArrayList(taskQueue);
+    this.taskQueue = FXCollections.observableArrayList();
+    this.themes = FXCollections.observableList(themes);
     this.currentTheme = theme;
     this.notes = notes;
     this.maxEvents = maxEvents;
@@ -137,7 +129,7 @@ public class Week {
     for (int i = 0; i < 7; i++) {
       this.days[i] = newWeek.getDay(i);
     }
-    this.taskQueue = FXCollections.observableArrayList(newWeek.getTaskQueue());
+    this.taskQueue = FXCollections.observableList(newWeek.getTaskQueue());
     this.themes = newWeek.getThemes();
     this.currentTheme = newWeek.getCurrentTheme();
     this.notes = newWeek.getNotes();;

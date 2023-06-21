@@ -2,6 +2,7 @@ package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Task;
+import cs3500.pa05.model.Week;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;

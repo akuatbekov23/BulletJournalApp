@@ -88,7 +88,7 @@ public class JournalController implements Controller {
     this.week = week;
   }
 
-  // Let user name the week
+  // Let user change the week name
   @FXML
   private void handleWeekTitle(Event event) {
     week.setTitle(weekTitle.getText());
@@ -110,8 +110,7 @@ public class JournalController implements Controller {
       weekGrid.getChildren().clear();
       // Week View
       for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
-            query.toLowerCase(), week.getMaxEvents(), week.getMaxTasks()), i, 0);
+        weekGrid.add(new DayView(week.getDay(i), query.toLowerCase(), week, this), i, 0);
       }
     } else {
       clear.setVisible(false);
@@ -180,7 +179,7 @@ public class JournalController implements Controller {
   private void updateWeekView() {
     weekGrid.getChildren().clear();
     for (int i = 0; i < 7; i++) {
-      weekGrid.add(new DayView(week.getDay(i), week), i, 0);
+      weekGrid.add(new DayView(week.getDay(i), week, this), i, 0);
     }
   }
 

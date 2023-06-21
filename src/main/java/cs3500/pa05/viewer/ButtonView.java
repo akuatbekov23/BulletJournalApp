@@ -1,14 +1,18 @@
 package cs3500.pa05.viewer;
 
 import cs3500.pa05.controller.ChooseNewHandler;
+import cs3500.pa05.controller.Controller;
+import cs3500.pa05.model.Week;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import cs3500.pa05.model.Day;
+import javafx.scene.layout.VBox;
 
 public class ButtonView extends BlockView {
-  public ButtonView(Day day) {
+  public ButtonView(Day day, Week week, Controller controller) {
     super();
     HBox addEventContainer = new HBox();
     addEventContainer.setAlignment(Pos.TOP_CENTER);
@@ -19,7 +23,7 @@ public class ButtonView extends BlockView {
     addEvent.setAlignment(Pos.CENTER);
     addEvent.setMaxHeight(Double.MAX_VALUE);
     addEvent.setMaxWidth(Double.MAX_VALUE);
-    addEvent.setOnAction(new ChooseNewHandler(day));
+    addEvent.setOnAction(new ChooseNewHandler(day, week, controller));
 
     addEventContainer.getChildren().add(addEvent);
     HBox.setHgrow(addEvent, Priority.ALWAYS);
