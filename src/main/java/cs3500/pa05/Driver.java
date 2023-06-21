@@ -27,15 +27,15 @@ import javafx.stage.Stage;
 public class Driver extends Application {
   @Override
   public void start(Stage stage) {
-    Task task1 = new Task("OOD HW", DayEnum.SUNDAY);
-    Task task2 = new Task("OOD HW 2", DayEnum.MONDAY);
-    Events events1 = new Events("OOD Lecture", "",
-        DayEnum.SUNDAY, LocalTime.now(), LocalTime.now());
-    Day[] days = new Day[] {new Day(DayEnum.SUNDAY, new ArrayList<>(List.of(events1)),
-        new ArrayList<>(List.of(task1))), new Day(DayEnum.MONDAY,
-        new ArrayList<>(), new ArrayList<>(List.of(task2))),
-        new Day(DayEnum.TUESDAY), new Day(DayEnum.WEDNESDAY), new Day(DayEnum.THURSDAY),
-        new Day(DayEnum.FRIDAY), new Day(DayEnum.SATURDAY)};
+//    Task task1 = new Task("OOD HW", DayEnum.SUNDAY);
+//    Task task2 = new Task("OOD HW 2", DayEnum.MONDAY);
+//    Events events1 = new Events("OOD Lecture", "",
+//        DayEnum.SUNDAY, LocalTime.now(), LocalTime.now());
+//    Day[] days = new Day[] {new Day(DayEnum.SUNDAY, new ArrayList<>(List.of(events1)),
+//        new ArrayList<>(List.of(task1))), new Day(DayEnum.MONDAY,
+//        new ArrayList<>(), new ArrayList<>(List.of(task2))),
+//        new Day(DayEnum.TUESDAY), new Day(DayEnum.WEDNESDAY), new Day(DayEnum.THURSDAY),
+//        new Day(DayEnum.FRIDAY), new Day(DayEnum.SATURDAY)};
 //    List<Day> days = new ArrayList<>();
 //    days.add(new Day(DayEnum.SUNDAY, new ArrayList<>(List.of(events1)),
 //        new ArrayList<>(List.of(task1))));
@@ -45,9 +45,10 @@ public class Driver extends Application {
 //    days.add(new Day(DayEnum.THURSDAY));
 //    days.add(new Day(DayEnum.FRIDAY));
 //    days.add(new Day(DayEnum.SATURDAY));
-    Week week = new Week("Title", days,
-        new ArrayList<>(new Theme.ThemeBuilder().defaultTheme()),
-        0, "Test", 3, 3);
+//    Week week = new Week("Title", days,
+//        new ArrayList<>(new Theme.ThemeBuilder().defaultTheme()),
+//        0, "Test", 3, 3);
+    Week week = new Week("", 0);
     Controller controller = new JournalController(week);
     Viewer viewer = new WeekView(controller);
 

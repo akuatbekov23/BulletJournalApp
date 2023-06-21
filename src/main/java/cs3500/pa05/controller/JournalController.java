@@ -6,14 +6,17 @@ import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
+import cs3500.pa05.viewer.StartDialog;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -30,7 +33,7 @@ import javafx.stage.FileChooser;
 
 // Week View - Done
 // Event and Task Creation - Done
-// Persistence - In Progress (Option to choose what file to open and save, When your program first opens, have the user choose a .bujo file to open and display the contents as you would display a week)
+// Persistence - Done
 // Commitment Warnings - Done
 
 // Task Queue - Done
@@ -54,6 +57,7 @@ import javafx.stage.FileChooser;
  * Represents a controller for the journal.
  */
 public class JournalController implements Controller {
+  private boolean init = true;
   private Week week;
   @FXML
   private Label weeklyOverview;
@@ -117,9 +121,13 @@ public class JournalController implements Controller {
     fileChooser.getExtensionFilters().add(bujoFilter);
     File file = fileChooser.showOpenDialog(weekScene.getWindow());
     if (file != null) {
-      week.update(JsonConverter.convertJsonToWeek(new BujoReader().read(file)));
+      load(file);
       initialize();
     }
+  }
+
+  private void load(File file) {
+    week.update(JsonConverter.convertJsonToWeek(new BujoReader().read(file)));
   }
 
   // Let user change the week name
@@ -190,6 +198,18 @@ public class JournalController implements Controller {
    * Initializes the GUI.
    */
   public void initialize() {
+    if (init) {
+      init = false;
+
+      Dialog popup = new StartDialog(weekScene);
+      Optional<File> result = popup.showAndWait();
+
+      if (result.isPresent()) {
+        result.ifPresent(this::load);
+      } else {
+        initialize();
+      }
+    }
 
     // set weekly overview
     weeklyOverview.textProperty().bind(week.getWeeklyOverview());
@@ -255,7 +275,6 @@ public class JournalController implements Controller {
     titleHBox.getChildren().addAll(themeMenuButton, customThemeButton);
 
     setTheme(week.getCurrentTheme());
-
   }
 
   private List<MenuItem> createThemeMenuItems() {
