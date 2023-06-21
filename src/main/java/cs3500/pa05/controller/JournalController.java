@@ -29,7 +29,7 @@ import javafx.scene.paint.Color;
 // Commitment Warnings - In Progress (Let user setting/updating the max events and tasks)
 
 // Task Queue - Done
-// Themes - In Progress (Make it into a list. Maybe a ThemeBuilder?)
+// Themes - Done
 
 // Quotes & Notes - Done
 // Weekly Overview - In Progress
@@ -168,8 +168,8 @@ public class JournalController implements Controller {
       titleHBox.getChildren().add(themeButton);
       int finalI = i;
       themeButton.setOnAction(e -> setTheme(finalI));
-
     }
+
     Button customThemeButton = new Button("Custom");
     customThemeButton.setStyle("-fx-background-color: #2f2fff;");
     customThemeButton.setOnAction(new CustomThemeHandler(new ArrayList<>()));
