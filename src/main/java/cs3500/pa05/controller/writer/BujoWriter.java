@@ -8,8 +8,8 @@ import java.nio.file.Path;
 
 public class BujoWriter implements Writer {
   @Override
-  public void write(JsonNode jsonNode) {
-    Path path = Path.of("src/main/resources/save.bujo");
+  public void write(File file, JsonNode jsonNode) {
+    Path path = file.toPath();
     byte[] data = jsonNode.toString().getBytes();
     try {
       Files.write(path, data);

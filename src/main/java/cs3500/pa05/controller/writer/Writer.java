@@ -4,5 +4,5 @@ import com.fasterxml.jackson.databind.JsonNode;
 import java.io.File;
 
 public interface Writer {
-  void write(JsonNode jsonNode);
+  void write(File file, JsonNode jsonNode);
 }

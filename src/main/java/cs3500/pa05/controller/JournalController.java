@@ -6,6 +6,7 @@ import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.event.Event;
@@ -25,6 +26,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 
 // Week View - Done
 // Event and Task Creation - Done
@@ -93,6 +95,31 @@ public class JournalController implements Controller {
    */
   public JournalController(Week week) {
     this.week = week;
+  }
+
+  @FXML
+  private void handleSave(Event event) {
+    FileChooser fileChooser = new FileChooser();
+    FileChooser.ExtensionFilter bujoFilter =
+        new FileChooser.ExtensionFilter("Bujo Files", "*.bujo");
+    fileChooser.getExtensionFilters().add(bujoFilter);
+    File file = fileChooser.showSaveDialog(weekScene.getWindow());
+    if (file != null) {
+      new BujoWriter().write(file, JsonConverter.convertWeekToJson(week));
+    }
+  }
+
+  @FXML
+  private void handleOpen(Event event) {
+    FileChooser fileChooser = new FileChooser();
+    FileChooser.ExtensionFilter bujoFilter =
+        new FileChooser.ExtensionFilter("Bujo Files", "*.bujo");
+    fileChooser.getExtensionFilters().add(bujoFilter);
+    File file = fileChooser.showOpenDialog(weekScene.getWindow());
+    if (file != null) {
+      week.update(JsonConverter.convertJsonToWeek(new BujoReader().read(file)));
+      initialize();
+    }
   }
 
   // Let user change the week name
@@ -225,12 +252,7 @@ public class JournalController implements Controller {
       });
     }
 
-    Button saveBtn = new Button("Save");
-    Button loadBtn = new Button("Load");
-    saveBtn.setOnAction(e -> new BujoWriter().write(JsonConverter.convertWeekToJson(week)));
-    loadBtn.setOnAction(e -> load());
-
-    titleHBox.getChildren().addAll(themeMenuButton, customThemeButton, saveBtn, loadBtn);
+    titleHBox.getChildren().addAll(themeMenuButton, customThemeButton);
 
     setTheme(week.getCurrentTheme());
 
@@ -265,12 +287,6 @@ public class JournalController implements Controller {
     for (int i = 0; i < 7; i++) {
       weekGrid.add(new DayView(week.getDay(i), week, this), i, 0);
     }
-  }
-
-
-  private void load() {
-    week.update(JsonConverter.convertJsonToWeek(new BujoReader().read()));
-    initialize();
   }
 
   private void setTheme(int newTheme) {
