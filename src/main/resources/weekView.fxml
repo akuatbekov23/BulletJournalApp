@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
@@ -38,11 +39,13 @@
                               </VBox.margin>
                            </Label>
                            <ListView fx:id="taskQueue" prefHeight="340.0" prefWidth="262.0" style="-fx-background-color: transparent;" />
-                           <Label fx:id="weeklyOverview" alignment="CENTER" prefHeight="104.0" prefWidth="272.0">
+                           <Label fx:id="weeklyOverview" alignment="CENTER" prefHeight="60.0" prefWidth="303.0">
                               <font>
                                  <Font name="Book Antiqua" size="24.0" />
                               </font>
                            </Label>
+                           <Button fx:id="setMaxTasks" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="156.0" text="Set Max Tasks" />
+                           <Button fx:id="setMaxEvents" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="16.0" prefWidth="156.0" text="Set Max Events" />
                         </children>
                      </VBox>
                      <VBox fx:id="weekVBox2" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" style="-fx-background-color: transparent; -fx-background: transparent;">

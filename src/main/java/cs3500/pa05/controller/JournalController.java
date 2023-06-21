@@ -32,7 +32,7 @@ import javafx.scene.paint.Color;
 // Themes - Done
 
 // Quotes & Notes - Done
-// Weekly Overview - In Progress
+// Weekly Overview - Done
 // Takesie-backies - Done
 
 // Task Search - Done
