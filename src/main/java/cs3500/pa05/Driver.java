@@ -11,11 +11,13 @@ import cs3500.pa05.model.Theme;
 import cs3500.pa05.viewer.IntroView;
 import cs3500.pa05.viewer.Viewer;
 import cs3500.pa05.viewer.WeekView;
+import java.io.IOException;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
