@@ -19,6 +19,7 @@ public class WeekView implements Viewer {
     try {
       return this.loader.load();
     } catch (IOException exc) {
+      exc.printStackTrace();
       throw new IllegalStateException("Unable to load layout.");
     }
   }

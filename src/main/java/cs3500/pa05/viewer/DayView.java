@@ -5,6 +5,8 @@ import cs3500.pa05.model.Day;
 import cs3500.pa05.model.Events;
 import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Week;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,8 +20,10 @@ public class DayView extends VBox {
     Label dayOfTheWeek = new Label(day.getDay());
     dayOfTheWeek.setPadding(new Insets(10));
     this.getChildren().add(dayOfTheWeek);
-    MaxView maxEventsView = new MaxView("Events: ", day.getEvents().size(), week.getMaxEvents());
-    MaxView maxTasksView = new MaxView("Tasks: ", day.getTasks().size(), week.getMaxTasks());
+    MaxView maxEventsView = new MaxView("Events: ", day.getEvents().size(),
+        week.getMaxEventsStrProp());
+    MaxView maxTasksView = new MaxView("Tasks: ", day.getTasks().size(),
+        week.getMaxTasksStrProp());
     VBox eventContainer = new VBox();
     for (Events e : day.getEvents()) {
       eventContainer.getChildren().add(new EventView(e, day, maxEventsView));
@@ -38,8 +42,10 @@ public class DayView extends VBox {
     Label dayOfTheWeek = new Label(day.getDay());
     dayOfTheWeek.setPadding(new Insets(10));
     this.getChildren().add(dayOfTheWeek);
-    MaxView maxEventsView = new MaxView("Events: ", day.getEvents().size(), week.getMaxEvents());
-    MaxView maxTasksView = new MaxView("Tasks: ", day.getTasks().size(), week.getMaxTasks());
+    MaxView maxEventsView = new MaxView("Events: ", day.getEvents().size(),
+        week.getMaxEventsStrProp());
+    MaxView maxTasksView = new MaxView("Tasks: ", day.getTasks().size(),
+        week.getMaxTasksStrProp());
     VBox eventContainer = new VBox();
     for (Events e : day.getEvents()) {
       eventContainer.getChildren().add(new EventView(e, day, maxEventsView));

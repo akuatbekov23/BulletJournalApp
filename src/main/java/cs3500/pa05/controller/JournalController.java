@@ -83,6 +83,10 @@ public class JournalController implements Controller {
   private ImageView topLeftImage;
   @FXML
   private ImageView bottomRightImage;
+  @FXML
+  private TextArea setMaxEvents;
+  @FXML
+  private TextArea setMaxTasks;
 
   /**
    * Constructs a new JournalController.
@@ -134,6 +138,28 @@ public class JournalController implements Controller {
     traverseSceneGraph(weekScene.getRoot(), week.getTheme());
   }
 
+  @FXML
+  private void handleMaxEvents(Event event) {
+    int result = 0;
+    try {
+      result = Integer.parseInt(setMaxEvents.getText());
+    } catch (NumberFormatException e) {
+      result = 0;
+    }
+    week.setMaxEvents(result);
+  }
+
+  @FXML
+  private void handleMaxTasks(Event event) {
+    int result = 0;
+    try {
+      result = Integer.parseInt(setMaxTasks.getText());
+    } catch (NumberFormatException e) {
+      result = 0;
+    }
+    week.setMaxTasks(result);
+  }
+
   @Override
   /**
    * Initializes the GUI.
@@ -155,18 +181,24 @@ public class JournalController implements Controller {
     // reset
     titleHBox.getChildren().clear();
 
+    setMaxEvents.clear();
+    setMaxTasks.clear();
+
+    setMaxEvents.setText(String.valueOf(week.getMaxEvents()));
+    setMaxTasks.setText(String.valueOf(week.getMaxTasks()));
+
     updateWeekView();
-//
-//    // Create the theme buttons
-//    for (int i = 0; i < week.getThemes().size(); i++) {
-//      Theme theme = week.getThemes().get(i);
-//      Button themeButton = new Button("Theme: " + i);
-//      themeButton.setStyle("-fx-background-color: " + toHexString(theme.getBackgroundColor()));
-//      titleHBox.getChildren().add(themeButton);
-//      int finalI = i;
-//      themeButton.setOnAction(e -> setTheme(finalI));
-//    }
-//
+
+    // Create the theme buttons
+    for (int i = 0; i < week.getThemes().size(); i++) {
+      Theme theme = week.getThemes().get(i);
+      Button themeButton = new Button("Theme: " + i);
+      themeButton.setStyle("-fx-background-color: " + toHexString(theme.getBackgroundColor()));
+      titleHBox.getChildren().add(themeButton);
+      int finalI = i;
+      themeButton.setOnAction(e -> setTheme(finalI));
+    }
+
 
     // Create the theme menu button
     MenuButton themeMenuButton = new MenuButton("Themes");
@@ -205,6 +237,7 @@ public class JournalController implements Controller {
     titleHBox.getChildren().addAll(themeMenuButton, customThemeButton, saveBtn, loadBtn);
 
     setTheme(week.getCurrentTheme());
+
   }
 
   private List<MenuItem> createThemeMenuItems() {

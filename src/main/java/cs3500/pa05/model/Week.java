@@ -1,8 +1,12 @@
 package cs3500.pa05.model;
 
 import java.util.List;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.value.ObservableValueBase;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,8 +21,8 @@ public class Week {
   private ObservableList<Theme> themes;
   private int currentTheme;
   private String notes;
-  private int maxEvents;
-  private int maxTasks;
+  private StringProperty maxEvents;
+  private StringProperty maxTasks;
   private StringProperty weeklyOverview;
 
   public Week(String title, Day[] days, List<Theme> themes,
@@ -29,8 +33,8 @@ public class Week {
     this.themes = FXCollections.observableList(themes);
     this.currentTheme = theme;
     this.notes = notes;
-    this.maxEvents = maxEvents;
-    this.maxTasks = maxTasks;
+    this.maxEvents = new SimpleStringProperty(String.valueOf(maxEvents));
+    this.maxTasks = new SimpleStringProperty(String.valueOf(maxTasks));
 
     for (Day day: days) {
       List<Task> tasks = day.getTasks();
@@ -47,8 +51,8 @@ public class Week {
     this.themes = FXCollections.observableList(new Theme.ThemeBuilder().defaultTheme());
     this.currentTheme = theme;
     this.notes = "";
-    this.maxEvents = 3;
-    this.maxTasks = 3;
+    this.maxEvents = new SimpleStringProperty("0");
+    this.maxTasks = new SimpleStringProperty("0");
   }
 
   public void setTitle(String title) {
@@ -105,10 +109,18 @@ public class Week {
   }
 
   public int getMaxEvents() {
-    return this.maxEvents;
+    return Integer.parseInt(this.maxEvents.get());
   }
 
   public int getMaxTasks() {
+    return Integer.parseInt(this.maxTasks.get());
+  }
+
+  public StringProperty getMaxEventsStrProp() {
+    return this.maxEvents;
+  }
+
+  public StringProperty getMaxTasksStrProp() {
     return this.maxTasks;
   }
 
@@ -133,8 +145,8 @@ public class Week {
     this.themes = newWeek.getThemes();
     this.currentTheme = newWeek.getCurrentTheme();
     this.notes = newWeek.getNotes();;
-    this.maxEvents = newWeek.getMaxEvents();
-    this.maxTasks = newWeek.getMaxEvents();
+    this.maxEvents = new SimpleStringProperty(String.valueOf(newWeek.getMaxEvents()));
+    this.maxTasks = new SimpleStringProperty(String.valueOf(newWeek.getMaxTasks()));
   }
 
   public StringProperty getWeeklyOverview() {
@@ -169,4 +181,13 @@ public class Week {
 
     return weeklyOverview;
   }
+
+  public void setMaxEvents(int newMax) {
+    this.maxEvents.set(String.valueOf(newMax));
+  }
+
+  public void setMaxTasks(int newMax) {
+    this.maxTasks.set(String.valueOf(newMax));
+  }
+
 }
