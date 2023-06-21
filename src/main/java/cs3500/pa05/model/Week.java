@@ -168,14 +168,14 @@ public class Week {
       }
     }
 
-    double percentDone = completedTasks / totalTasks;
+    double percentDone = (double) completedTasks / totalTasks;
     percentDone = percentDone * 100;
     Math.floor(percentDone);
     int percentage = (int) percentDone;
 
     String overview = "Total Events: " + totalEvents + "\n"
         + "Total Tasks: " + totalTasks + "\n"
-        + "Percent Completed: " + percentage;
+        + "Percent Completed: " + percentage + "%";
 
     weeklyOverview = new SimpleStringProperty(overview);
 

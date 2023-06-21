@@ -26,11 +26,12 @@ public class DayView extends VBox {
         week.getMaxTasksStrProp());
     VBox eventContainer = new VBox();
     for (Events e : day.getEvents()) {
-      eventContainer.getChildren().add(new EventView(e, day, maxEventsView));
+      eventContainer.getChildren().add(new EventView(e, day, maxEventsView, controller));
     }
     VBox taskContainer = new VBox();
     for (Task t : day.getTasks()) {
-      taskContainer.getChildren().add(new TaskView(t, week.getTaskQueue(), day, maxTasksView));
+      taskContainer.getChildren().add(new TaskView(t, week.getTaskQueue(),
+          controller, day, maxTasksView));
     }
     this.getChildren().addAll(eventContainer, taskContainer);
     this.getChildren().addAll(new ButtonView(day, week, controller), maxEventsView, maxTasksView);
@@ -48,13 +49,14 @@ public class DayView extends VBox {
         week.getMaxTasksStrProp());
     VBox eventContainer = new VBox();
     for (Events e : day.getEvents()) {
-      eventContainer.getChildren().add(new EventView(e, day, maxEventsView));
+      eventContainer.getChildren().add(new EventView(e, day, maxEventsView, controller));
     }
     VBox taskContainer = new VBox();
     for (Task t : day.getTasks()) {
       if (t.getDescription().toLowerCase().contains(query) || t.getName().toLowerCase().contains(query)
           || t.day.toString().toLowerCase().contains(query)) {
-        taskContainer.getChildren().add(new TaskView(t, week.getTaskQueue(), day, maxTasksView));
+        taskContainer.getChildren().add(new TaskView(t, week.getTaskQueue(),
+            controller, day, maxTasksView));
       }
     }
     this.getChildren().addAll(eventContainer, taskContainer);
