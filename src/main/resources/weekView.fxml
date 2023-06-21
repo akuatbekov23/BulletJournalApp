@@ -30,21 +30,21 @@
             <children>
                <VBox fx:id="weekPane2" alignment="TOP_CENTER">
                   <children>
-                     <VBox fx:id="weekVBox1" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" style="-fx-background-color: transparent;">
+                     <VBox fx:id="weekVBox1" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="257.0" style="-fx-background-color: transparent;">
                         <children>
                            <Label fx:id="taskDeque" alignment="CENTER" text="Task Queue:">
                               <VBox.margin>
                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </VBox.margin>
                            </Label>
-                           <ListView fx:id="taskQueue" prefHeight="253.0" prefWidth="303.0" style="-fx-background-color: transparent;" />
+                           <ListView fx:id="taskQueue" prefHeight="254.0" prefWidth="245.0" style="-fx-background-color: transparent;" />
                            <Label fx:id="weeklyOverview" alignment="CENTER" prefHeight="60.0" prefWidth="303.0">
                               <font>
                                  <Font name="Book Antiqua" size="24.0" />
                               </font>
                            </Label>
-                           <TextArea fx:id="setMaxEvents" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxEvents" prefHeight="50.0" prefWidth="159.0" promptText="Enter Max Events" />
-                           <TextArea fx:id="setMaxTasks" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxTasks" prefHeight="50.0" prefWidth="159.0" promptText="Enter Max Tasks" />
+                           <TextArea fx:id="setMaxEvents" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxEvents" prefHeight="30.0" prefWidth="108.0" promptText="Enter Max Events" />
+                           <TextArea fx:id="setMaxTasks" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxTasks" prefHeight="30.0" prefWidth="110.0" promptText="Enter Max Tasks" />
                         </children>
                      </VBox>
                      <VBox fx:id="weekVBox2" alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" style="-fx-background-color: transparent; -fx-background: transparent;">
