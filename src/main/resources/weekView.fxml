@@ -38,7 +38,7 @@
                               </VBox.margin>
                            </Label>
                            <ListView fx:id="taskQueue" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
-                           <Label fx:id="weeklyOverview" alignment="CENTER" prefHeight="60.0" prefWidth="100.0">
+                           <Label fx:id="weeklyOverview" alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
                               <font>
                                  <Font name="Book Antiqua" size="24.0" />
                               </font>
