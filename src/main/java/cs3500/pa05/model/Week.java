@@ -48,7 +48,7 @@ public class Week {
     this.title = title;
     this.days = initDays();
     this.taskQueue = FXCollections.observableArrayList();
-    this.themes = FXCollections.observableList(new Theme.ThemeBuilder().defaultTheme());
+    this.themes = FXCollections.observableArrayList(new Theme.ThemeBuilder().defaultTheme());
     this.currentTheme = theme;
     this.notes = "";
     this.maxEvents = new SimpleStringProperty("0");

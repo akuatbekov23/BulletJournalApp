@@ -47,7 +47,8 @@ public class Theme {
     }
 
     public List<Theme> defaultTheme() {
-      return List.of(theme1().build(), theme2().build(), theme3().build());
+      return List.of(new ThemeBuilder().theme1().build(), new ThemeBuilder().theme2().build(),
+          new ThemeBuilder().theme3().build());
     }
 
     public ThemeBuilder setBackgroundColor(Color color) {
@@ -67,14 +68,6 @@ public class Theme {
 
     public ThemeBuilder setImages(List<Image> images) {
       this.images = images;
-      return this;
-    }
-
-    public ThemeBuilder nullTheme() {
-      this.backgroundColor = null;
-      this.fontColor = null;
-      this.fontFamily = null;
-      this.images = null;
       return this;
     }
 
@@ -104,15 +97,6 @@ public class Theme {
   }
 
   /**
-   * update the background color of the theme.
-   *
-   * @param backgroundColor the background color of the theme
-   */
-  public void updateBackgroundColor(Color backgroundColor) {
-    this.backgroundColor = backgroundColor;
-  }
-
-  /**
    * get the background color of the theme.
    *
    * @return the background color of the theme
@@ -122,30 +106,12 @@ public class Theme {
   }
 
   /**
-   * update the font color of the theme.
-   *
-   * @param fontColor the font color of the theme
-   */
-  public void updateFontColor(Color fontColor) {
-    this.fontColor = fontColor;
-  }
-
-  /**
    * get the font color of the theme.
    *
    * @return the font color of the theme
    */
   public Color getFontColor() {
     return this.fontColor;
-  }
-
-  /**
-   * update the font family of the theme.
-   *
-   * @param fontFamily the font family of the theme
-   */
-  public void updateFontFamily(String fontFamily) {
-    this.fontFamily = fontFamily;
   }
 
   /**
@@ -169,25 +135,5 @@ public class Theme {
     } else {
       return this.images;
     }
-  }
-
-  /**
-   * update the images of the theme.
-   *
-   * @param images the images of the theme
-   */
-  public void updateImages(List<Image> images) {
-    this.images = images;
-  }
-
-  /**
-   * adds the image to the image list in the theme
-   *
-   * @param imagePath the path of the image
-   */
-  public void addImageToTheme(String imagePath) {
-    Image image = new Image("file:" + imagePath);
-    this.images.add(image);
-    updateImages(this.images);
   }
 }

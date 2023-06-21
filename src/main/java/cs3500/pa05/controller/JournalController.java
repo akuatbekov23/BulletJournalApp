@@ -232,7 +232,6 @@ public class JournalController implements Controller {
     // reset
     titleHBox.getChildren().clear();
 
-
     // Create the theme menu button
     MenuButton themeMenuButton = new MenuButton("Themes");
     List<MenuItem> menuItems = createThemeMenuItems();
@@ -247,7 +246,6 @@ public class JournalController implements Controller {
       themeMenuButton.getItems().addAll(item);
       setTheme(week.getThemes().size() - 1);
     });
-
 
     for (MenuItem menuItem : themeMenuButton.getItems()) {
       menuItem.setOnAction(e -> {
@@ -299,8 +297,12 @@ public class JournalController implements Controller {
   }
 
   private void setTheme(int newTheme) {
+    System.out.println(week.getTheme().getImages());
+    System.out.println(week.getTheme().getFontColor());
     week.updateTheme(newTheme);
     Theme theme = week.getTheme();
+    System.out.println(week.getTheme().getImages());
+    System.out.println(week.getTheme().getFontColor());
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     noteTextArea.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
     noteTextArea.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));

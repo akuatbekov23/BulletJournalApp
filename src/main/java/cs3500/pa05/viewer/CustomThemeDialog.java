@@ -118,6 +118,7 @@ public class CustomThemeDialog extends Dialog<Theme> {
             .setFontColor(fontColorPicker.getValue())
             .setFontFamily(fontFamilyTextField.getText())
             .setImages(convertFilesToImages(imageListView.getItems())).build();
+        System.out.println(theme);
         return theme;
       } else {
         return null;
