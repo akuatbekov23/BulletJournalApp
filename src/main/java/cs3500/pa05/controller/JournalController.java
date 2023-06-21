@@ -168,11 +168,15 @@ public class JournalController implements Controller {
       titleHBox.getChildren().add(themeButton);
       int finalI = i;
       themeButton.setOnAction(e -> setTheme(finalI));
-
     }
+
     Button customThemeButton = new Button("Custom");
     customThemeButton.setStyle("-fx-background-color: #2f2fff;");
-    customThemeButton.setOnAction(new CustomThemeHandler(new ArrayList<>()));
+    customThemeButton.setOnAction(e -> {
+      CustomThemeHandler handler = new CustomThemeHandler(week.getThemes());
+      handler.handle(e);
+      setTheme(week.getThemes().size() - 1);
+    });
 
     Button saveBtn = new Button("Save");
     Button loadBtn = new Button("Load");

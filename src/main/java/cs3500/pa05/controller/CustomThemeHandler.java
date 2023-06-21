@@ -20,7 +20,7 @@ public class CustomThemeHandler implements EventHandler {
 
   @Override
   public void handle(Event event) {
-    Dialog popup = new CustomThemeDialog(new Theme(null, null, null, null));
+    Dialog popup = new CustomThemeDialog();
 
     Optional<Theme> result = popup.showAndWait();
 

@@ -21,15 +21,14 @@ import javafx.stage.Stage;
 
 public class CustomThemeDialog extends Dialog<Theme> {
 
-  private final Theme theme;
+  private Theme theme;
   private ColorPicker backgroundColorPicker;
   private ColorPicker fontColorPicker;
   private TextField fontFamilyTextField;
   private ListView<File> imageListView;
 
-  public CustomThemeDialog(Theme theme) {
+  public CustomThemeDialog() {
     super();
-    this.theme = theme;
     this.setTitle("Customize Theme");
 
     buildUI();
@@ -114,15 +113,12 @@ public class CustomThemeDialog extends Dialog<Theme> {
   private void setResultConverter() {
     setResultConverter(buttonType -> {
       if (buttonType == ButtonType.OK) {
-        Color backgroundColor = backgroundColorPicker.getValue();
-        Color fontColor = fontColorPicker.getValue();
-        String fontFamily = fontFamilyTextField.getText();
-        List<File> images = imageListView.getItems();
-
-        Theme themeSettings = new Theme.ThemeBuilder().setBackgroundColor(backgroundColor)
-            .setFontColor(fontColor).setFontFamily(fontFamily)
-            .setImages(convertFilesToImages(images)).build();
-        return themeSettings;
+        Theme theme = new Theme.ThemeBuilder()
+            .setBackgroundColor(backgroundColorPicker.getValue())
+            .setFontColor(fontColorPicker.getValue())
+            .setFontFamily(fontFamilyTextField.getText())
+            .setImages(convertFilesToImages(imageListView.getItems())).build();
+        return theme;
       } else {
         return null;
       }
