@@ -1,8 +1,8 @@
 package cs3500.pa05.model;
 
-import java.util.ArrayList;
 import java.util.List;
-import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,29 +11,22 @@ import javafx.collections.ObservableList;
  */
 public class Week {
 
-  public String title;
-  public Day[] days;
-  public ObservableList<Task> taskQueue;
-  public ObservableList<Theme> themes;
-  public int currentTheme;
-  public String notes;
+  private String title;
+  private Day[] days;
+  private ObservableList<Task> taskQueue;
+  private ObservableList<Theme> themes;
+  private int currentTheme;
+  private String notes;
   private int maxEvents;
   private int maxTasks;
+  private StringProperty weeklyOverview;
 
-  /**
-   * Constructs a week.
-   *
-   * @param title     the title of the week
-   * @param days      the days of the week
-   * @param taskQueue the task queue
-   * @param theme     the theme of the week
-   */
-  public Week(String title, Day[] days, List<Task> taskQueue, List<Theme> themes,
+  public Week(String title, Day[] days, List<Theme> themes,
               int theme, String notes, int maxEvents, int maxTasks) {
     this.title = title;
     this.days = days;
-    this.themes = FXCollections.observableArrayList(themes);
-    this.taskQueue = FXCollections.observableArrayList(taskQueue);
+    this.taskQueue = FXCollections.observableArrayList();
+    this.themes = FXCollections.observableList(themes);
     this.currentTheme = theme;
     this.notes = notes;
     this.maxEvents = maxEvents;
@@ -136,11 +129,44 @@ public class Week {
     for (int i = 0; i < 7; i++) {
       this.days[i] = newWeek.getDay(i);
     }
-    this.taskQueue = FXCollections.observableArrayList(newWeek.getTaskQueue());
+    this.taskQueue = FXCollections.observableList(newWeek.getTaskQueue());
     this.themes = newWeek.getThemes();
     this.currentTheme = newWeek.getCurrentTheme();
     this.notes = newWeek.getNotes();;
     this.maxEvents = newWeek.getMaxEvents();
     this.maxTasks = newWeek.getMaxEvents();
+  }
+
+  public StringProperty getWeeklyOverview() {
+    int totalEvents = 0;
+    int totalTasks = 0;
+    int completedTasks = 0;
+
+    for (Day d : days) {
+      totalEvents = totalEvents + d.getEvents().size();
+      totalTasks = totalTasks + d.getTasks().size();
+    }
+
+    for (Day day : days) {
+      List<Task> allTasks = day.getTasks();
+      for (Task t : allTasks) {
+        if (t.getComplete()) {
+          completedTasks++;
+        }
+      }
+    }
+
+    double percentDone = completedTasks / totalTasks;
+    percentDone = percentDone * 100;
+    Math.floor(percentDone);
+    int percentage = (int) percentDone;
+
+    String overview = "Total Events: " + totalEvents + "\n"
+        + "Total Tasks: " + totalTasks + "\n"
+        + "Percent Completed: " + percentage;
+
+    weeklyOverview = new SimpleStringProperty(overview);
+
+    return weeklyOverview;
   }
 }

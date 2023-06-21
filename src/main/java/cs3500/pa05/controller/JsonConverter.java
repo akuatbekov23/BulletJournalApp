@@ -47,12 +47,12 @@ public class JsonConverter {
       days[i] = day;
     }
 
-    List<Task> taskQueue = new ArrayList<>();
-    for (int j = 0; j < weekJson.taskQueue().size(); j++) {
-      TaskJson task = mapper.convertValue(weekJson.taskQueue().get(j), TaskJson.class);
-      taskQueue.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
-          task.completed()));
-    }
+//    List<Task> taskQueue = new ArrayList<>();
+//    for (int j = 0; j < weekJson.taskQueue().size(); j++) {
+//      TaskJson task = mapper.convertValue(weekJson.taskQueue().get(j), TaskJson.class);
+//      taskQueue.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
+//          task.completed()));
+//    }
 
     List<Theme> themes = new ArrayList<>();
     for (int j = 0; j < weekJson.themes().size(); j++) {
@@ -63,7 +63,7 @@ public class JsonConverter {
           .setFontFamily(themeJson.fontFamily())
           .setImages(parseImages(themeJson.images())).build());
     }
-    return new Week(weekJson.title(), days, taskQueue, themes, weekJson.currentTheme(), weekJson.notes(),
+    return new Week(weekJson.title(), days, themes, weekJson.currentTheme(), weekJson.notes(),
         weekJson.maxEvents(), weekJson.maxTasks());
   }
 

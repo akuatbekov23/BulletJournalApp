@@ -2,6 +2,7 @@ package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Events;
+import cs3500.pa05.model.Week;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;

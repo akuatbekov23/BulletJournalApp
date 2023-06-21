@@ -43,7 +43,7 @@ public class Driver extends Application {
 //    days.add(new Day(DayEnum.THURSDAY));
 //    days.add(new Day(DayEnum.FRIDAY));
 //    days.add(new Day(DayEnum.SATURDAY));
-    Week week = new Week("Title", days, new ArrayList<>(),
+    Week week = new Week("Title", days,
         new ArrayList<>(new Theme.ThemeBuilder().defaultTheme()),
         0, "Test", 3, 3);
     Controller controller = new JournalController(week);
