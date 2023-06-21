@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,6 +30,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
@@ -138,7 +140,8 @@ public class JournalController implements Controller {
       weekGrid.getChildren().clear();
       // Week View
       for (int i = 0; i < 7; i++) {
-        ScrollPane sp = new ScrollPane(new DayView(week.getDay(i), query.toLowerCase(), week, this));
+        ScrollPane sp =
+            new ScrollPane(new DayView(week.getDay(i), query.toLowerCase(), week, this));
         sp.setStyle("-fx-focus-color: transparent; -fx-background-color: transparent;");
         sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
@@ -296,7 +299,6 @@ public class JournalController implements Controller {
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     noteTextArea.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
     noteTextArea.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
-    traverseSceneGraph(weekScene.getRoot(), theme);
     if (theme.getImages().size() < 1) {
       // set the images to empty
       notesImage1.setImage(null);
@@ -319,6 +321,7 @@ public class JournalController implements Controller {
       topLeftImage.setImage(theme.getImages().get(2));
       bottomRightImage.setImage(theme.getImages().get(0));
     }
+    traverseSceneGraph(weekScene.getRoot(), theme);
   }
 
   /**
@@ -332,12 +335,33 @@ public class JournalController implements Controller {
       if (node instanceof Label label) {
         label.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
         label.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
-      } if (node instanceof TextField textField) {
+      }
+      if (node instanceof TextField textField) {
         textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
-        textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " + toHexString(theme.getFontColor()));
+        textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " +
+            toHexString(theme.getFontColor()));
+      } else if (node instanceof ScrollPane) {
+        traverseSceneGraph((ScrollPane) node, theme);
       } else if (node instanceof Parent) {
         traverseSceneGraph((Parent) node, theme);
       }
+    }
+  }
+
+  private void traverseSceneGraph(ScrollPane parent, Theme theme) {
+    Node node = parent.getContent();
+    if (node instanceof Label label) {
+      label.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
+      label.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
+    }
+    if (node instanceof TextField textField) {
+      textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
+      textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " +
+          toHexString(theme.getFontColor()));
+    } else if (node instanceof ScrollPane) {
+      traverseSceneGraph((ScrollPane) node, theme);
+    } else if (node instanceof Parent) {
+      traverseSceneGraph((Parent) node, theme);
     }
   }
 
