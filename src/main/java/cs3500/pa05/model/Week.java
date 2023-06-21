@@ -168,7 +168,7 @@ public class Week {
       }
     }
 
-    double percentDone = completedTasks / totalTasks;
+    double percentDone = (double) completedTasks / totalTasks;
     percentDone = percentDone * 100;
     Math.floor(percentDone);
     int percentage = (int) percentDone;

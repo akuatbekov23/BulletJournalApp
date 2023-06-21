@@ -21,11 +21,8 @@ public class TaskView extends BlockView {
     complete.setSelected(task.getComplete());
     complete.setOnAction(e -> {
       task.changeComplete();
-      List<Task> temp = new ArrayList<>();
-      for (Task t : taskQueue) {
-        temp.add(t);
-        taskQueue.remove(t);
-      }
+      List<Task> temp = new ArrayList<>(taskQueue);
+      taskQueue.clear();
       taskQueue.addAll(temp);
       controller.initialize();
     });
