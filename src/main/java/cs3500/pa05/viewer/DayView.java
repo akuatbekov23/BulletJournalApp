@@ -3,6 +3,7 @@ package cs3500.pa05.viewer;
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.Events;
 import cs3500.pa05.model.Task;
+import cs3500.pa05.model.Week;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,19 +11,19 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class DayView extends VBox {
-  public DayView(Day day, ObservableList<Task> taskQueue, int maxEvents, int maxTasks) {
+  public DayView(Day day, Week week) {
     this.setPadding(new Insets(10));
     this.setAlignment(Pos.TOP_CENTER);
     Label dayOfTheWeek = new Label(day.getDay());
     dayOfTheWeek.setPadding(new Insets(10));
     this.getChildren().add(dayOfTheWeek);
-    MaxView maxEventsView = new MaxView("Events: ", day.getEvents().size(), maxEvents);
-    MaxView maxTasksView = new MaxView("Tasks: ", day.getTasks().size(), maxTasks);
+    MaxView maxEventsView = new MaxView("Events: ", day.getEvents().size(), week.getMaxEvents());
+    MaxView maxTasksView = new MaxView("Tasks: ", day.getTasks().size(), week.getMaxTasks());
     for (Events e : day.getEvents()) {
       this.getChildren().add(new EventView(e, day, maxEventsView));
     }
     for (Task t : day.getTasks()) {
-      this.getChildren().add(new TaskView(t, taskQueue, day, maxTasksView));
+      this.getChildren().add(new TaskView(t, week.getTaskQueue(), day, maxTasksView));
     }
     this.getChildren().addAll(new ButtonView(day), maxEventsView, maxTasksView);
   }

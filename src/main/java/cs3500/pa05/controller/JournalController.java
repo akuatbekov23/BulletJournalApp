@@ -114,11 +114,7 @@ public class JournalController implements Controller {
     } else {
       clear.setVisible(false);
       weekGrid.getChildren().clear();
-      // Week View
-      for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
-            week.getMaxEvents(), week.getMaxTasks()), i, 0);
-      }
+      updateWeekView();
     }
     traverseSceneGraph(weekScene.getRoot(), week.getTheme());
   }
@@ -128,11 +124,7 @@ public class JournalController implements Controller {
     searchBar.setText("");
     clear.setVisible(false);
     weekGrid.getChildren().clear();
-    // Week View
-    for (int i = 0; i < 7; i++) {
-      weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
-          week.getMaxEvents(), week.getMaxTasks()), i, 0);
-    }
+    updateWeekView();
     traverseSceneGraph(weekScene.getRoot(), week.getTheme());
   }
 
@@ -151,14 +143,9 @@ public class JournalController implements Controller {
     taskQueue.setItems(week.getTaskQueue());
 
     // reset
-    weekGrid.getChildren().clear();
     titleHBox.getChildren().clear();
 
-    // Week View
-    for (int i = 0; i < 7; i++) {
-      weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
-          week.getMaxEvents(), week.getMaxTasks()), i, 0);
-    }
+    updateWeekView();
 
     // Create the theme buttons
     for (int i = 0; i < week.getThemes().size(); i++) {
@@ -184,6 +171,12 @@ public class JournalController implements Controller {
     setTheme(week.getCurrentTheme());
   }
 
+  private void updateWeekView() {
+    weekGrid.getChildren().clear();
+    for (int i = 0; i < 7; i++) {
+      weekGrid.add(new DayView(week.getDay(i), week), i, 0);
+    }
+  }
 
   /**
    * handler for the custom theme button. Opens a new window to customize the theme.
