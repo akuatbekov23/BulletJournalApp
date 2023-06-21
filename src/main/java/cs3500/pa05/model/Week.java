@@ -175,7 +175,7 @@ public class Week {
 
     String overview = "Total Events: " + totalEvents + "\n"
         + "Total Tasks: " + totalTasks + "\n"
-        + "Percent Completed: " + percentage;
+        + "Completion: " + percentage + "%";
 
     weeklyOverview = new SimpleStringProperty(overview);
 
