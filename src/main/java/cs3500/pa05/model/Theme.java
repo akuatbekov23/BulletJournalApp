@@ -163,7 +163,12 @@ public class Theme {
    * @return the images of the theme
    */
   public List<Image> getImages() {
-    return this.images;
+    // if images is null, then return an empty list
+    if (this.images == null) {
+      return new ArrayList<>();
+    } else {
+      return this.images;
+    }
   }
 
   /**
