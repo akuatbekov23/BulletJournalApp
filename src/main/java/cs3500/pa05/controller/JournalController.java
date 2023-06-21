@@ -51,6 +51,8 @@ import javafx.scene.paint.Color;
 public class JournalController implements Controller {
   private Week week;
   @FXML
+  private Label weeklyOverview;
+  @FXML
   private Scene weekScene;
   @FXML
   private TextField searchBar;
@@ -133,6 +135,10 @@ public class JournalController implements Controller {
    * Initializes the GUI.
    */
   public void initialize() {
+
+    // set weekly overview
+    weeklyOverview.textProperty().bind(week.getWeeklyOverview());
+
     // Set week name
     weekTitle.setText(week.getTitle());
 
