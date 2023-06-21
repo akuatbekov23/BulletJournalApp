@@ -86,7 +86,7 @@
                            </HBox>
                            <HBox fx:id="searchBox" alignment="CENTER_LEFT" GridPane.columnIndex="3">
                               <children>
-                                 <TextField fx:id="searchBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="150.0" promptText="Search">
+                                 <TextField fx:id="searchBar" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleSearch" prefHeight="20.0" prefWidth="150.0" promptText="Search">
                                     <HBox.margin>
                                        <Insets left="15.0" right="15.0" />
                                     </HBox.margin>
@@ -94,7 +94,7 @@
                                        <Insets />
                                     </opaqueInsets>
                                  </TextField>
-                                 <Label fx:id="clear" text="clear" visible="false">
+                                 <Label fx:id="clear" onMouseClicked="#handleClear" text="clear" visible="false">
                                     <cursor>
                                        <Cursor fx:constant="CLOSED_HAND" />
                                     </cursor>

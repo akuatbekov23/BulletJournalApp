@@ -116,8 +116,9 @@ public class CustomThemeDialog extends Dialog<Theme> {
         String fontFamily = fontFamilyTextField.getText();
         List<File> images = imageListView.getItems();
 
-        Theme themeSettings = new Theme(backgroundColor, fontColor,
-            fontFamily, convertFilesToImages(images));
+        Theme themeSettings = new Theme.ThemeBuilder().setBackgroundColor(backgroundColor)
+            .setFontColor(fontColor).setFontFamily(fontFamily)
+            .setImages(convertFilesToImages(images)).build();
         return themeSettings;
       } else {
         return null;

@@ -3,7 +3,6 @@ package cs3500.pa05.viewer;
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.Events;
 import cs3500.pa05.model.Task;
-import java.util.List;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

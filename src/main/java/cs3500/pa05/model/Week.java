@@ -14,7 +14,8 @@ public class Week {
   public String title;
   public Day[] days;
   public ObservableList<Task> taskQueue;
-  public Theme theme;
+  public ObservableList<Theme> themes;
+  public int currentTheme;
   public String notes;
   private int maxEvents;
   private int maxTasks;
@@ -27,12 +28,13 @@ public class Week {
    * @param taskQueue the task queue
    * @param theme     the theme of the week
    */
-  public Week(String title, Day[] days, List<Task> taskQueue, Theme theme, String notes,
-              int maxEvents, int maxTasks) {
+  public Week(String title, Day[] days, List<Task> taskQueue, List<Theme> themes,
+              int theme, String notes, int maxEvents, int maxTasks) {
     this.title = title;
     this.days = days;
+    this.themes = FXCollections.observableArrayList(themes);
     this.taskQueue = FXCollections.observableArrayList(taskQueue);
-    this.theme = theme;
+    this.currentTheme = theme;
     this.notes = notes;
     this.maxEvents = maxEvents;
     this.maxTasks = maxTasks;
@@ -45,11 +47,12 @@ public class Week {
     }
   }
 
-  public Week(String title, Theme theme) {
+  public Week(String title, int theme) {
     this.title = title;
     this.days = initDays();
     this.taskQueue = FXCollections.observableArrayList();
-    this.theme = theme;
+    this.themes = FXCollections.observableList(new Theme.ThemeBuilder().defaultTheme());
+    this.currentTheme = theme;
     this.notes = "";
     this.maxEvents = 3;
     this.maxTasks = 3;
@@ -105,7 +108,7 @@ public class Week {
    * @return the theme of the week
    */
   public Theme getTheme() {
-    return this.theme;
+    return this.themes.get(currentTheme);
   }
 
   public int getMaxEvents() {
@@ -116,8 +119,16 @@ public class Week {
     return this.maxTasks;
   }
 
-  public void updateTheme(Theme theme) {
-    this.theme = theme;
+  public void updateTheme(int theme) {
+    this.currentTheme = theme;
+  }
+
+  public int getCurrentTheme() {
+    return this.currentTheme;
+  }
+
+  public ObservableList<Theme> getThemes() {
+    return this.themes;
   }
 
   public void update(Week newWeek) {
@@ -126,7 +137,8 @@ public class Week {
       this.days[i] = newWeek.getDay(i);
     }
     this.taskQueue = FXCollections.observableArrayList(newWeek.getTaskQueue());
-    this.theme = newWeek.getTheme();
+    this.themes = newWeek.getThemes();
+    this.currentTheme = newWeek.getCurrentTheme();
     this.notes = newWeek.getNotes();;
     this.maxEvents = newWeek.getMaxEvents();
     this.maxTasks = newWeek.getMaxEvents();

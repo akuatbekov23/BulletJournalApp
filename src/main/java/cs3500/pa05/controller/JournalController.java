@@ -99,6 +99,43 @@ public class JournalController implements Controller {
     event.consume();
   }
 
+  @FXML
+  private void handleSearch(Event event) {
+    String query = searchBar.getText();
+    if (!query.equals("")) {
+      clear.setVisible(true);
+
+      weekGrid.getChildren().clear();
+      // Week View
+      for (int i = 0; i < 7; i++) {
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
+            query.toLowerCase(), week.getMaxEvents(), week.getMaxTasks()), i, 0);
+      }
+    } else {
+      clear.setVisible(false);
+      weekGrid.getChildren().clear();
+      // Week View
+      for (int i = 0; i < 7; i++) {
+        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
+            week.getMaxEvents(), week.getMaxTasks()), i, 0);
+      }
+    }
+    traverseSceneGraph(weekScene.getRoot(), week.getTheme());
+  }
+
+  @FXML
+  private void handleClear(Event event) {
+    searchBar.setText("");
+    clear.setVisible(false);
+    weekGrid.getChildren().clear();
+    // Week View
+    for (int i = 0; i < 7; i++) {
+      weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
+          week.getMaxEvents(), week.getMaxTasks()), i, 0);
+    }
+    traverseSceneGraph(weekScene.getRoot(), week.getTheme());
+  }
+
   @Override
   /**
    * Initializes the GUI.
@@ -124,46 +161,27 @@ public class JournalController implements Controller {
     }
 
     // Create the theme buttons
-    Button themeButton1 = new Button("Light");
-    Button themeButton2 = new Button("Dark");
-    Button themeButton3 = new Button("Funky");
-    Button customThemeButton = new Button("Custom");
+    for (int i = 0; i < week.getThemes().size(); i++) {
+      Theme theme = week.getThemes().get(i);
+      Button themeButton = new Button("Theme: " + i);
+      themeButton.setStyle("-fx-background-color: " + toHexString(theme.getBackgroundColor()));
+      titleHBox.getChildren().add(themeButton);
+      int finalI = i;
+      themeButton.setOnAction(e -> setTheme(finalI));
 
-    themeButton1.setStyle("-fx-background-color: #ffffff;");
-    themeButton2.setStyle("-fx-background-color: #000000;");
-    themeButton3.setStyle("-fx-background-color: #c0c0c0;");
+    }
+    Button customThemeButton = new Button("Custom");
     customThemeButton.setStyle("-fx-background-color: #2f2fff;");
+    customThemeButton.setOnAction(new CustomThemeHandler(new ArrayList<>()));
 
     Button saveBtn = new Button("Save");
     Button loadBtn = new Button("Load");
     saveBtn.setOnAction(e -> new BujoWriter().write(JsonConverter.convertWeekToJson(week)));
     loadBtn.setOnAction(e -> load());
 
-    titleHBox.getChildren().addAll(themeButton1, themeButton2,
-        themeButton3, customThemeButton, saveBtn, loadBtn);
+    titleHBox.getChildren().addAll(customThemeButton, saveBtn, loadBtn);
 
-    themeButton1.setOnAction(event -> setTheme(Theme.THEME_1));
-    themeButton2.setOnAction(event -> setTheme(Theme.THEME_2));
-    themeButton3.setOnAction(event -> setTheme(Theme.THEME_3));
-
-    customThemeButton.setOnAction(new CustomThemeHandler(new ArrayList<>()));
-
-    //Search Bar
-    searchBar.setOnKeyTyped(e -> search(searchBar.getText()));
-
-    clear.setOnMouseClicked(e -> {
-      searchBar.setText("");
-      clear.setVisible(false);
-      weekGrid.getChildren().clear();
-      // Week View
-      for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
-            week.getMaxEvents(), week.getMaxTasks()), i, 0);
-      }
-      traverseSceneGraph(weekScene.getRoot(), week.getTheme());
-    });
-
-    setTheme(week.getTheme());
+    setTheme(week.getCurrentTheme());
   }
 
 
@@ -175,40 +193,14 @@ public class JournalController implements Controller {
   private void customizeTheme() {
   }
 
-  private void search(String query) {
-    if (!query.equals("")) {
-      clear.setVisible(true);
-
-      weekGrid.getChildren().clear();
-      // Week View
-      for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
-            query.toLowerCase(), week.getMaxEvents(), week.getMaxTasks()), i, 0);
-      }
-    } else {
-      clear.setVisible(false);
-      weekGrid.getChildren().clear();
-      // Week View
-      for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), week.getTaskQueue(),
-            week.getMaxEvents(), week.getMaxTasks()), i, 0);
-      }
-    }
-    traverseSceneGraph(weekScene.getRoot(), week.getTheme());
-  }
-
   private void load() {
     week.update(JsonConverter.convertJsonToWeek(new BujoReader().read()));
     initialize();
   }
 
-  /**
-   * Changes the theme of the journal.
-   *
-   * @param theme the theme to set to
-   */
-  private void setTheme(Theme theme) {
-    week.updateTheme(theme);
+  private void setTheme(int newTheme) {
+    week.updateTheme(newTheme);
+    Theme theme = week.getTheme();
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     noteTextArea.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
     noteTextArea.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));

@@ -17,6 +17,7 @@ import cs3500.pa05.model.json.WeekJson;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
@@ -53,10 +54,16 @@ public class JsonConverter {
           task.completed()));
     }
 
-    ThemeJson themeJson = mapper.convertValue(weekJson.theme(), ThemeJson.class);
-    return new Week(weekJson.title(), days, taskQueue, new Theme(Color.web(themeJson.backgroundColor()),
-        Color.web(themeJson.fontColor()), themeJson.fontFamily(),
-        parseImages(themeJson.images())), weekJson.notes(),
+    List<Theme> themes = new ArrayList<>();
+    for (int j = 0; j < weekJson.themes().size(); j++) {
+      ThemeJson themeJson = mapper.convertValue(weekJson.themes().get(j), ThemeJson.class);
+      themes.add(new Theme.ThemeBuilder()
+              .setBackgroundColor(Color.web(themeJson.backgroundColor()))
+          .setFontColor(Color.web(themeJson.fontColor()))
+          .setFontFamily(themeJson.fontFamily())
+          .setImages(parseImages(themeJson.images())).build());
+    }
+    return new Week(weekJson.title(), days, taskQueue, themes, weekJson.currentTheme(), weekJson.notes(),
         weekJson.maxEvents(), weekJson.maxTasks());
   }
 
@@ -83,12 +90,16 @@ public class JsonConverter {
       Task t = week.getTaskQueue().get(i);
       taskQueueJson.add(new TaskJson(t.getName(), t.getDescription(), t.getDay(), t.getComplete()));
     }
-    Theme theme = week.getTheme();
-    ThemeJson themeJson = new ThemeJson(theme.getBackgroundColor().toString(),
-        theme.getFontColor().toString(), theme.getFontFamily(), imagesToStrings(theme.getImages()));
+
+    List<ThemeJson> themeJson = new ArrayList<>();
+    for (int i = 0; i < week.getThemes().size(); i++) {
+      Theme theme = week.getThemes().get(i);
+      themeJson.add(new ThemeJson(theme.getBackgroundColor().toString(),
+          theme.getFontColor().toString(), theme.getFontFamily(), imagesToStrings(theme.getImages())));
+    }
 
     return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson,
-        themeJson, week.getNotes(), week.getMaxEvents(), week.getMaxTasks()));
+        themeJson, week.getCurrentTheme(), week.getNotes(), week.getMaxEvents(), week.getMaxTasks()));
   }
 
 
