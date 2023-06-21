@@ -7,6 +7,9 @@ import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
 import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -14,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -146,34 +151,80 @@ public class JournalController implements Controller {
     titleHBox.getChildren().clear();
 
     updateWeekView();
+//
+//    // Create the theme buttons
+//    for (int i = 0; i < week.getThemes().size(); i++) {
+//      Theme theme = week.getThemes().get(i);
+//      Button themeButton = new Button("Theme: " + i);
+//      themeButton.setStyle("-fx-background-color: " + toHexString(theme.getBackgroundColor()));
+//      titleHBox.getChildren().add(themeButton);
+//      int finalI = i;
+//      themeButton.setOnAction(e -> setTheme(finalI));
+//    }
+//
 
-    // Create the theme buttons
-    for (int i = 0; i < week.getThemes().size(); i++) {
-      Theme theme = week.getThemes().get(i);
-      Button themeButton = new Button("Theme: " + i);
-      themeButton.setStyle("-fx-background-color: " + toHexString(theme.getBackgroundColor()));
-      titleHBox.getChildren().add(themeButton);
-      int finalI = i;
-      themeButton.setOnAction(e -> setTheme(finalI));
-    }
+    // Create the theme menu button
+    MenuButton themeMenuButton = new MenuButton("Themes");
+    List<MenuItem> menuItems = createThemeMenuItems();
+    themeMenuButton.getItems().addAll(menuItems);
 
     Button customThemeButton = new Button("Custom");
     customThemeButton.setStyle("-fx-background-color: #2f2fff;");
     customThemeButton.setOnAction(e -> {
       CustomThemeHandler handler = new CustomThemeHandler(week.getThemes());
       handler.handle(e);
+      MenuItem item = createCustomThemeMenuItems();
+      themeMenuButton.getItems().addAll(item);
       setTheme(week.getThemes().size() - 1);
     });
+
+
+    for (MenuItem menuItem : themeMenuButton.getItems()) {
+      menuItem.setOnAction(e -> {
+        String selectedTheme = menuItem.getText();
+        if (selectedTheme.equals("Custom")) {
+          setTheme(week.getThemes().size() - 1);
+        } else {
+          int themeIndex = Integer.parseInt(selectedTheme.substring(
+              selectedTheme.lastIndexOf(" ") + 1));
+          setTheme(themeIndex);
+        }
+      });
+    }
 
     Button saveBtn = new Button("Save");
     Button loadBtn = new Button("Load");
     saveBtn.setOnAction(e -> new BujoWriter().write(JsonConverter.convertWeekToJson(week)));
     loadBtn.setOnAction(e -> load());
 
-    titleHBox.getChildren().addAll(customThemeButton, saveBtn, loadBtn);
+    titleHBox.getChildren().addAll(themeMenuButton, customThemeButton, saveBtn, loadBtn);
 
     setTheme(week.getCurrentTheme());
   }
+
+  private List<MenuItem> createThemeMenuItems() {
+    List<MenuItem> menuItems = new ArrayList<>();
+    for (int i = 0; i < week.getThemes().size(); i++) {
+      menuItems.add(new MenuItem("Theme " + i));
+    }
+
+    // menuItems.add(createCustomThemeMenuItems());
+    return menuItems;
+  }
+
+  private MenuItem createCustomThemeMenuItems() {
+    // Add Custom option
+    int customThemeNumber = week.getThemes().size() - 1;
+    MenuItem customMenuItem = new MenuItem("Custom Theme " + customThemeNumber);
+
+    customMenuItem.setOnAction(e -> {
+      setTheme(customThemeNumber);
+    });
+
+    return customMenuItem;
+
+  }
+
 
   private void updateWeekView() {
     weekGrid.getChildren().clear();
@@ -182,13 +233,6 @@ public class JournalController implements Controller {
     }
   }
 
-  /**
-   * handler for the custom theme button. Opens a new window to customize the theme.
-   * The user can select a color for the background and the font. Can select the font family
-   * and can add images to the background. Basically the user creates a new theme.
-   */
-  private void customizeTheme() {
-  }
 
   private void load() {
     week.update(JsonConverter.convertJsonToWeek(new BujoReader().read()));
@@ -201,11 +245,29 @@ public class JournalController implements Controller {
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     noteTextArea.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
     noteTextArea.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
-    notesImage1.setImage(theme.getImages().get(1));
-    notesImage2.setImage(theme.getImages().get(1));
-    topLeftImage.setImage(theme.getImages().get(2));
-    bottomRightImage.setImage(theme.getImages().get(0));
     traverseSceneGraph(weekScene.getRoot(), theme);
+    if (theme.getImages().size() < 1) {
+      // set the images to empty
+      notesImage1.setImage(null);
+      notesImage2.setImage(null);
+      topLeftImage.setImage(null);
+      bottomRightImage.setImage(null);
+    } else if (theme.getImages().size() < 2) {
+      notesImage1.setImage(null);
+      notesImage2.setImage(null);
+      topLeftImage.setImage(null);
+      bottomRightImage.setImage(theme.getImages().get(0));
+    } else if (theme.getImages().size() < 3) {
+      notesImage1.setImage(theme.getImages().get(1));
+      notesImage2.setImage(theme.getImages().get(1));
+      topLeftImage.setImage(null);
+      bottomRightImage.setImage(theme.getImages().get(0));
+    } else {
+      notesImage1.setImage(theme.getImages().get(1));
+      notesImage2.setImage(theme.getImages().get(1));
+      topLeftImage.setImage(theme.getImages().get(2));
+      bottomRightImage.setImage(theme.getImages().get(0));
+    }
   }
 
   /**
@@ -226,9 +288,9 @@ public class JournalController implements Controller {
   }
 
   private static String toHexString(Color color) {
-    int r = ((int) Math.round(color.getRed()     * 255)) << 24;
-    int g = ((int) Math.round(color.getGreen()   * 255)) << 16;
-    int b = ((int) Math.round(color.getBlue()    * 255)) << 8;
+    int r = ((int) Math.round(color.getRed() * 255)) << 24;
+    int g = ((int) Math.round(color.getGreen() * 255)) << 16;
+    int b = ((int) Math.round(color.getBlue() * 255)) << 8;
     int a = ((int) Math.round(color.getOpacity() * 255));
     return String.format("#%08X", (r + g + b + a));
   }
