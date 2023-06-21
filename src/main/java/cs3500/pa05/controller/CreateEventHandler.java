@@ -23,11 +23,16 @@ public class CreateEventHandler implements EventHandler {
   List<Events> events;
   Day day;
   Week week;
+  Dialog dialog;
+  Controller controller;
 
-  public CreateEventHandler(List<Events> events, Week week, Day day) {
+  public CreateEventHandler(List<Events> events, Week week, Day day,
+                            Controller controller, Dialog dialog) {
     this.events = events;
     this.week = week;
     this.day = day;
+    this.dialog = dialog;
+    this.controller = controller;
   }
 
   @Override
@@ -38,6 +43,8 @@ public class CreateEventHandler implements EventHandler {
 
     result.ifPresent((Events e) -> {
       events.add(e);
+      controller.initialize();
+      dialog.close();
     });
   }
 }

@@ -10,6 +10,7 @@ import java.util.Optional;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Parent;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.layout.VBox;
 
@@ -26,12 +27,7 @@ public class ChooseNewHandler implements EventHandler {
 
   @Override
   public void handle(Event event) {
-    Dialog popup = new ChooseNewDialog(day, week);
-    Optional<Events> result = popup.showAndWait();
-
-    if (result.isPresent()) {
-      result.get();
-      controller.initialize();
-    }
+    Dialog popup = new ChooseNewDialog(day, week, controller);
+    popup.show();
   }
 }

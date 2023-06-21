@@ -23,11 +23,15 @@ public class CreateTaskHandler implements EventHandler {
   List<Task> taskList;
   Day day;
   Week week;
-
-  public CreateTaskHandler(List<Task> taskList, Week week, Day day) {
+  Dialog dialog;
+  Controller controller;
+  public CreateTaskHandler(List<Task> taskList, Week week, Day day,
+                           Controller controller, Dialog dialog) {
     this.taskList = taskList;
     this.week = week;
     this.day = day;
+    this.dialog = dialog;
+    this.controller = controller;
   }
 
 
@@ -39,6 +43,8 @@ public class CreateTaskHandler implements EventHandler {
     result.ifPresent((Task task) -> {
       taskList.add(task);
       week.addTaskQueue(task);
+      controller.initialize();
+      dialog.close();
     });
   }
 }
