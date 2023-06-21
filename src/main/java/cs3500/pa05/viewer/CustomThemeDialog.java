@@ -48,7 +48,9 @@ public class CustomThemeDialog extends Dialog<Theme> {
         createColorPickerItem("Background Color:", backgroundColorPicker),
         createColorPickerItem("Font Color:", fontColorPicker),
         createTextFieldItem("Font Family:", fontFamilyTextField),
-        createImagePickerItem("Images:", imageListView)
+        createImagePickerItem("Image Bottom Right:", imageListView),
+        createImagePickerItem("Image Quotes and Notes:", imageListView),
+        createImagePickerItem("Image Top Left:", imageListView)
     );
 
     getDialogPane().setContent(content);
@@ -80,6 +82,7 @@ public class CustomThemeDialog extends Dialog<Theme> {
 
   private VBox createImagePickerItem(String label, ListView<File> listView) {
     VBox item = new VBox(5);
+    item.setPrefHeight(120);
 
     item.getChildren().addAll(
         new javafx.scene.control.Label(label),
@@ -88,7 +91,7 @@ public class CustomThemeDialog extends Dialog<Theme> {
 
     Button importButton = new Button("Import");
     importButton.setOnAction(event -> {
-      Stage stage = (Stage) getDialogPane().getScene().getWindow();
+      Stage fileChooserStage = (Stage) getDialogPane().getScene().getWindow();
 
       FileChooser fileChooser = new FileChooser();
       fileChooser.getExtensionFilters().addAll(
@@ -96,10 +99,10 @@ public class CustomThemeDialog extends Dialog<Theme> {
           new ExtensionFilter("All Files", "*.*")
       );
 
-      List<File> selectedFiles = fileChooser.showOpenMultipleDialog(stage);
+      List<File> selectedFiles = fileChooser.showOpenMultipleDialog(fileChooserStage);
       if (selectedFiles != null) {
         ObservableList<File> fileList = FXCollections.observableArrayList(selectedFiles);
-        listView.setItems(fileList);
+        listView.getItems().add(fileList.get(0));
       }
     });
 
