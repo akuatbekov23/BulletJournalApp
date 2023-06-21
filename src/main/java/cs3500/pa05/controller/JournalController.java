@@ -232,16 +232,6 @@ public class JournalController implements Controller {
     // reset
     titleHBox.getChildren().clear();
 
-    // Create the theme buttons
-    for (int i = 0; i < week.getThemes().size(); i++) {
-      Theme theme = week.getThemes().get(i);
-      Button themeButton = new Button("Theme: " + i);
-      themeButton.setStyle("-fx-background-color: " + toHexString(theme.getBackgroundColor()));
-      titleHBox.getChildren().add(themeButton);
-      int finalI = i;
-      themeButton.setOnAction(e -> setTheme(finalI));
-    }
-
 
     // Create the theme menu button
     MenuButton themeMenuButton = new MenuButton("Themes");
