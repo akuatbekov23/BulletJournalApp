@@ -7,6 +7,14 @@ plugins {
     id 'org.beryx.jlink' version '2.25.0'
 }
 
+jar{
+    manifest{
+        attributes(
+                'Main-Class': 'cs3500.pa05.Driver'
+        )
+    }
+}
+
 checkstyle {
     toolVersion = '10.10.0'
     configFile = 'config/checkstyle/cs3500-checkstyle.xml' as File

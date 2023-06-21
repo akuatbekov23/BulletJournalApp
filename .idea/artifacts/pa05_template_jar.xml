@@ -31,7 +31,6 @@
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.openjfx/javafx-controls/20.0.1/b525ac2129edba34421285f5314c1aec41db7c46/javafx-controls-20.0.1-win.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.controlsfx/controlsfx/11.1.2/584bc3f468e2c33100fcdbb1daf0a3e095e5e031/controlsfx-11.1.2.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.mockito/mockito-core/3.12.4/f9cdc14ea4a3573c0c0366d47d5ca960be24ddb6/mockito-core-3.12.4.jar" path-in-jar="/" />
-      <element id="dir-copy" path="$PROJECT_DIR$/../../../../../Program Files/Java/jdk-11.0.17/bin" />
     </root>
   </artifact>
 </component>
