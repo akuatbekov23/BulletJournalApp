@@ -29,9 +29,9 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 
 // Week View - Done
-// Event and Task Creation - In Progress
+// Event and Task Creation - Done
 // Persistence - In Progress (Option to choose what file to open and save, When your program first opens, have the user choose a .bujo file to open and display the contents as you would display a week)
-// Commitment Warnings - In Progress (Let user setting/updating the max events and tasks)
+// Commitment Warnings - Done
 
 // Task Queue - Done
 // Themes - Done
@@ -41,7 +41,7 @@ import javafx.scene.paint.Color;
 // Takesie-backies - Done
 
 // Task Search - Done
-// Custom Themes - In Progress
+// Custom Themes - Done
 
 // Deployable Application - Not Started
 // Visual Flourish - Not Started
