@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -31,22 +32,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
-// Week View - Done
-// Event and Task Creation - Done
-// Persistence - Done
-// Commitment Warnings - Done
-
-// Task Queue - Done
-// Themes - Done
-
-// Quotes & Notes - Done
-// Weekly Overview - Done
-// Takesie-backies - Done
-
-// Task Search - Done
-// Custom Themes - Done
-
-// Deployable Application - Not Started
+// Deployable Application - Done
 // Visual Flourish - Not Started
 // Splash Screen - In Progress
 // Privacy Lock - Not Started
@@ -68,7 +54,7 @@ public class JournalController implements Controller {
   @FXML
   private Label clear;
   @FXML
-  private TextArea weekTitle;
+  private TextField weekTitle;
   @FXML
   private ListView<Task> taskQueue;
   @FXML
@@ -88,9 +74,9 @@ public class JournalController implements Controller {
   @FXML
   private ImageView bottomRightImage;
   @FXML
-  private TextArea setMaxEvents;
+  private TextField setMaxEvents;
   @FXML
-  private TextArea setMaxTasks;
+  private TextField setMaxTasks;
 
   /**
    * Constructs a new JournalController.
@@ -152,7 +138,11 @@ public class JournalController implements Controller {
       weekGrid.getChildren().clear();
       // Week View
       for (int i = 0; i < 7; i++) {
-        weekGrid.add(new DayView(week.getDay(i), query.toLowerCase(), week, this), i, 0);
+        ScrollPane sp = new ScrollPane(new DayView(week.getDay(i), query.toLowerCase(), week, this));
+        sp.setStyle("-fx-focus-color: transparent; -fx-background-color: transparent;");
+        sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+        weekGrid.add(sp, i, 0);
       }
     } else {
       clear.setVisible(false);
@@ -292,17 +282,17 @@ public class JournalController implements Controller {
   private void updateWeekView() {
     weekGrid.getChildren().clear();
     for (int i = 0; i < 7; i++) {
-      weekGrid.add(new DayView(week.getDay(i), week, this), i, 0);
+      ScrollPane sp = new ScrollPane(new DayView(week.getDay(i), week, this));
+      sp.setStyle("-fx-focus-color: transparent; -fx-background-color: transparent;");
+      sp.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+      sp.setVbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+      weekGrid.add(sp, i, 0);
     }
   }
 
   private void setTheme(int newTheme) {
-    System.out.println(week.getTheme().getImages());
-    System.out.println(week.getTheme().getFontColor());
     week.updateTheme(newTheme);
     Theme theme = week.getTheme();
-    System.out.println(week.getTheme().getImages());
-    System.out.println(week.getTheme().getFontColor());
     weekPane1.setBackground(Background.fill(theme.getBackgroundColor()));
     noteTextArea.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
     noteTextArea.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
@@ -342,6 +332,9 @@ public class JournalController implements Controller {
       if (node instanceof Label label) {
         label.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
         label.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
+      } if (node instanceof TextField textField) {
+        textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
+        textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " + toHexString(theme.getFontColor()));
       } else if (node instanceof Parent) {
         traverseSceneGraph((Parent) node, theme);
       }

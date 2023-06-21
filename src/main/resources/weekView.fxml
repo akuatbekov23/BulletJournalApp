@@ -44,8 +44,8 @@
                                  <Font name="Book Antiqua" size="24.0" />
                               </font>
                            </Label>
-                           <TextArea fx:id="setMaxEvents" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxEvents" prefHeight="30.0" prefWidth="150.0" promptText="Enter Max Events" />
-                           <TextArea fx:id="setMaxTasks" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxTasks" prefHeight="30.0" prefWidth="150.0" promptText="Enter Max Tasks" />
+                           <TextField fx:id="setMaxEvents" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxEvents" prefWidth="150.0" promptText="Enter Max Events" />
+                           <TextField fx:id="setMaxTasks" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxTasks" prefWidth="150.0" promptText="Enter Max Tasks" />
                            <HBox alignment="CENTER" spacing="10.0">
                               <children>
                                  <Button fx:id="savaBtn" mnemonicParsing="false" onAction="#handleSave" text="Save File" />
@@ -99,7 +99,7 @@
                            </HBox>
                            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="100.0" GridPane.columnIndex="2">
                               <children>
-                                 <TextArea fx:id="weekTitle" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleWeekTitle" prefHeight="25.0" prefWidth="170.0" promptText="Enter a Week Title!" />
+                                 <TextField fx:id="weekTitle" onKeyTyped="#handleWeekTitle" promptText="Enter a Week Title!" style="-fx-background-color: transparent; -fx-background: transparent;" />
                               </children>
                            </HBox>
                            <HBox fx:id="searchBox" alignment="CENTER_LEFT" GridPane.columnIndex="3">
