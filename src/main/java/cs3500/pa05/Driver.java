@@ -17,6 +17,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -38,7 +39,7 @@ public class Driver extends Application {
         new Day(DayEnum.TUESDAY), new Day(DayEnum.WEDNESDAY), new Day(DayEnum.THURSDAY),
         new Day(DayEnum.FRIDAY), new Day(DayEnum.SATURDAY)};
 
-    Week week = new Week("", days, new ArrayList<>(), theme, "Test", 3, 3);
+    Week week = new Week("Title", days, new ArrayList<>(), theme, "Test", 3, 3);
     Controller controller = new JournalController(week);
     Viewer viewer = new WeekView(controller);
 
@@ -46,7 +47,7 @@ public class Driver extends Application {
       stage.setScene(viewer.load());
       stage.setTitle("Journal");
       stage.setResizable(false);
-      controller.run();
+      controller.initialize();
       stage.show();
     } catch (IllegalStateException e) {
       System.err.println("Unable to load GUI.");

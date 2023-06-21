@@ -1,9 +1,10 @@
 package cs3500.pa05.model;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.paint.Color;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a week.
@@ -12,7 +13,7 @@ public class Week {
 
   public String title;
   public Day[] days;
-  public List<Task> taskQueue;
+  public ObservableList<Task> taskQueue;
   public Theme theme;
   public String notes;
   private int maxEvents;
@@ -30,7 +31,7 @@ public class Week {
               int maxEvents, int maxTasks) {
     this.title = title;
     this.days = days;
-    this.taskQueue = new ArrayList<>();
+    this.taskQueue = FXCollections.observableArrayList(taskQueue);
     this.theme = theme;
     this.notes = notes;
     this.maxEvents = maxEvents;
@@ -47,11 +48,19 @@ public class Week {
   public Week(String title, Theme theme) {
     this.title = title;
     this.days = initDays();
-    this.taskQueue = new ArrayList<>();
+    this.taskQueue = FXCollections.observableArrayList();
     this.theme = theme;
     this.notes = "";
     this.maxEvents = 3;
     this.maxTasks = 3;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public String getTitle() {
+    return this.title;
   }
 
   private Day[] initDays() {
@@ -68,26 +77,8 @@ public class Week {
     this.taskQueue.add(task);
   }
 
-  public List<Task> getTaskQueue() {
-    return taskQueue;
-  }
-
-  /**
-   * Sets the title of the week.
-   *
-   * @param title the title of the week
-   */
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  /**
-   * Gets the title of the week.
-   *
-   * @return the title of the week
-   */
-  public String getTitle() {
-    return this.title;
+  public ObservableList<Task> getTaskQueue() {
+    return this.taskQueue;
   }
 
   public String getNotes() {
@@ -134,7 +125,7 @@ public class Week {
     for (int i = 0; i < 7; i++) {
       this.days[i] = newWeek.getDay(i);
     }
-    this.taskQueue = newWeek.getTaskQueue();
+    this.taskQueue = FXCollections.observableArrayList(newWeek.getTaskQueue());
     this.theme = newWeek.getTheme();
     this.notes = newWeek.getNotes();;
     this.maxEvents = newWeek.getMaxEvents();

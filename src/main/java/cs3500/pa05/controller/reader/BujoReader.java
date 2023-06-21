@@ -24,8 +24,6 @@ public class BujoReader implements Reader {
       content.append(sc.nextLine()).append("\n");
     }
 
-    System.out.println(content.toString());
-
     try {
       return new ObjectMapper().readTree(content.toString());
     } catch (IOException e) {
