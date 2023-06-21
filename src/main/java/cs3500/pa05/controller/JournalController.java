@@ -8,8 +8,6 @@ import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -178,16 +176,14 @@ public class JournalController implements Controller {
     // Bind Task Queue
     taskQueue.setItems(week.getTaskQueue());
 
-    // reset
-    titleHBox.getChildren().clear();
-
-    setMaxEvents.clear();
-    setMaxTasks.clear();
-
+    // Set Commitment Warnings
     setMaxEvents.setText(String.valueOf(week.getMaxEvents()));
     setMaxTasks.setText(String.valueOf(week.getMaxTasks()));
 
     updateWeekView();
+
+    // reset
+    titleHBox.getChildren().clear();
 
     // Create the theme buttons
     for (int i = 0; i < week.getThemes().size(); i++) {
