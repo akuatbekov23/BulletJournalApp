@@ -406,17 +406,6 @@ public class ThemeWeekTest {
     Assertions.assertEquals(fontFamily, theme.getFontFamily());
   }
 
-//  @Test
-//  public void testSetImages() {
-//    Platform.runLater(() -> {
-//      Theme.ThemeBuilder builder = new Theme.ThemeBuilder();
-//      List<Image> images = List.of(new Image("L.png"), new Image("Loveball.png"));
-//      Theme theme = builder.setImages(images).build();
-//
-//      Assertions.assertEquals(images, theme.getImages());
-//    });
-//  }
-
   @Test
   public void testGetImages() {
     // Create a list of images

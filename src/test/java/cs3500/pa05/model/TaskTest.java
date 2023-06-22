@@ -66,41 +66,42 @@ public class TaskTest {
     // Test equality between two tasks
     Task task1 = new Task("Homework", "Complete math exercises",
         DayEnum.TUESDAY, false);
+    assertEquals(task1, task);
     Task task2 = new Task("Project", "Finish project report",
         DayEnum.WEDNESDAY, true);
+    assertNotEquals(task2, task);
+    assertFalse(task2.equals("Test"));
+    assertEquals(995431151, task2.hashCode());
     Task task21 = new Task("Project", "Finish project report",
         DayEnum.MONDAY, true);
+    assertFalse(task2.equals(task21));
     Task task22 = new Task("Project", "Finish project report",
         DayEnum.WEDNESDAY, false);
+    assertFalse(task2.equals(task22));
     Task task23 = new Task("Projects", "Finish project report",
         DayEnum.WEDNESDAY, true);
+    assertFalse(task2.equals(task23));
     Task task24 = new Task("Project", "Finish project reports",
         DayEnum.WEDNESDAY, true);
+    assertFalse(task2.equals(task24));
     Task task3 = new Task("Project", "Finish project report",
         DayEnum.WEDNESDAY, true);
+    assertTrue(task2.equals(task3));
+    assertEquals(995431151, task3.hashCode());
     Task task4 = new Task("Project", "Finish project report",
         DayEnum.THURSDAY, true);
+    assertEquals(995431161, task4.hashCode());
     Task task5 = new Task("Project", "Finish project report",
         DayEnum.FRIDAY, true);
+    assertEquals(995431171, task5.hashCode());
     Task task6 = new Task("Project", "Finish project report",
         DayEnum.SATURDAY, true);
+    assertEquals(995431181, task6.hashCode());
     Task task7 = new Task("Project", "Finish project report",
         DayEnum.SUNDAY, false);
+    assertEquals(995431120, task7.hashCode());
     Task task8 = new Task("Project", "Finish project report",
         DayEnum.MONDAY, true);
-    assertTrue(task2.equals(task3));
-    assertFalse(task2.equals("Test"));
-    assertFalse(task2.equals(task21));
-    assertFalse(task2.equals(task22));
-    assertFalse(task2.equals(task23));
-    assertFalse(task2.equals(task24));
-
-    assertEquals(995431151, task2.hashCode());
-    assertEquals(995431151, task3.hashCode());
-    assertEquals(995431161, task4.hashCode());
-    assertEquals(995431171, task5.hashCode());
-    assertEquals(995431181, task6.hashCode());
-    assertEquals(995431120, task7.hashCode());
     assertEquals(995431131, task8.hashCode());
 
     assertEquals(task, task1);
@@ -108,11 +109,7 @@ public class TaskTest {
     // Test equality with itself
     assertEquals(task, task);
     // Test equality with another task having the same values
-
-    assertEquals(task1, task);
     // Test inequality with a task having a different name
-
-    assertNotEquals(task2, task);
 
     // Test inequality with a task having a different completion status
     task2.changeComplete();
