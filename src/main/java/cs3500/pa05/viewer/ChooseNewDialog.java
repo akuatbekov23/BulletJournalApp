@@ -13,7 +13,6 @@ import javafx.scene.control.Dialog;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 /**
  * a dialog box for choosing between a new event or task
