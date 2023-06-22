@@ -4,6 +4,8 @@ import cs3500.pa05.controller.Controller;
 import cs3500.pa05.controller.EventDeleteHandler;
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.Events;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -21,10 +23,14 @@ public class EventView extends BlockView {
    */
   public EventView(Events events, Day day, MaxView maxView, Controller controller) {
     super();
+    this.setAlignment(Pos.CENTER);
     Label eventLabel = new Label("Event");
+    eventLabel.setPadding(new Insets(0, 0, 3, 0));
     Label name = new Label(events.getName());
+    name.setPadding(new Insets(0, 0, 3, 0));
     Label startTime = new Label("Start time: " + events.getStartTime());
     Label duration = new Label("Duration: " + events.getDuration());
+    duration.setPadding(new Insets(0, 0, 3, 0));
     this.getChildren().addAll(eventLabel, name, startTime, duration);
     if (!events.getDescription().equals("")) {
       Label description = new Label(events.getDescription());
