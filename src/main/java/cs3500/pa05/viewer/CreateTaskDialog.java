@@ -2,7 +2,6 @@ package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Task;
-import cs3500.pa05.model.Week;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -16,11 +15,19 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
+/**
+ * a CreateTaskDialog
+ */
 public class CreateTaskDialog extends Dialog {
   private DayEnum dayEnum;
   private TextField title;
   private TextField description;
 
+  /**
+   * constructs a new CreateTaskDialog
+   *
+   * @param dayEnum the day to add the task to
+   */
   public CreateTaskDialog(DayEnum dayEnum) {
     super();
     this.setTitle("Create a New Task");
@@ -29,6 +36,9 @@ public class CreateTaskDialog extends Dialog {
     setResultConverter();
   }
 
+  /**
+   * builds the UI
+   */
   private void buildUI() {
     Pane pane = buildDialog();
     getDialogPane().setContent(pane);
@@ -38,6 +48,11 @@ public class CreateTaskDialog extends Dialog {
     Button button = (Button) getDialogPane().lookupButton(ButtonType.FINISH);
     button.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 
+      /**
+       * handles the event when the user inputs texts into the dialog
+       *
+       * @param event the event which occurred
+       */
       @Override
       public void handle(ActionEvent event) {
         if (validate()) {
@@ -45,6 +60,9 @@ public class CreateTaskDialog extends Dialog {
         }
       }
 
+      /**
+       * @return validates that the title text box isn't empty
+       */
       private boolean validate() {
         return (title.getText().isEmpty());
       }
@@ -52,6 +70,11 @@ public class CreateTaskDialog extends Dialog {
 
   }
 
+  /**
+   * generates the dialog pane
+   *
+   * @return the dialog pane
+   */
   private Pane buildDialog() {
     VBox content = new VBox(10);
 
@@ -77,6 +100,9 @@ public class CreateTaskDialog extends Dialog {
     return content;
   }
 
+  /**
+   * returns the Task made
+   */
   public void setResultConverter() {
     Callback<ButtonType, Task> taskResult = new Callback<ButtonType, Task>() {
       @Override

@@ -4,10 +4,7 @@ import cs3500.pa05.controller.Controller;
 import cs3500.pa05.controller.CreateEventHandler;
 import cs3500.pa05.controller.CreateTaskHandler;
 import cs3500.pa05.model.Day;
-import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Week;
-import java.util.Optional;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -15,11 +12,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+/**
+ * a dialog box for choosing between a new event or task
+ */
 public class ChooseNewDialog extends Dialog {
-  Day day;
-  Week week;
-  Controller controller;
+  private Day day;
+  private Week week;
+  private Controller controller;
 
+  /**
+   * constructs a new ChooseNewDialog
+   *
+   * @param day the given day
+   * @param week the given week
+   * @param controller the journal controller
+   */
   public ChooseNewDialog(Day day, Week week, Controller controller) {
     super();
     this.setTitle("Choose Which One To Create");
@@ -29,6 +36,9 @@ public class ChooseNewDialog extends Dialog {
     buildPrompt();
   }
 
+  /**
+   * builds the prompt for the user
+   */
   private void buildPrompt() {
     Pane pane = buildDialog();
     getDialogPane().setContent(pane);
@@ -36,6 +46,11 @@ public class ChooseNewDialog extends Dialog {
     getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
   }
 
+  /**
+   * builds the Dialog
+   *
+   * @return a Pane representing the choices
+   */
   private Pane buildDialog() {
     VBox content = new VBox(10);
 

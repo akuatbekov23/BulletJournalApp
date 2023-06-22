@@ -2,17 +2,15 @@ package cs3500.pa05.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import javafx.event.Event;
 
 /**
  * Represents a day in the week.
  */
 public class Day {
 
-  public DayEnum day;
-  public List<Events> events;
-  public List<Task> tasks;
+  private DayEnum day;
+  private List<Events> events;
+  private List<Task> tasks;
 
   /**
    * Constructs a day.
@@ -27,6 +25,11 @@ public class Day {
     this.tasks = tasks;
   }
 
+  /**
+   * constructs a new Day with an empty list of tasks and events on the specificed day
+   *
+   * @param day the specificed day in the week
+   */
   public Day(DayEnum day) {
     this.day = day;
     this.events = new ArrayList<>();
@@ -48,7 +51,7 @@ public class Day {
   }
 
   /**
-   * get Day
+   * gets the Day
    *
    * @return the day
    */
@@ -74,10 +77,20 @@ public class Day {
     return this.tasks;
   }
 
+  /**
+   * removes a task if it's found
+   *
+   * @param t the Task to remove
+   */
   public void removeIfFound(Task t) {
     this.tasks.removeIf(task -> task == t);
   }
 
+  /**
+   * removes an Event if found
+   *
+   * @param e the Events to remove
+   */
   public void removeIfFound(Events e) {
     this.events.removeIf(ev -> ev == e);
   }

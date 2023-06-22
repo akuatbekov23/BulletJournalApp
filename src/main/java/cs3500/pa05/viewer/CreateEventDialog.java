@@ -2,7 +2,6 @@ package cs3500.pa05.viewer;
 
 import cs3500.pa05.model.DayEnum;
 import cs3500.pa05.model.Events;
-import cs3500.pa05.model.Week;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -19,6 +18,9 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
+/**
+ * a CreateEventDialog
+ */
 public class CreateEventDialog extends Dialog {
   private DayEnum dayEnum;
   private TextField title = new TextField();
@@ -27,6 +29,11 @@ public class CreateEventDialog extends Dialog {
   private TextField duration = new TextField();
   private Label warning = new Label("Invalid date format!");
 
+  /**
+   * constructs a new CreateEventDialog
+   *
+   * @param dayEnum the given day to create the event on
+   */
   public CreateEventDialog(DayEnum dayEnum) {
     super();
     this.setTitle("Create a New Event");
@@ -49,6 +56,8 @@ public class CreateEventDialog extends Dialog {
     button.addEventFilter(ActionEvent.ACTION, new EventHandler<ActionEvent>() {
 
       /**
+       * handles event when user input is in the Dialog
+       *
        * @param event the event which occurred
        */
       @Override
@@ -59,6 +68,8 @@ public class CreateEventDialog extends Dialog {
       }
 
       /**
+       * validates that the fields aren't empty and the times are valid
+       *
        * @return boolean on whether the text fields are empty
        */
       private boolean validate() {
@@ -82,6 +93,8 @@ public class CreateEventDialog extends Dialog {
   }
 
   /**
+   * builds the dialog
+   *
    * @return the basic dialog pane
    */
   private Pane buildDialog() {

@@ -14,11 +14,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 
+/**
+ * a CustomThemeDialog
+ */
 public class CustomThemeDialog extends Dialog<Theme> {
 
   private Theme theme;
@@ -27,6 +29,9 @@ public class CustomThemeDialog extends Dialog<Theme> {
   private TextField fontFamilyTextField;
   private ListView<File> imageListView;
 
+  /**
+   * constructs a new CustomThemeDialog
+   */
   public CustomThemeDialog() {
     super();
     this.setTitle("Customize Theme");
@@ -35,6 +40,9 @@ public class CustomThemeDialog extends Dialog<Theme> {
     setResultConverter();
   }
 
+  /**
+   * builds the CustomTheme UI
+   */
   private void buildUI() {
     VBox content = new VBox(10);
 
@@ -57,6 +65,13 @@ public class CustomThemeDialog extends Dialog<Theme> {
     getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
   }
 
+  /**
+   * creates the Custom Color picker
+   *
+   * @param label the label of the picker
+   * @param colorPicker the color picker
+   * @return a VBox containing the color picker
+   */
   private VBox createColorPickerItem(String label, ColorPicker colorPicker) {
     VBox item = new VBox(5);
 
@@ -68,6 +83,13 @@ public class CustomThemeDialog extends Dialog<Theme> {
     return item;
   }
 
+  /**
+   * creates the text fields item
+   *
+   * @param label the title of the text field
+   * @param textField the text field
+   * @return a VBox containing the textfield
+   */
   private VBox createTextFieldItem(String label, TextField textField) {
     VBox item = new VBox(5);
 
@@ -79,6 +101,13 @@ public class CustomThemeDialog extends Dialog<Theme> {
     return item;
   }
 
+  /**
+   * creates the image picker
+   *
+   * @param label the title of the label
+   * @param listView the list view of different images
+   * @return a VBox containing the image picker
+   */
   private VBox createImagePickerItem(String label, ListView<File> listView) {
     VBox item = new VBox(5);
     item.setPrefHeight(120);
@@ -110,6 +139,9 @@ public class CustomThemeDialog extends Dialog<Theme> {
     return item;
   }
 
+  /**
+   * sets the result converter
+   */
   private void setResultConverter() {
     setResultConverter(buttonType -> {
       if (buttonType == ButtonType.OK) {
@@ -126,6 +158,12 @@ public class CustomThemeDialog extends Dialog<Theme> {
     });
   }
 
+  /**
+   * converts a list of files into a list of images
+   *
+   * @param files the list of files to convert to images
+   * @return a List of images
+   */
   public List<Image> convertFilesToImages(List<File> files) {
     List<Image> images = new ArrayList<>();
 

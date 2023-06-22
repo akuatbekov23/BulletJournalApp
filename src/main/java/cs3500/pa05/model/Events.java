@@ -7,11 +7,11 @@ import java.time.LocalTime;
  */
 public class Events {
 
-  public String name;
-  public String description;
-  public DayEnum day;
-  public LocalTime startTime;
-  public LocalTime duration;
+  private String name;
+  private String description;
+  private DayEnum day;
+  private LocalTime startTime;
+  private LocalTime duration;
 
   /**
    * Constructs an event.
@@ -31,23 +31,48 @@ public class Events {
     this.duration = duration;
   }
 
+  /**
+   * gets the event's name
+   *
+   * @return the event's name
+   */
   public String getName() {
     return this.name;
   }
 
+  /**
+   * gets the event's day
+   *
+   * @return the event's day
+   */
   public String getDay() {
     return this.day.toString();
   }
 
+  /**
+   * gets the event's description
+   *
+   * @return the event's description
+   */
   public String getDescription() {
     return this.description;
   }
 
+  /**
+   * gets the event's start time
+   *
+   * @return the event's start time
+   */
   public LocalTime getStartTime() {
     return this.startTime;
   }
 
-  public LocalTime  getDuration() {
+  /**
+   * gets the event's duration time
+   *
+   * @return the event's duration
+   */
+  public LocalTime getDuration() {
     return this.duration;
   }
 }

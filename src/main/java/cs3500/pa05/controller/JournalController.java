@@ -30,7 +30,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
@@ -89,6 +88,11 @@ public class JournalController implements Controller {
     this.week = week;
   }
 
+  /**
+   * handles the save
+   *
+   * @param event the event that occurs
+   */
   @FXML
   private void handleSave(Event event) {
     FileChooser fileChooser = new FileChooser();
@@ -101,6 +105,11 @@ public class JournalController implements Controller {
     }
   }
 
+  /**
+   * handles the open
+   *
+   * @param event the event that occurs
+   */
   @FXML
   private void handleOpen(Event event) {
     FileChooser fileChooser = new FileChooser();
@@ -114,23 +123,42 @@ public class JournalController implements Controller {
     }
   }
 
+  /**
+   * loads the file
+   *
+   * @param file the file to load
+   */
   private void load(File file) {
     week.update(JsonConverter.convertJsonToWeek(new BujoReader().read(file)));
   }
 
-  // Let user change the week name
+  /**
+   * lets the user change the week name
+   *
+   * @param event the event that occurs
+   */
   @FXML
   private void handleWeekTitle(Event event) {
     week.setTitle(weekTitle.getText());
     event.consume();
   }
 
+  /**
+   * updates the quotes and notes text field
+   *
+   * @param event the event that occurs
+   */
   @FXML
   private void handleQuotesNotes(Event event) {
     week.updateNotes(noteTextArea.getText());
     event.consume();
   }
 
+  /**
+   * allws the user to search
+   *
+   * @param event the event that occurs
+   */
   @FXML
   private void handleSearch(Event event) {
     String query = searchBar.getText();
@@ -155,6 +183,11 @@ public class JournalController implements Controller {
     traverseSceneGraph(weekScene.getRoot(), week.getTheme());
   }
 
+  /**
+   * clears the search bar
+   *
+   * @param event the event that occurs
+   */
   @FXML
   private void handleClear(Event event) {
     searchBar.setText("");
@@ -164,6 +197,11 @@ public class JournalController implements Controller {
     traverseSceneGraph(weekScene.getRoot(), week.getTheme());
   }
 
+  /**
+   * updates the max events
+   *
+   * @param event the event that occurs
+   */
   @FXML
   private void handleMaxEvents(Event event) {
     int result = 0;
@@ -175,6 +213,11 @@ public class JournalController implements Controller {
     week.setMaxEvents(result);
   }
 
+  /**
+   * handles the max tasks
+   *
+   * @param event the event that occurs
+   */
   @FXML
   private void handleMaxTasks(Event event) {
     int result = 0;
@@ -258,16 +301,25 @@ public class JournalController implements Controller {
     setTheme(week.getCurrentTheme());
   }
 
+  /**
+   * creates the theme menu items
+   *
+   * @return the list of menu items
+   */
   private List<MenuItem> createThemeMenuItems() {
     List<MenuItem> menuItems = new ArrayList<>();
     for (int i = 0; i < week.getThemes().size(); i++) {
       menuItems.add(new MenuItem("Theme " + i));
     }
 
-    // menuItems.add(createCustomThemeMenuItems());
     return menuItems;
   }
 
+  /**
+   * creates a new menu item
+   *
+   * @return a Menu Item
+   */
   private MenuItem createCustomThemeMenuItems() {
     // Add Custom option
     int customThemeNumber = week.getThemes().size() - 1;
@@ -282,6 +334,9 @@ public class JournalController implements Controller {
   }
 
 
+  /**
+   * updates the week view
+   */
   private void updateWeekView() {
     weekGrid.getChildren().clear();
     for (int i = 0; i < 7; i++) {
@@ -293,6 +348,11 @@ public class JournalController implements Controller {
     }
   }
 
+  /**
+   * sets the theme to the given integer
+   *
+   * @param newTheme an integer representing the index of a theme
+   */
   private void setTheme(int newTheme) {
     week.updateTheme(newTheme);
     Theme theme = week.getTheme();
@@ -348,6 +408,12 @@ public class JournalController implements Controller {
     }
   }
 
+  /**
+   * traverses the scene graph
+   *
+   * @param parent the scrollpane
+   * @param theme the given theme
+   */
   private void traverseSceneGraph(ScrollPane parent, Theme theme) {
     Node node = parent.getContent();
     if (node instanceof Label label) {
@@ -365,6 +431,12 @@ public class JournalController implements Controller {
     }
   }
 
+  /**
+   * converts a color into a hex string
+   *
+   * @param color the color to convert into a hex
+   * @return the color as a hex string
+   */
   private static String toHexString(Color color) {
     int r = ((int) Math.round(color.getRed() * 255)) << 24;
     int g = ((int) Math.round(color.getGreen() * 255)) << 16;

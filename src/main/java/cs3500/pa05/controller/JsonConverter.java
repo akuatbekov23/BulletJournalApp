@@ -17,11 +17,19 @@ import cs3500.pa05.model.json.WeekJson;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.ObservableList;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
+/**
+ * a JsonConverter
+ */
 public class JsonConverter {
+  /**
+   * converts a JsonNode into a Week
+   *
+   * @param jsonNode the JsonNode received
+   * @return a Week
+   */
   public static Week convertJsonToWeek(JsonNode jsonNode) {
     ObjectMapper mapper = new ObjectMapper();
     WeekJson weekJson = mapper.convertValue(jsonNode, WeekJson.class);
@@ -47,13 +55,6 @@ public class JsonConverter {
       days[i] = day;
     }
 
-//    List<Task> taskQueue = new ArrayList<>();
-//    for (int j = 0; j < weekJson.taskQueue().size(); j++) {
-//      TaskJson task = mapper.convertValue(weekJson.taskQueue().get(j), TaskJson.class);
-//      taskQueue.add(new Task(task.name(), task.description(), DayEnum.valueOf(task.day()),
-//          task.completed()));
-//    }
-
     List<Theme> themes = new ArrayList<>();
     for (int j = 0; j < weekJson.themes().size(); j++) {
       ThemeJson themeJson = mapper.convertValue(weekJson.themes().get(j), ThemeJson.class);
@@ -67,6 +68,12 @@ public class JsonConverter {
         weekJson.maxEvents(), weekJson.maxTasks());
   }
 
+  /**
+   * converts a week into a JsonNode
+   *
+   * @param week the week to convert
+   * @return a Week represented as a JsonNode
+   */
   public static JsonNode convertWeekToJson(Week week) {
     List<DayJson> dayJson = new ArrayList<>();
     for (int i = 0; i < 7; i++) {

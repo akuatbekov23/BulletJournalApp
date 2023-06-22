@@ -3,11 +3,16 @@ package cs3500.pa05.viewer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+/**
+ * An abstract class of a block view
+ */
 public abstract class BlockView extends VBox {
+  /**
+   * constructs a block view
+   */
   public BlockView() {
     this.setMinHeight(110);
     this.setMinWidth(110);

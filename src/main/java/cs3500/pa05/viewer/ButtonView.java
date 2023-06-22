@@ -4,14 +4,22 @@ import cs3500.pa05.controller.ChooseNewHandler;
 import cs3500.pa05.controller.Controller;
 import cs3500.pa05.model.Week;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import cs3500.pa05.model.Day;
-import javafx.scene.layout.VBox;
 
+/**
+ * the view for buttons
+ */
 public class ButtonView extends BlockView {
+  /**
+   * constructs a button view
+   *
+   * @param day the day in the week
+   * @param week the given week
+   * @param controller the journal controller
+   */
   public ButtonView(Day day, Week week, Controller controller) {
     super();
     HBox addEventContainer = new HBox();

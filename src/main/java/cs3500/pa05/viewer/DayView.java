@@ -55,7 +55,7 @@ public class DayView extends VBox {
     VBox taskContainer = new VBox();
     for (Task t : day.getTasks()) {
       if (t.getDescription().toLowerCase().contains(query) || t.getName().toLowerCase().contains(query)
-          || t.day.toString().toLowerCase().contains(query)) {
+          || t.getDay().toString().toLowerCase().contains(query)) {
         taskContainer.getChildren().add(new TaskView(t, week.getTaskQueue(),
             controller, day, maxTasksView));
       }

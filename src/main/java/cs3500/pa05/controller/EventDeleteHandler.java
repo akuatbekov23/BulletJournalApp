@@ -5,17 +5,26 @@ import cs3500.pa05.model.Events;
 import cs3500.pa05.viewer.MaxView;
 import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+/**
+ * handler for deleting Events
+ */
 public class EventDeleteHandler implements EventHandler {
   private Events events;
   private Day day;
   private Parent parent;
   private MaxView maxView;
 
+  /**
+   * constructs a new event delete handler
+   *
+   * @param events the given event
+   * @param day the given day
+   * @param parent the Parent
+   * @param maxView the max amount of events view
+   */
   public EventDeleteHandler(Events events, Day day, Parent parent, MaxView maxView) {
     this.events = events;
     this.day = day;

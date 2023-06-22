@@ -1,6 +1,5 @@
 package cs3500.pa05.controller.reader;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
@@ -9,7 +8,16 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 
+/**
+ * a BujoReader
+ */
 public class BujoReader implements Reader {
+  /**
+   * converts a Bujo file into a JsonNode
+   *
+   * @param file the file to read
+   * @return a JsonNode
+   */
   @Override
   public JsonNode read(File file) {
     Scanner sc;
