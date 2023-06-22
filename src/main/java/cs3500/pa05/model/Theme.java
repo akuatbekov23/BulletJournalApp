@@ -2,7 +2,6 @@ package cs3500.pa05.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 /**
@@ -128,10 +127,10 @@ public class Theme {
     }
   }
 
-  private Color backgroundColor;
-  private Color fontColor;
-  private String fontFamily;
-  private List<String> images;
+  private final Color backgroundColor;
+  private final Color fontColor;
+  private final String fontFamily;
+  private final List<String> images;
 
 
   /**
@@ -140,6 +139,7 @@ public class Theme {
    * @param backgroundColor the background color of the theme
    * @param fontColor       the font color of the theme
    * @param fontFamily      the font family of the theme
+   * @param images          the images for the theme
    */
   public Theme(Color backgroundColor, Color fontColor, String fontFamily, List<String> images) {
     this.backgroundColor = backgroundColor;

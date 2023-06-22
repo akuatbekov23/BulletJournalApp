@@ -36,9 +36,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
-// Privacy Lock - Not Started
-// Weekly Starters - Not Started
-
 /**
  * Represents a controller for the journal.
  */
