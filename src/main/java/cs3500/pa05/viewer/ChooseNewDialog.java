@@ -52,7 +52,6 @@ public class ChooseNewDialog extends Dialog {
    * @return a Pane representing the choices
    */
   private Pane buildDialog() {
-    VBox content = new VBox(10);
 
     GridPane grid = new GridPane();
     grid.setHgap(10);
@@ -63,6 +62,8 @@ public class ChooseNewDialog extends Dialog {
     grid.add(newTask, 1, 1);
     newEvent.setOnAction(new CreateEventHandler(day.getEvents(), week, day, controller, this));
     newTask.setOnAction(new CreateTaskHandler(day.getTasks(), week, day, controller, this));
+
+    VBox content = new VBox(10);
 
     content.getChildren().add(grid);
 

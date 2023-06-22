@@ -39,14 +39,14 @@ public class CreateEventDialog extends Dialog {
     this.setTitle("Create a New Event");
     this.dayEnum = dayEnum;
 
-    buildUI();
+    buildUi();
     setResultConverter();
   }
 
   /**
    * builds the Dialog box for creating a new Event
    */
-  private void buildUI() {
+  private void buildUi() {
     Pane pane = buildDialog();
     getDialogPane().setContent(pane);
 
@@ -98,20 +98,19 @@ public class CreateEventDialog extends Dialog {
    * @return the basic dialog pane
    */
   private Pane buildDialog() {
-    VBox content = new VBox(10);
 
-    Label titleLabel = new Label("Title: ");
-    Label descriptionLabel = new Label("Desc: ");
-    Label startLabel = new Label("Start Time: ");
-    Label durationLabel = new Label("Duration: ");
     warning.setVisible(false);
 
     GridPane grid = new GridPane();
     grid.setHgap(10);
     grid.setVgap(5);
+    Label titleLabel = new Label("Title: ");
     grid.add(titleLabel, 0, 0);
+    Label descriptionLabel = new Label("Desc: ");
     grid.add(descriptionLabel, 0, 1);
+    Label startLabel = new Label("Start Time: ");
     grid.add(startLabel, 0, 2);
+    Label durationLabel = new Label("Duration: ");
     grid.add(durationLabel, 0, 3);
     grid.add(warning, 0, 4);
 
@@ -125,6 +124,8 @@ public class CreateEventDialog extends Dialog {
     duration.setPromptText("Enter as: HH:mm");
     grid.add(duration, 1, 3);
     GridPane.setHgrow(this.duration, Priority.ALWAYS);
+
+    VBox content = new VBox(10);
 
     content.getChildren().add(grid);
 

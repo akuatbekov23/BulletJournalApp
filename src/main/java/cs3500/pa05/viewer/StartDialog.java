@@ -25,17 +25,17 @@ public class StartDialog extends Dialog {
     super();
     this.scene = scene;
     this.setTitle("Journal Setup");
-    buildUI();
+    buildUi();
     this.setResultConverter();
   }
 
   /**
    * builds the UI for the StartDialog
    */
-  private void buildUI() {
+  private void buildUi() {
     Pane pane = new Pane();
     pane.setPrefSize(1280, 720);
-    VBox vBox = new VBox();
+    VBox VBox = new VBox();
     Button newBtn = new Button("New Journal");
     newBtn.setOnAction(e -> {
       this.close();
@@ -51,8 +51,8 @@ public class StartDialog extends Dialog {
         this.setResult(file);
       }
     });
-    vBox.getChildren().addAll(newBtn, openBtn);
-    pane.getChildren().add(vBox);
+    VBox.getChildren().addAll(newBtn, openBtn);
+    pane.getChildren().add(VBox);
     getDialogPane().setContent(pane);
     getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
   }
@@ -68,5 +68,5 @@ public class StartDialog extends Dialog {
       }
     };
     setResultConverter(fileResult);
-    }
+  }
 }

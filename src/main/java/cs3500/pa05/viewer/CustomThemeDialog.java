@@ -36,20 +36,21 @@ public class CustomThemeDialog extends Dialog<Theme> {
     super();
     this.setTitle("Customize Theme");
 
-    buildUI();
+    buildUi();
     setResultConverter();
   }
 
   /**
    * builds the CustomTheme UI
    */
-  private void buildUI() {
-    VBox content = new VBox(10);
+  private void buildUi() {
 
     backgroundColorPicker = new ColorPicker();
     fontColorPicker = new ColorPicker();
     fontFamilyTextField = new TextField();
     imageListView = new ListView<>();
+
+    VBox content = new VBox(10);
 
     content.getChildren().addAll(
         createColorPickerItem("Background Color:", backgroundColorPicker),

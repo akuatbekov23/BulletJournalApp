@@ -12,6 +12,14 @@ import javafx.stage.Stage;
  * Represents a driver for the journal.
  */
 public class Driver extends Application {
+  /**
+   * starts the program
+   *
+   * @param stage the primary stage for this application, onto which
+   *              the application scene can be set.
+   *              Applications may create other stages, if needed, but they will not be
+   *              primary stages.
+   */
   @Override
   public void start(Stage stage) {
     Week week = new Week("", 0);
@@ -32,6 +40,7 @@ public class Driver extends Application {
 
   /**
    * Main Method
+   *
    * @param args cmd-line arguments
    */
   public static void main(String[] args) {

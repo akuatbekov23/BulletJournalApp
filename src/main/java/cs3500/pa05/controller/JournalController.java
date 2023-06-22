@@ -63,7 +63,7 @@ public class JournalController implements Controller {
   @FXML
   private AnchorPane weekPane1;
   @FXML
-  private HBox titleHBox;
+  private HBox titleHbox;
   @FXML
   private TextArea noteTextArea;
   @FXML
@@ -229,10 +229,10 @@ public class JournalController implements Controller {
     week.setMaxTasks(result);
   }
 
-  @Override
   /**
-   * Initializes the GUI.
+   * Initializes the GUI
    */
+  @Override
   public void initialize() {
     if (init) {
       init = false;
@@ -255,8 +255,11 @@ public class JournalController implements Controller {
     setTheme(week.getCurrentTheme());
   }
 
+  /**
+   * sets up the Theme buttons
+   */
   private void setupThemeButton() { // reset
-    titleHBox.getChildren().clear();
+    titleHbox.getChildren().clear();
     // Create the theme menu button
     MenuButton themeMenuButton = new MenuButton("Themes");
     List<MenuItem> menuItems = createThemeMenuItems();
@@ -283,9 +286,12 @@ public class JournalController implements Controller {
         }
       });
     }
-    titleHBox.getChildren().addAll(themeMenuButton, customThemeButton);
+    titleHbox.getChildren().addAll(themeMenuButton, customThemeButton);
   }
 
+  /**
+   * triggers the start dialog
+   */
   private void triggerStartDialog() {
     Dialog popup = new StartDialog(weekScene);
     Optional<File> result = popup.showAndWait();
@@ -406,8 +412,8 @@ public class JournalController implements Controller {
     }
     if (node instanceof TextField textField) {
       textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
-      textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " +
-          toHexString(theme.getFontColor()));
+      textField.setStyle("-fx-background-color: transparent; -fx-text-fill: "
+          + toHexString(theme.getFontColor()));
     } else if (node instanceof Parent) {
       traverseSceneGraph((Parent) node, theme);
     }

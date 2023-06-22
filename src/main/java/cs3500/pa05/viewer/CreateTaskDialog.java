@@ -32,14 +32,14 @@ public class CreateTaskDialog extends Dialog {
     super();
     this.setTitle("Create a New Task");
     this.dayEnum = dayEnum;
-    buildUI();
+    buildUi();
     setResultConverter();
   }
 
   /**
    * builds the UI
    */
-  private void buildUI() {
+  private void buildUi() {
     Pane pane = buildDialog();
     getDialogPane().setContent(pane);
 
@@ -76,7 +76,6 @@ public class CreateTaskDialog extends Dialog {
    * @return the dialog pane
    */
   private Pane buildDialog() {
-    VBox content = new VBox(10);
 
     Label titleLabel = new Label("Title: ");
     Label descriptionLabel = new Label("Desc: ");
@@ -94,6 +93,8 @@ public class CreateTaskDialog extends Dialog {
     GridPane.setHgrow(this.title, Priority.ALWAYS);
     grid.add(description, 1, 1);
     GridPane.setHgrow(this.description, Priority.ALWAYS);
+
+    VBox content = new VBox(10);
 
     content.getChildren().add(grid);
 

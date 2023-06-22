@@ -43,7 +43,7 @@ public class Week {
     this.maxEvents = new SimpleStringProperty(String.valueOf(maxEvents));
     this.maxTasks = new SimpleStringProperty(String.valueOf(maxTasks));
 
-    for (Day day: days) {
+    for (Day day : days) {
       List<Task> tasks = day.getTasks();
       for (Task t : tasks) {
         addTaskQueue(t);

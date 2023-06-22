@@ -102,11 +102,13 @@ public class JsonConverter {
     for (int i = 0; i < week.getThemes().size(); i++) {
       Theme theme = week.getThemes().get(i);
       themeJson.add(new ThemeJson(theme.getBackgroundColor().toString(),
-          theme.getFontColor().toString(), theme.getFontFamily(), imagesToStrings(theme.getImages())));
+          theme.getFontColor().toString(),
+          theme.getFontFamily(), imagesToStrings(theme.getImages())));
     }
 
     return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson,
-        themeJson, week.getCurrentTheme(), week.getNotes(), week.getMaxEvents(), week.getMaxTasks()));
+        themeJson, week.getCurrentTheme(),
+        week.getNotes(), week.getMaxEvents(), week.getMaxTasks()));
   }
 
 
