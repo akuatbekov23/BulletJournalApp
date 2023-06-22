@@ -5,7 +5,15 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
+/**
+ * the Task Queue View
+ */
 public class TaskQueueView extends VBox {
+  /**
+   * constructs a new TaskQueueView
+   *
+   * @param task the task to display
+   */
   public TaskQueueView(Task task) {
     this.setPadding(new Insets(10));
     Label name = new Label(task.getName());

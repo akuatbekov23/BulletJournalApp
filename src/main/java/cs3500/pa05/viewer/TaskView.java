@@ -11,7 +11,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 
+/**
+ * a TaskView
+ */
 public class TaskView extends BlockView {
+  /**
+   * constructs a new TaskView
+   *
+   * @param task the task to display
+   * @param taskQueue the task queue
+   * @param controller the journal controller
+   * @param day the given day
+   * @param maxView the max view
+   */
   public TaskView(Task task, ObservableList<Task> taskQueue, Controller controller,
                   Day day, MaxView maxView) {
     super();

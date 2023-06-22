@@ -7,7 +7,18 @@ import cs3500.pa05.model.Events;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
+/**
+ * the EventView
+ */
 public class EventView extends BlockView {
+  /**
+   * constructs an EventView
+   *
+   * @param events the events
+   * @param day the day
+   * @param maxView the max view
+   * @param controller the journal controller
+   */
   public EventView(Events events, Day day, MaxView maxView, Controller controller) {
     super();
     Label eventLabel = new Label("Event");

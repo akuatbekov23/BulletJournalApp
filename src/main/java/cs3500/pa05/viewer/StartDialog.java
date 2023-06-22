@@ -1,6 +1,5 @@
 package cs3500.pa05.viewer;
 
-import cs3500.pa05.model.Task;
 import java.io.File;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,8 +10,17 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 
+/**
+ * a StartDialog
+ */
 public class StartDialog extends Dialog {
-  Scene scene;
+  private Scene scene;
+
+  /**
+   * constructs a StartDialog
+   *
+   * @param scene the scene to construct it on
+   */
   public StartDialog(Scene scene) {
     super();
     this.scene = scene;
@@ -21,6 +29,9 @@ public class StartDialog extends Dialog {
     this.setResultConverter();
   }
 
+  /**
+   * builds the UI for the StartDialog
+   */
   private void buildUI() {
     Pane pane = new Pane();
     pane.setPrefSize(1280, 720);
@@ -46,6 +57,9 @@ public class StartDialog extends Dialog {
     getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
   }
 
+  /**
+   * sets the result converter to the resulting file
+   */
   public void setResultConverter() {
     Callback<ButtonType, File> fileResult = new Callback<ButtonType, File>() {
       @Override
