@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -216,10 +217,78 @@ public class WeekTest {
    */
   @Test
   public void testUpdateWeek() {
-    Week week3 = new Week("ITS LIT", createDays(),
+    Day[] newDays = createDays();
+    Week week3 = new Week("ITS LIT", newDays,
         new ArrayList<>(Arrays.asList(theme)), 0, "NEW WEEK", 15, 15);
     week2.update(week3);
-    assertEquals(week2, week3);
+    System.out.println(week2.getTitle());
+    assertEquals(week2.getTitle(), "ITS LIT");
+    assertEquals(week2.getDay(0), newDays[0]);
+    assertEquals(week2.getDay(1), newDays[1]);
+    assertEquals(week2.getDay(2), newDays[2]);
+    assertEquals(week2.getDay(3), newDays[3]);
+    assertEquals(week2.getDay(4), newDays[4]);
+    assertEquals(week2.getDay(5), newDays[5]);
+    assertEquals(week2.getDay(6), newDays[6]);
+    assertEquals(week2.getThemes(),week3.getThemes());
+    assertEquals(week3.getCurrentTheme(), week3.getCurrentTheme());
+    assertEquals(week3.getNotes(), week3.getNotes());
+    assertEquals(week3.getMaxTasks(), week3.getMaxTasks());
+    assertEquals(week3.getMaxEvents(), week3.getMaxEvents());
+  }
+
+  /**
+   * tests weekly overview
+   */
+  @Test
+  public void testWeeklyOverview() {
+    String overview = "Total Events: 0\nTotal Tasks: 1\nCompletion: 0%";
+    StringProperty weeklyOverview = new SimpleStringProperty(overview);
+    assertEquals(week2.getWeeklyOverview().toString(), weeklyOverview.toString());
+    List<Task> listOfTasks = week2.getDay(0).getTasks();
+    Task t = listOfTasks.get(0);
+    t.changeComplete();
+
+    String overview2 = "Total Events: 0\nTotal Tasks: 1\nCompletion: 100%";
+    StringProperty weeklyOverview2 = new SimpleStringProperty(overview2);
+    assertEquals(week2.getWeeklyOverview().toString(), weeklyOverview2.toString());
+
+  }
+
+  /**
+   * test for setting the max events
+   */
+  @Test
+  public void setMaxEvents() {
+    assertEquals(week2.getMaxEvents(), 1);
+    week2.setMaxEvents(5);
+    assertEquals(week2.getMaxEvents(), 5);
+  }
+
+  /**
+   * sets the max tasks
+   */
+  @Test
+  public void setMaxTasks() {
+    assertEquals(week2.getMaxTasks(), 1);
+    week2.setMaxTasks(100);
+    assertEquals(week2.getMaxTasks(), 100);
+  }
+
+  /**
+   * test for setting the template
+   */
+  @Test
+  public void testSetTemplate() {
+    assertEquals(week2.getTaskQueue().size(), 1);
+    assertEquals(week2.getNotes(), "hello");
+    Day sunday = new Day(DayEnum.SUNDAY);
+    sunday.addTask(task1);
+    assertEquals(week2.getDay(0), sunday);
+    week2.setTemplate();
+    assertEquals(week2.getTaskQueue().size(), 0);
+    assertEquals(week2.getNotes(), "");
+    assertEquals(week2.getDay(0), new Day(DayEnum.SUNDAY));
   }
 
 }

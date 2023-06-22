@@ -294,28 +294,6 @@ public class Week {
   }
 
   /**
-   * compares a week and object to see if they are equal
-   *
-   * @param obj the object to compare to
-   * @return boolean whether the weeks are equal
-   */
-  @Override
-  public boolean equals(Object obj) {
-    if (!(obj instanceof Week week)) {
-      return false;
-    }
-   return week.title.equals(this.title)
-    && week.days.equals(this.days)
-    && week.taskQueue.equals(this.taskQueue)
-    && (week.currentTheme == (this.currentTheme))
-    && week.themes.equals(this.themes)
-    && week.notes.equals(this.notes)
-    && week.maxEvents.equals(this.maxEvents)
-    && week.maxTasks.equals(this.maxTasks);
-
-  }
-
-  /**
    * Resets every task and event and notes
    */
   public void setTemplate() {
