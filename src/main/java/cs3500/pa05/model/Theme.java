@@ -40,12 +40,12 @@ public class Theme {
      * @return the second ThemeBuilder
      */
     public ThemeBuilder theme2() {
-      this.backgroundColor = Color.rgb(50, 50, 50);
-      this.fontColor = Color.rgb(200, 100, 0);
-      this.fontFamily = "Britannic Bold";
-      this.images.add(new Image("starsBottomLeft.png"));
-      this.images.add(new Image("starQuotes.png"));
-      this.images.add(new Image("starsTopLeft.png"));
+      this.backgroundColor = Color.rgb(250, 218, 221);
+      this.fontColor = Color.rgb(255, 0, 0);
+      this.fontFamily = "Lucida Calligraphy";
+      this.images.add(new Image("ClefairyAmongus.png"));
+      this.images.add(new Image("Loveball.png"));
+      this.images.add(new Image("Sylveon.png"));
       return this;
     }
 

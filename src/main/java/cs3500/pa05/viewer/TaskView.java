@@ -37,7 +37,6 @@ public class TaskView extends BlockView {
     taskLabel.setPadding(new Insets(0, 0, 3, 0));
     Label name = new Label(task.getName());
     name.setPadding(new Insets(0, 0, 3, 0));
-    Label completed = new Label("Completed?");
     CheckBox complete = new CheckBox();
     complete.setTooltip(new Tooltip("Mark as Complete?"));
     complete.setSelected(task.getComplete());
@@ -49,6 +48,7 @@ public class TaskView extends BlockView {
       taskQueue.addAll(temp);
       controller.initialize();
     });
+    Label completed = new Label("Completed?");
     this.getChildren().addAll(taskLabel, name, completed, complete);
     if (!task.getDescription().equals("")) {
       Label description = new Label(task.getDescription());

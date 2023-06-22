@@ -38,10 +38,10 @@
                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                               </VBox.margin>
                            </Label>
-                           <ListView fx:id="taskQueue" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
-                           <Label fx:id="weeklyOverview" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="200.0">
+                           <ListView fx:id="taskQueue" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="216.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
+                           <Label fx:id="weeklyOverview" alignment="CENTER" contentDisplay="CENTER" prefHeight="152.0" prefWidth="200.0">
                               <font>
-                                 <Font name="Book Antiqua" size="24.0" />
+                                 <Font name="Book Antiqua" size="18.0" />
                               </font>
                            </Label>
                            <Label fx:id="maxEventLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="150.0" text="Max Events" />
@@ -64,7 +64,7 @@
                            <HBox fx:id="QuotesHBox" alignment="CENTER" minWidth="-Infinity" prefWidth="100.0">
                               <children>
                                  <ImageView fx:id="notesImage1" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-                                 <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" style="-fx-text-fill: black;" text="Quotes &amp; Notes" />
+                                 <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" style="-fx-text-fill: black;" text="Quotes &amp; Notes" />
                                  <ImageView fx:id="notesImage2" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </HBox>
@@ -89,9 +89,9 @@
                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
-                           <HBox fx:id="topLeftHBox" prefHeight="100.0" prefWidth="200.0">
+                           <HBox fx:id="topLeftHBox" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                               <children>
-                                 <ImageView fx:id="topLeftImage" fitHeight="43.0" fitWidth="256.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="topLeftImage" fitHeight="77.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </HBox>
                            <HBox fx:id="titleHbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="283.0" spacing="10.0" GridPane.columnIndex="1">
