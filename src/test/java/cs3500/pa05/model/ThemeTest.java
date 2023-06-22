@@ -131,7 +131,7 @@ public class ThemeTest {
   public void testSetImages() {
     Platform.runLater(() -> {
       Theme.ThemeBuilder builder = new Theme.ThemeBuilder();
-      List<Image> images = List.of(new Image("image1.png"), new Image("image2.png"));
+      List<Image> images = List.of(new Image("L.png"), new Image("Loveball.png"));
       Theme theme = builder.setImages(images).build();
 
       Assertions.assertEquals(images, theme.getImages());

@@ -1,12 +1,12 @@
 package cs3500.pa05.viewer;
 
 import java.io.File;
+import java.util.Optional;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
@@ -16,7 +16,7 @@ import javafx.util.Callback;
  * a StartDialog
  */
 public class StartDialog extends Dialog {
-  private Scene scene;
+  private final Scene scene;
 
   /**
    * constructs a StartDialog
@@ -48,9 +48,17 @@ public class StartDialog extends Dialog {
     newBtn.setStyle(style);
     Button openBtn = new Button("Open Journal");
     openBtn.setStyle(style);
-    newBtn.setOnAction(e -> {
-      this.close();
+    Button weekBtn = new Button("Weekly Starter");
+    weekBtn.setStyle(style);
+    weekBtn.setOnAction(e -> {
+      Dialog popup = new WeeklyStarterView(scene);
+      Optional<File> result = popup.showAndWait();
+
+      if (result.isPresent()) {
+        result.ifPresent(this::setResult);
+      }
     });
+    newBtn.setOnAction(e -> this.close());
     openBtn.setOnAction(e -> {
       FileChooser fileChooser = new FileChooser();
       FileChooser.ExtensionFilter bujoFilter =
@@ -61,7 +69,7 @@ public class StartDialog extends Dialog {
         this.setResult(file);
       }
     });
-    vertBox.getChildren().addAll(newBtn, openBtn);
+    vertBox.getChildren().addAll(newBtn, openBtn, weekBtn);
     pane.getChildren().add(vertBox);
     getDialogPane().setContent(pane);
     getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
@@ -74,12 +82,7 @@ public class StartDialog extends Dialog {
    * sets the result converter to the resulting file
    */
   public void setResultConverter() {
-    Callback<ButtonType, File> fileResult = new Callback<ButtonType, File>() {
-      @Override
-      public File call(ButtonType param) {
-        return null;
-      }
-    };
+    Callback<ButtonType, File> fileResult = param -> null;
     setResultConverter(fileResult);
   }
 }
