@@ -263,7 +263,6 @@ public class Week {
 
     double percentDone = (double) completedTasks / totalTasks;
     percentDone = percentDone * 100;
-    Math.floor(percentDone);
     int percentage = (int) percentDone;
 
     String overview = "Total Events: " + totalEvents + "\n"
@@ -293,6 +292,9 @@ public class Week {
     this.maxTasks.set(String.valueOf(newMax));
   }
 
+  /**
+   * Resets every task and event and notes
+   */
   public void setTemplate() {
     days = initDays();
     this.taskQueue = FXCollections.observableArrayList();
