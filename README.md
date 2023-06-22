@@ -3,7 +3,36 @@
 
 [PA Write Up](https://markefontenot.notion.site/PA-05-8263d28a81a7473d8372c6579abd6481)
 
-![img.png](img.png)
+# GUI
+![img1.png](screenshots%2Fimg1.png)
+![img2.png](screenshots%2Fimg2.png)
+![img3.png](screenshots%2Fimg3.png)
+![img4.png](screenshots%2Fimg4.png)
+![img5.png](screenshots%2Fimg5.png)
+![img6.png](screenshots%2Fimg6.png)
+
+# Pitch
+- s
+
+# SOLID
+## S
+- s
+## O
+- s
+## L
+- s
+## I
+- s
+## D
+-s
+## How to extend the program
+- s
+## Image Attributions
+- https://asset.icontrolwp.com/icontrolwp.com/uploads/2016/02/google_old_captcha.png
+- https://4kwallpapers.com/images/walls/thumbs/10121.png
+- https://mystickermania.com/sticker-packs/among-us/among-us-jigglypuff
+- https://www.deviantart.com/soyiroh/art/Uzumaki-Junji-Ito-Render-PNG-749297229
+
 
 # Deployable Application
 ## How to run [journal.jar](journal.jar) in the root directory
