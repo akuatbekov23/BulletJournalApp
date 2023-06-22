@@ -293,4 +293,9 @@ public class Week {
     this.maxTasks.set(String.valueOf(newMax));
   }
 
+  public void setTemplate() {
+    days = initDays();
+    this.taskQueue = FXCollections.observableArrayList();
+    this.notes = "";
+  }
 }
