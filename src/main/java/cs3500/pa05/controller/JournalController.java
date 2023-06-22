@@ -319,7 +319,7 @@ public class JournalController implements Controller {
   }
 
   /**
-   * creates a new menu item
+   * creates a new Menu item
    *
    * @return a Menu Item
    */
