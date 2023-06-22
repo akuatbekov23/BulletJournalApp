@@ -1,31 +1,31 @@
-package cs3500.pa05.viewer;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import cs3500.pa05.controller.Controller;
-import cs3500.pa05.controller.JournalController;
-import cs3500.pa05.model.Day;
-import cs3500.pa05.model.DayEnum;
-import cs3500.pa05.model.Task;
-import cs3500.pa05.model.Week;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.testfx.api.FxRobot;
-import org.testfx.assertions.api.Assertions;
-import org.testfx.framework.junit5.ApplicationExtension;
-import org.testfx.framework.junit5.Start;
-
-@ExtendWith(ApplicationExtension.class)
-class TaskViewTest {
+//package cs3500.pa05.viewer;
+//
+//import static org.junit.jupiter.api.Assertions.*;
+//
+//import cs3500.pa05.controller.Controller;
+//import cs3500.pa05.controller.JournalController;
+//import cs3500.pa05.model.Day;
+//import cs3500.pa05.model.DayEnum;
+//import cs3500.pa05.model.Task;
+//import cs3500.pa05.model.Week;
+//import java.util.ArrayList;
+//import java.util.List;
+//import javafx.beans.property.SimpleStringProperty;
+//import javafx.collections.FXCollections;
+//import javafx.collections.ObservableList;
+//import javafx.scene.Scene;
+//import javafx.scene.control.Label;
+//import javafx.scene.layout.StackPane;
+//import javafx.stage.Stage;
+//import org.junit.jupiter.api.Test;
+//import org.junit.jupiter.api.extension.ExtendWith;
+//import org.testfx.api.FxRobot;
+//import org.testfx.assertions.api.Assertions;
+//import org.testfx.framework.junit5.ApplicationExtension;
+//import org.testfx.framework.junit5.Start;
+//
+//@ExtendWith(ApplicationExtension.class)
+//class TaskViewTest {
 //  private TaskView taskView;
 //
 //  @Start
@@ -44,4 +44,4 @@ class TaskViewTest {
 //  void containsText(FxRobot robot) {
 //    Assertions.assertThat(robot.lookup("#0").queryAs(Label.class)).hasText("Test");
 //  }
-}
+//}
