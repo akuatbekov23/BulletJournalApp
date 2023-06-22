@@ -24,13 +24,13 @@ public class Week {
   /**
    * constructs a week
    *
-   * @param title     the week title
-   * @param days      an array of all the days
-   * @param themes    a list of the themes
-   * @param theme     the set theme
-   * @param notes     the displayed message in quotes and notes
+   * @param title the week title
+   * @param days an array of all the days
+   * @param themes a list of the themes
+   * @param theme the set theme
+   * @param notes the displayed message in quotes and notes
    * @param maxEvents the max number of events
-   * @param maxTasks  the max number of tasks
+   * @param maxTasks the max number of tasks
    */
   public Week(String title, Day[] days, List<Theme> themes,
               int theme, String notes, int maxEvents, int maxTasks) {
@@ -315,4 +315,12 @@ public class Week {
 
   }
 
+  /**
+   * Resets every task and event and notes
+   */
+  public void setTemplate() {
+    days = initDays();
+    this.taskQueue = FXCollections.observableArrayList();
+    this.notes = "";
+  }
 }

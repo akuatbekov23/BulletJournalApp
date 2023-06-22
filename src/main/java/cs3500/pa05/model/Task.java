@@ -13,10 +13,10 @@ public class Task {
   /**
    * Creates a task
    *
-   * @param name the name of the task
+   * @param name        the name of the task
    * @param description the task description
-   * @param day the day the task is on
-   * @param complete whether the task is completed
+   * @param day         the day the task is on
+   * @param complete    whether the task is completed
    */
   public Task(String name, String description, DayEnum day, Boolean complete) {
     this.name = name;
@@ -29,7 +29,7 @@ public class Task {
    * constructs a task
    *
    * @param name the name of the task
-   * @param day the day to place the task
+   * @param day  the day to place the task
    */
   public Task(String name, DayEnum day) {
     this.name = name;
@@ -122,7 +122,7 @@ public class Task {
       boolComplete = 1;
     }
     int dayNumber = 0;
-    switch(this.day) {
+    switch (this.day) {
       case SATURDAY -> dayNumber = 6;
       case FRIDAY -> dayNumber = 5;
       case THURSDAY -> dayNumber = 4;
@@ -130,7 +130,7 @@ public class Task {
       case TUESDAY -> dayNumber = 2;
       case MONDAY -> dayNumber = 1;
       default -> dayNumber = 0;
-  }
+    }
     return this.name.hashCode() * 10000 + this.description.hashCode() * 1000
         + dayNumber * 10 + boolComplete;
   }

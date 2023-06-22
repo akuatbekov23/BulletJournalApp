@@ -30,15 +30,15 @@ public class ReCaptcha extends Dialog {
    * Build visuals
    */
   private void buildUi() {
-    VBox vBox = new VBox();
-    vBox.setPrefSize(400, 200);
+    VBox vertBox = new VBox();
+    vertBox.setPrefSize(400, 200);
     ImageView captchaView = new ImageView();
     Image captcha = new Image("marckhdietcoke.png");
     captchaView.setImage(captcha);
     captchaView.setFitWidth(400);
     captchaView.setFitHeight(100);
-    HBox hBox = new HBox(10);
-    hBox.setPadding(new Insets(10));
+    HBox horiBox = new HBox(10);
+    horiBox.setPadding(new Insets(10));
     textField = new TextField();
     textField.setPromptText("Type the two words:");
     ImageView imageView = new ImageView();
@@ -50,9 +50,9 @@ public class ReCaptcha extends Dialog {
     Image markFontenot = new Image("marck.png");
     mark.setImage(markFontenot);
     ImageView mark2 = new ImageView(markFontenot);
-    hBox.getChildren().addAll(textField, imageView);
-    vBox.getChildren().addAll(captchaView, hBox, mark, mark2);
-    getDialogPane().setContent(vBox);
+    horiBox.getChildren().addAll(textField, imageView);
+    vertBox.getChildren().addAll(captchaView, horiBox, mark, mark2);
+    getDialogPane().setContent(vertBox);
     getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
     getDialogPane().setStyle("-fx-background-color: #DBDADA");
   }
