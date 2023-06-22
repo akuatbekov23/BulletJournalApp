@@ -6,6 +6,7 @@ import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
+import cs3500.pa05.viewer.SplashScreenView;
 import cs3500.pa05.viewer.StartDialog;
 import java.io.File;
 import java.util.ArrayList;
@@ -294,6 +295,9 @@ public class JournalController implements Controller {
    * Starts the splash screen start dialog
    */
   private void triggerStartDialog() {
+    Dialog splash = new SplashScreenView();
+    splash.showAndWait();
+
     Dialog popup = new StartDialog(weekScene);
     Optional<File> result = popup.showAndWait();
 
@@ -332,7 +336,6 @@ public class JournalController implements Controller {
     });
     return customMenuItem;
   }
-
 
   /**
    * updates the week view
