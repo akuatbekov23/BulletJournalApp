@@ -45,7 +45,7 @@ import javafx.stage.FileChooser;
  */
 public class JournalController implements Controller {
   private boolean init = true;
-  private Week week;
+  private final Week week;
   @FXML
   private Label weeklyOverview;
   @FXML
@@ -63,7 +63,7 @@ public class JournalController implements Controller {
   @FXML
   private AnchorPane weekPane1;
   @FXML
-  private HBox titleHbox;
+  private HBox titleHBox;
   @FXML
   private TextArea noteTextArea;
   @FXML
@@ -208,7 +208,7 @@ public class JournalController implements Controller {
     try {
       result = Integer.parseInt(setMaxEvents.getText());
     } catch (NumberFormatException e) {
-      result = 0;
+      week.setMaxEvents(0);
     }
     week.setMaxEvents(result);
   }
@@ -230,7 +230,7 @@ public class JournalController implements Controller {
   }
 
   /**
-   * Initializes the GUI
+   * Initializes the GUI.
    */
   @Override
   public void initialize() {
@@ -256,10 +256,11 @@ public class JournalController implements Controller {
   }
 
   /**
-   * sets up the Theme buttons
+   * Set up the Theme dropdown menu with the custom theme button
    */
-  private void setupThemeButton() { // reset
-    titleHbox.getChildren().clear();
+  private void setupThemeButton() {
+    // reset
+    titleHBox.getChildren().clear();
     // Create the theme menu button
     MenuButton themeMenuButton = new MenuButton("Themes");
     List<MenuItem> menuItems = createThemeMenuItems();
@@ -286,11 +287,11 @@ public class JournalController implements Controller {
         }
       });
     }
-    titleHbox.getChildren().addAll(themeMenuButton, customThemeButton);
+    titleHBox.getChildren().addAll(themeMenuButton, customThemeButton);
   }
 
   /**
-   * triggers the start dialog
+   * Starts the splash screen start dialog
    */
   private void triggerStartDialog() {
     Dialog popup = new StartDialog(weekScene);
@@ -412,8 +413,8 @@ public class JournalController implements Controller {
     }
     if (node instanceof TextField textField) {
       textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
-      textField.setStyle("-fx-background-color: transparent; -fx-text-fill: "
-          + toHexString(theme.getFontColor()));
+      textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " +
+          toHexString(theme.getFontColor()));
     } else if (node instanceof Parent) {
       traverseSceneGraph((Parent) node, theme);
     }
