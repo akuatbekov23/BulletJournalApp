@@ -1,4 +1,5 @@
 package cs3500.pa05.viewer.model;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import cs3500.pa05.model.DayEnum;
@@ -66,14 +67,11 @@ public class TaskTest {
         DayEnum.TUESDAY, false);
     Task task2 = new Task("Project", "Finish project report",
         DayEnum.WEDNESDAY, true);
-
     // Test equality with itself
     assertEquals(task, task);
-
     // Test equality with another task having the same values
     assertEquals(task, task1);
     assertEquals(task1, task);
-
     // Test inequality with a task having a different name
     assertNotEquals(task, task2);
     assertNotEquals(task2, task);
