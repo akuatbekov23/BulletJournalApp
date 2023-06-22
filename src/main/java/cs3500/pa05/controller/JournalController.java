@@ -414,7 +414,7 @@ public class JournalController implements Controller {
     if (node instanceof TextField textField) {
       textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
       textField.setStyle("-fx-background-color: transparent; -fx-text-fill: "
-         + toHexString(theme.getFontColor()));
+          + toHexString(theme.getFontColor()));
     } else if (node instanceof Parent) {
       traverseSceneGraph((Parent) node, theme);
     }
