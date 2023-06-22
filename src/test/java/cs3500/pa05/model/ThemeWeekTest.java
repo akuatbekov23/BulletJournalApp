@@ -70,6 +70,11 @@ public class ThemeWeekTest {
     theme2 = new Theme(Color.RED, Color.GREEN, "Arial", new ArrayList<>());
     week2 = new Week("Worst Week", days, new ArrayList<>(Arrays.asList(theme1, theme2)),
         0, "hello", 1, 1);
+    Color backgroundColor = Color.rgb(255, 255, 255);
+    Color fontColor = Color.rgb(0, 0, 0);
+    String fontFamily = "Arial";
+    List<Image> images = new ArrayList<>();
+    theme = new Theme(backgroundColor, fontColor, fontFamily, images);
   }
 
   /**
@@ -309,18 +314,6 @@ public class ThemeWeekTest {
     assertEquals(week2.getDay(0), new Day(DayEnum.SUNDAY));
   }
 
-
-  /**
-   * setup for the tests.
-   */
-  @BeforeEach
-  public void setUp() {
-    Color backgroundColor = Color.rgb(255, 255, 255);
-    Color fontColor = Color.rgb(0, 0, 0);
-    String fontFamily = "Arial";
-    List<Image> images = new ArrayList<>();
-    theme = new Theme(backgroundColor, fontColor, fontFamily, images);
-  }
 
   @Test
   public void testGetBackgroundColor() {

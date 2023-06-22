@@ -32,6 +32,15 @@
 - https://4kwallpapers.com/images/walls/thumbs/10121.png
 - https://mystickermania.com/sticker-packs/among-us/among-us-jigglypuff
 - https://www.deviantart.com/soyiroh/art/Uzumaki-Junji-Ito-Render-PNG-749297229
+- https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngkit.com%2Fview%2Fu2q8e6w7o0e6w7a9_death-note-and-l-image-l-png-death%2F&psig=AOvVaw09ce2-_MCtsYSd6X9-fhgJ&ust=1687516196065000&source=images&cd=vfe&ved=0CA8QjhxqFwoTCNCm4e3V1v8CFQAAAAAdAAAAABAI
+- https://www.google.com/url?sa=i&url=https%3A%2F%2Fpokemon.fandom.com%2Fwiki%2FLove_Ball&psig=AOvVaw2odEuFT222L9B19NlCouaZ&ust=1687516218791000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCMDGxfjV1v8CFQAAAAAdAAAAABAD
+- Marck Fontenot image is from Slack
+- MarckhDietCoke is original artwork.
+- https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.morvenink.com%2Ftattoo-designs%2Fp%2Fnew-jeans-bunny-3-4&psig=AOvVaw1yWpLjrZ2MmJVWZsMKpP8L&ust=1687516373640000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCICYr8PW1v8CFQAAAAAdAAAAABAD
+- https://stock.adobe.com/images/cute-rabbit-head-cartoon-element/523328796?as_campaign%5B%5D=TinEye&as_campaign%5B%5D=tineye&as_content=tineye_match&clickref=1100lwRfsvae&mv=affiliate&mv2=pz&as_camptype=backlink&as_channel=affiliate&as_source=partnerize&asset_id=523328796
+- https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngmart.com%2Fimage%2F509271&psig=AOvVaw3blvL7wQcL-hoia8UGhXIr&ust=1687516508567000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCKjiu4TX1v8CFQAAAAAdAAAAABAD
+- https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pokemon.com%2Fus%2Fpokedex%2Fsylveon&psig=AOvVaw2VfLiOe44JerskKNpDrCus&ust=1687516523249000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCJjd54nX1v8CFQAAAAAdAAAAABAD
+- https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngkit.com%2Fbigpic%2Fu2q8u2e6e6o0q8w7%2F&psig=AOvVaw1D5VZsFFzC3G5alYz3b6_n&ust=1687516532140000&source=images&cd=vfe&ved=0CA0QjRxqFwoTCLiF1o7X1v8CFQAAAAAdAAAAABAI
 
 
 # Deployable Application
