@@ -45,7 +45,7 @@ import javafx.stage.FileChooser;
  */
 public class JournalController implements Controller {
   private boolean init = true;
-  private Week week;
+  private final Week week;
   @FXML
   private Label weeklyOverview;
   @FXML
@@ -208,7 +208,7 @@ public class JournalController implements Controller {
     try {
       result = Integer.parseInt(setMaxEvents.getText());
     } catch (NumberFormatException e) {
-      result = 0;
+      week.setMaxEvents(0);
     }
     week.setMaxEvents(result);
   }
@@ -229,10 +229,10 @@ public class JournalController implements Controller {
     week.setMaxTasks(result);
   }
 
-  @Override
   /**
    * Initializes the GUI.
    */
+  @Override
   public void initialize() {
     if (init) {
       init = false;
@@ -255,7 +255,11 @@ public class JournalController implements Controller {
     setTheme(week.getCurrentTheme());
   }
 
-  private void setupThemeButton() { // reset
+  /**
+   * Set up the Theme dropdown menu with the custom theme button
+   */
+  private void setupThemeButton() {
+    // reset
     titleHBox.getChildren().clear();
     // Create the theme menu button
     MenuButton themeMenuButton = new MenuButton("Themes");
@@ -286,6 +290,9 @@ public class JournalController implements Controller {
     titleHBox.getChildren().addAll(themeMenuButton, customThemeButton);
   }
 
+  /**
+   * Starts the splash screen start dialog
+   */
   private void triggerStartDialog() {
     Dialog popup = new StartDialog(weekScene);
     Optional<File> result = popup.showAndWait();
