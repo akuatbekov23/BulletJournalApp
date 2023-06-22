@@ -6,6 +6,7 @@ import cs3500.pa05.model.Task;
 import cs3500.pa05.model.Theme;
 import cs3500.pa05.model.Week;
 import cs3500.pa05.viewer.DayView;
+import cs3500.pa05.viewer.ReCaptcha;
 import cs3500.pa05.viewer.SplashScreenView;
 import cs3500.pa05.viewer.StartDialog;
 import java.io.File;
@@ -34,17 +35,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 
-// Deployable Application - Done
-// Visual Flourish - Not Started
-// Splash Screen - In Progress
 // Privacy Lock - Not Started
 // Weekly Starters - Not Started
-// Tested GUI - Not Started
 
 /**
  * Represents a controller for the journal.
  */
 public class JournalController implements Controller {
+  private boolean start = false;
   private boolean init = true;
   private final Week week;
   @FXML
@@ -221,7 +219,7 @@ public class JournalController implements Controller {
    */
   @FXML
   private void handleMaxTasks(Event event) {
-    int result = 0;
+    int result;
     try {
       result = Integer.parseInt(setMaxTasks.getText());
     } catch (NumberFormatException e) {
@@ -239,21 +237,23 @@ public class JournalController implements Controller {
       init = false;
       triggerStartDialog();
     }
-    // set weekly overview
-    weeklyOverview.textProperty().bind(week.getWeeklyOverview());
-    // Set week name
-    weekTitle.setText(week.getTitle());
-    // Set Quotes & Notes
-    noteTextArea.setText(week.getNotes());
-    // Bind Task Queue
-    taskQueue.setItems(week.getTaskQueue());
-    // Set Commitment Warnings
-    setMaxEvents.setText(String.valueOf(week.getMaxEvents()));
-    setMaxTasks.setText(String.valueOf(week.getMaxTasks()));
-    // Update WeekView (Each day
-    updateWeekView();
-    setupThemeButton();
-    setTheme(week.getCurrentTheme());
+    if (start) {
+      // set weekly overview
+      weeklyOverview.textProperty().bind(week.getWeeklyOverview());
+      // Set week name
+      weekTitle.setText(week.getTitle());
+      // Set Quotes & Notes
+      noteTextArea.setText(week.getNotes());
+      // Bind Task Queue
+      taskQueue.setItems(week.getTaskQueue());
+      // Set Commitment Warnings
+      setMaxEvents.setText(String.valueOf(week.getMaxEvents()));
+      setMaxTasks.setText(String.valueOf(week.getMaxTasks()));
+      // Update WeekView (Each day
+      updateWeekView();
+      setupThemeButton();
+      setTheme(week.getCurrentTheme());
+    }
   }
 
   /**
@@ -298,13 +298,29 @@ public class JournalController implements Controller {
     Dialog splash = new SplashScreenView();
     splash.showAndWait();
 
-    Dialog popup = new StartDialog(weekScene);
-    Optional<File> result = popup.showAndWait();
+    Dialog captcha = new ReCaptcha();
+    Optional<String> result = captcha.showAndWait();
 
     if (result.isPresent()) {
-      result.ifPresent(this::load);
+      result.ifPresent((String string) -> {
+        if (string.equalsIgnoreCase("marckh dietcoke")) {
+          start = true;
+          Dialog popup = new StartDialog(weekScene);
+          Optional<File> file = popup.showAndWait();
+
+          if (file.isPresent()) {
+            file.ifPresent(this::load);
+          } else {
+            initialize();
+          }
+        } else {
+          triggerStartDialog();
+        }
+      });
     } else {
-      initialize();
+      System.out.println("TRIGER");
+      start = false;
+      weekScene.getRoot().setVisible(false);
     }
   }
 
