@@ -193,43 +193,32 @@ public class JournalController implements Controller {
   public void initialize() {
     if (init) {
       init = false;
-
-      Dialog popup = new StartDialog(weekScene);
-      Optional<File> result = popup.showAndWait();
-
-      if (result.isPresent()) {
-        result.ifPresent(this::load);
-      } else {
-        initialize();
-      }
+      triggerStartDialog();
     }
-
     // set weekly overview
     weeklyOverview.textProperty().bind(week.getWeeklyOverview());
-
     // Set week name
     weekTitle.setText(week.getTitle());
-
     // Set Quotes & Notes
     noteTextArea.setText(week.getNotes());
-
     // Bind Task Queue
     taskQueue.setItems(week.getTaskQueue());
-
     // Set Commitment Warnings
     setMaxEvents.setText(String.valueOf(week.getMaxEvents()));
     setMaxTasks.setText(String.valueOf(week.getMaxTasks()));
-
+    // Update WeekView (Each day
     updateWeekView();
+    setupThemeButton();
+    setTheme(week.getCurrentTheme());
+  }
 
-    // reset
+  private void setupThemeButton() { // reset
     titleHBox.getChildren().clear();
-
     // Create the theme menu button
     MenuButton themeMenuButton = new MenuButton("Themes");
     List<MenuItem> menuItems = createThemeMenuItems();
     themeMenuButton.getItems().addAll(menuItems);
-
+    // Custom Theme Button
     Button customThemeButton = new Button("Custom");
     customThemeButton.setStyle("-fx-background-color: #2f2fff;");
     customThemeButton.setOnAction(e -> {
@@ -239,7 +228,6 @@ public class JournalController implements Controller {
       themeMenuButton.getItems().addAll(item);
       setTheme(week.getThemes().size() - 1);
     });
-
     for (MenuItem menuItem : themeMenuButton.getItems()) {
       menuItem.setOnAction(e -> {
         String selectedTheme = menuItem.getText();
@@ -252,10 +240,18 @@ public class JournalController implements Controller {
         }
       });
     }
-
     titleHBox.getChildren().addAll(themeMenuButton, customThemeButton);
+  }
 
-    setTheme(week.getCurrentTheme());
+  private void triggerStartDialog() {
+    Dialog popup = new StartDialog(weekScene);
+    Optional<File> result = popup.showAndWait();
+
+    if (result.isPresent()) {
+      result.ifPresent(this::load);
+    } else {
+      initialize();
+    }
   }
 
   private List<MenuItem> createThemeMenuItems() {
