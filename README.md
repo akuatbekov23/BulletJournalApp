@@ -24,17 +24,40 @@ the ultimate bullet journaling app.
 
 # SOLID
 ## S
-- s
+- Each class has a single responsibility or purpose. 
+- For example, classes like BujoCreater, BujoReader, and BujoWriter handle 
+- specific file-related operations. Other classes like Controller,
+- EventView, TaskView, and DayView seem to focus on specific aspects of the 
+- application's user interface and interaction.
 ## O
-- s
+- It's possible to extend the application's functionality by 
+- adding new classes that implement existing interfaces such as Controller,
+- Reader, and Writer. The application is also closed for modification in multiple
+- instances. One example of this is in our interfaces. TaskView and EventsView extend ButtonView,
+- BlockView has methods where a BlockView and background of some sort is created.
+- The background itself cannot be modified, but can be extended by the
+- TaskView and EventView
 ## L
-- s
+- Each class that implements an interface can be easily substituted by another
+- class that adheres to the common interface contracts. TaskView and EventsView
+- can replace BlockView as they extend and they behave in the same way.
 ## I
-- s
+- Each of our interfaces are specific and focused. These interfaces are made based off
+- client requests. This allows for integration segregation. We do not have any overly
+- generic interfaces and each one of them handles different tasks.
 ## D
--s
+- Our interfaces are used in many different places and for example, our Driver initializes
+- the core logic of the program by creating instances of Controller and View. The view and controller
+- is passed down and injected into other constructors so that ONLY one controller and
+- view is used during the whole program. 
 ## How to extend the program
-- s
+- We can easily extend the program in different ways. For example, a menu bar wouldn't be hard
+to extend into our application as we followed SOLID principles. We already have the base
+layout for all the functionality for a menu bar, including saving files, loading files,
+creating new events, and creating new tasks. The way we would implement this is
+by creating new classes that handle the MenuBar itself, as to follow SOLID principles.
+These classes (such as a handler for example) would be able to make use of our
+already created classes and functionality.
 ## Image Attributions
 - https://asset.icontrolwp.com/icontrolwp.com/uploads/2016/02/google_old_captcha.png
 - https://4kwallpapers.com/images/walls/thumbs/10121.png
