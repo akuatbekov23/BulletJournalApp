@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 /**
@@ -33,10 +34,14 @@ public class TaskView extends BlockView {
     super();
     this.setAlignment(Pos.CENTER);
     Label taskLabel = new Label("Task");
-    taskLabel.setId("Label");
     taskLabel.setPadding(new Insets(0, 0, 3, 0));
     Label name = new Label(task.getName());
+    name.setWrapText(true);
+    name.setMaxWidth(100);
     name.setPadding(new Insets(0, 0, 3, 0));
+    HBox hBox = new HBox();
+    hBox.setAlignment(Pos.CENTER);
+    Label completed = new Label("Completed?");
     CheckBox complete = new CheckBox();
     complete.setTooltip(new Tooltip("Mark as Complete?"));
     complete.setSelected(task.getComplete());
@@ -48,11 +53,13 @@ public class TaskView extends BlockView {
       taskQueue.addAll(temp);
       controller.initialize();
     });
-    Label completed = new Label("Completed?");
-    this.getChildren().addAll(taskLabel, name, completed, complete);
+    hBox.getChildren().addAll(completed, complete);
+    this.getChildren().addAll(taskLabel, name, hBox);
     if (!task.getDescription().equals("")) {
       Label description = new Label(task.getDescription());
       description.setPadding(new Insets(0, 0, 3, 0));
+      description.setWrapText(true);
+      description.setMaxWidth(100);
       this.getChildren().add(description);
     }
     Button delete = new Button("Delete");

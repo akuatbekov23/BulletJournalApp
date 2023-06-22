@@ -318,7 +318,6 @@ public class JournalController implements Controller {
         }
       });
     } else {
-      System.out.println("TRIGER");
       start = false;
       weekScene.getRoot().setVisible(false);
     }
