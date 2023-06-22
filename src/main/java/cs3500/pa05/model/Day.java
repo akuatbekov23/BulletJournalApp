@@ -37,7 +37,9 @@ public class Day {
   }
 
   /**
-   * adds an events to the list of events.
+   * adds an event
+   *
+   * @param events the event to add
    */
   public void addEvent(Events events) {
     this.events.add(events);
@@ -45,6 +47,8 @@ public class Day {
 
   /**
    * adds a task to the list of tasks.
+   *
+   * @param task the task to add
    */
   public void addTask(Task task) {
     this.tasks.add(task);
