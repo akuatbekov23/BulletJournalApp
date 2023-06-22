@@ -1,6 +1,7 @@
 package cs3500.pa05.viewer;
 
 import java.io.File;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -34,13 +35,21 @@ public class StartDialog extends Dialog {
    */
   private void buildUi() {
     Pane pane = new Pane();
-    pane.setPrefSize(1280, 720);
-    VBox vertBox = new VBox();
+    pane.setPrefSize(500, 200);
+    VBox vertBox = new VBox(20);
+    vertBox.setAlignment(Pos.CENTER);
+    vertBox.setPrefSize(500, 200);
+    String style = "-fx-border-radius: 50px; -fx-border-color: black;"
+        + "-fx-background-radius: 50px; "
+        + "-fx-background-color: transparent; "
+        + "-fx-pref-height: 40; -fx-pref-width: 100;";
     Button newBtn = new Button("New Journal");
+    newBtn.setStyle(style);
+    Button openBtn = new Button("Open Journal");
+    openBtn.setStyle(style);
     newBtn.setOnAction(e -> {
       this.close();
     });
-    Button openBtn = new Button("Open Journal");
     openBtn.setOnAction(e -> {
       FileChooser fileChooser = new FileChooser();
       FileChooser.ExtensionFilter bujoFilter =
@@ -55,6 +64,9 @@ public class StartDialog extends Dialog {
     pane.getChildren().add(vertBox);
     getDialogPane().setContent(pane);
     getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+    Button closeButton = (Button) getDialogPane().lookupButton(ButtonType.CANCEL);
+    closeButton.setVisible(false);
+    getDialogPane().setStyle("-fx-background-color: #FFE2E4");
   }
 
   /**

@@ -39,13 +39,15 @@
                               </VBox.margin>
                            </Label>
                            <ListView fx:id="taskQueue" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="253.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
-                           <Label fx:id="weeklyOverview" alignment="CENTER" prefHeight="60.0" prefWidth="200.0">
+                           <Label fx:id="weeklyOverview" alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="200.0">
                               <font>
                                  <Font name="Book Antiqua" size="24.0" />
                               </font>
                            </Label>
-                           <TextField fx:id="setMaxEvents" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxEvents" prefWidth="150.0" promptText="Enter Max Events" />
-                           <TextField fx:id="setMaxTasks" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxTasks" prefWidth="150.0" promptText="Enter Max Tasks" />
+                           <Label fx:id="maxEventLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="150.0" text="Max Events" />
+                           <TextField fx:id="setMaxEvents" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxEvents" prefWidth="150.0" promptText="Enter Max Events" />
+                           <Label fx:id="maxTaskLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="146.0" text="Max Tasks" />
+                           <TextField fx:id="setMaxTasks" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyTyped="#handleMaxTasks" prefWidth="150.0" promptText="Enter Max Tasks" />
                            <HBox alignment="CENTER" spacing="10.0">
                               <children>
                                  <Button fx:id="savaBtn" mnemonicParsing="false" onAction="#handleSave" text="Save File" />
@@ -62,7 +64,7 @@
                            <HBox fx:id="QuotesHBox" alignment="CENTER" minWidth="-Infinity" prefWidth="100.0">
                               <children>
                                  <ImageView fx:id="notesImage1" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
-                                 <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" style="-fx-text-fill: black;" text="Quotes &amp; Notes:" />
+                                 <Label maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="100.0" style="-fx-text-fill: black;" text="Quotes &amp; Notes" />
                                  <ImageView fx:id="notesImage2" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </HBox>
@@ -99,7 +101,7 @@
                            </HBox>
                            <HBox alignment="CENTER" prefHeight="0.0" prefWidth="100.0" GridPane.columnIndex="2">
                               <children>
-                                 <TextField fx:id="weekTitle" onKeyTyped="#handleWeekTitle" promptText="Enter a Week Title!" style="-fx-background-color: transparent; -fx-background: transparent;" />
+                                 <TextField fx:id="weekTitle" alignment="CENTER" onKeyTyped="#handleWeekTitle" promptText="Enter a Week Title!" style="-fx-background-color: transparent; -fx-background: transparent;" />
                               </children>
                            </HBox>
                            <HBox fx:id="searchBox" alignment="CENTER_LEFT" GridPane.columnIndex="3">

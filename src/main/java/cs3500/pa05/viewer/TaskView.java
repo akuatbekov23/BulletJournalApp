@@ -7,9 +7,13 @@ import cs3500.pa05.model.Task;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
+import javafx.scene.text.Text;
 
 /**
  * a TaskView
@@ -27,11 +31,17 @@ public class TaskView extends BlockView {
   public TaskView(Task task, ObservableList<Task> taskQueue, Controller controller,
                   Day day, MaxView maxView) {
     super();
+    this.setAlignment(Pos.CENTER);
     Label taskLabel = new Label("Task");
     taskLabel.setId("Label");
+    taskLabel.setPadding(new Insets(0, 0, 3, 0));
     Label name = new Label(task.getName());
+    name.setPadding(new Insets(0, 0, 3, 0));
+    Label completed = new Label("Completed?");
     CheckBox complete = new CheckBox();
+    complete.setTooltip(new Tooltip("Mark as Complete?"));
     complete.setSelected(task.getComplete());
+    complete.setPadding(new Insets(0, 0, 0, 3));
     complete.setOnAction(e -> {
       task.changeComplete();
       List<Task> temp = new ArrayList<>(taskQueue);
@@ -39,9 +49,10 @@ public class TaskView extends BlockView {
       taskQueue.addAll(temp);
       controller.initialize();
     });
-    this.getChildren().addAll(taskLabel, name, complete);
+    this.getChildren().addAll(taskLabel, name, completed, complete);
     if (!task.getDescription().equals("")) {
       Label description = new Label(task.getDescription());
+      description.setPadding(new Insets(0, 0, 3, 0));
       this.getChildren().add(description);
     }
     Button delete = new Button("Delete");
