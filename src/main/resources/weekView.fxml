@@ -68,7 +68,7 @@
                                  <ImageView fx:id="notesImage2" fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </HBox>
-                           <TextArea fx:id="noteTextArea" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent; -fx-text-fill: black; -fx-faint-focus-color: #00000010;" />
+                           <TextArea fx:id="noteTextArea" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" onKeyTyped="#handleQuotesNotes" prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: transparent; -fx-control-inner-background: transparent; -fx-text-fill: black; -fx-faint-focus-color: #00000010;" />
                         </children>
                         <padding>
                            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
