@@ -6,7 +6,7 @@
 ![img.png](img.png)
 
 # Deployable Application
-## How to run journal.jar in the root directory
+## How to run [journal.jar](journal.jar) in the root directory
 ### Windows
 - Add this to the VM options:
 - --module-path windowModules/lib --add-modules javafx.fxml --add-modules javafx.controls
