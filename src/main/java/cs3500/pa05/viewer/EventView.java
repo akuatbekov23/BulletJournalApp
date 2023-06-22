@@ -27,6 +27,8 @@ public class EventView extends BlockView {
     Label eventLabel = new Label("Event");
     eventLabel.setPadding(new Insets(0, 0, 3, 0));
     Label name = new Label(events.getName());
+    name.setWrapText(true);
+    name.setMaxWidth(100);
     name.setPadding(new Insets(0, 0, 3, 0));
     Label startTime = new Label("Start time: " + events.getStartTime());
     Label duration = new Label("Duration: " + events.getDuration());
@@ -34,6 +36,8 @@ public class EventView extends BlockView {
     this.getChildren().addAll(eventLabel, name, startTime, duration);
     if (!events.getDescription().equals("")) {
       Label description = new Label(events.getDescription());
+      description.setWrapText(true);
+      description.setMaxWidth(100);
       this.getChildren().add(description);
     }
     Button delete = new Button("Delete");
