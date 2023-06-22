@@ -12,7 +12,15 @@
 ![img6.png](screenshots%2Fimg6.png)
 
 # Pitch
-- s
+- Introducing GYST: Get Your Sh*t Together, the ultimate bullet journaling app 
+that seamlessly combines event and task management, customizable themes,
+and intuitive interface. Don't want people to see your information?
+Lucky for you, GYST provides Captcha verification to ensure your identity isn't stolen.
+We don't know why anyone would want to steal your information, given that you
+downloaded this application to Get Your Sh!t Together, implying that you currently
+DON'T have your sh!t together! Effortlessly add, track, 
+and personalize your journal with GYST. Simplify your life with GYST,
+the ultimate bullet journaling app.
 
 # SOLID
 ## S
