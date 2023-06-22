@@ -117,7 +117,21 @@ public class Task {
    */
   @Override
   public int hashCode() {
-    return this.name.hashCode() * 1000 + this.description.hashCode() * 100
-        + this.day.hashCode() * 10 + this.complete.hashCode();
+    int boolComplete = 0;
+    if (this.complete) {
+      boolComplete = 1;
+    }
+    int dayNumber = 0;
+    switch(this.day) {
+      case SATURDAY -> dayNumber = 6;
+      case FRIDAY -> dayNumber = 5;
+      case THURSDAY -> dayNumber = 4;
+      case WEDNESDAY -> dayNumber = 3;
+      case TUESDAY -> dayNumber = 2;
+      case MONDAY -> dayNumber = 1;
+      default -> dayNumber = 0;
+  }
+    return this.name.hashCode() * 10000 + this.description.hashCode() * 1000
+        + dayNumber * 10 + boolComplete;
   }
 }

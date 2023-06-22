@@ -141,7 +141,7 @@ public class Theme {
    * @param fontColor       the font color of the theme
    * @param fontFamily      the font family of the theme
    */
-  private Theme(Color backgroundColor, Color fontColor, String fontFamily, List<Image> images) {
+  public Theme(Color backgroundColor, Color fontColor, String fontFamily, List<Image> images) {
     this.backgroundColor = backgroundColor;
     this.fontColor = fontColor;
     this.fontFamily = fontFamily;
