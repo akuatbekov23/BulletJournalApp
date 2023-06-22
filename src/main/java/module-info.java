@@ -5,8 +5,10 @@ module cs3500.pa05 {
   requires com.fasterxml.jackson.databind;
   requires com.fasterxml.jackson.annotation;
   requires com.fasterxml.jackson.core;
+  requires javafx.graphics;
 
   opens cs3500.pa05 to javafx.fxml;
+  opens cs3500.pa05.viewer to org.testfx.junit5;
   exports cs3500.pa05;
   exports cs3500.pa05.controller;
   exports cs3500.pa05.model;

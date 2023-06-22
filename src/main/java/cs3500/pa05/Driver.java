@@ -20,7 +20,7 @@ public class Driver extends Application {
 
     try {
       stage.setScene(viewer.load());
-      stage.setTitle("Journal");
+      stage.setTitle("journal");
       stage.setResizable(false);
       controller.initialize();
       stage.show();
