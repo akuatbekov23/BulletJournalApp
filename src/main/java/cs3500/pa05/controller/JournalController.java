@@ -63,7 +63,7 @@ public class JournalController implements Controller {
   @FXML
   private AnchorPane weekPane1;
   @FXML
-  private HBox titleHBox;
+  private HBox titleHbox;
   @FXML
   private TextArea noteTextArea;
   @FXML
@@ -260,7 +260,7 @@ public class JournalController implements Controller {
    */
   private void setupThemeButton() {
     // reset
-    titleHBox.getChildren().clear();
+    titleHbox.getChildren().clear();
     // Create the theme menu button
     MenuButton themeMenuButton = new MenuButton("Themes");
     List<MenuItem> menuItems = createThemeMenuItems();
@@ -287,7 +287,7 @@ public class JournalController implements Controller {
         }
       });
     }
-    titleHBox.getChildren().addAll(themeMenuButton, customThemeButton);
+    titleHbox.getChildren().addAll(themeMenuButton, customThemeButton);
   }
 
   /**
@@ -413,8 +413,8 @@ public class JournalController implements Controller {
     }
     if (node instanceof TextField textField) {
       textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
-      textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " +
-          toHexString(theme.getFontColor()));
+      textField.setStyle("-fx-background-color: transparent; -fx-text-fill: "
+         + toHexString(theme.getFontColor()));
     } else if (node instanceof Parent) {
       traverseSceneGraph((Parent) node, theme);
     }

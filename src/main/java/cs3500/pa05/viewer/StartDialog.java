@@ -35,7 +35,7 @@ public class StartDialog extends Dialog {
   private void buildUi() {
     Pane pane = new Pane();
     pane.setPrefSize(1280, 720);
-    VBox VBox = new VBox();
+    VBox vertBox = new VBox();
     Button newBtn = new Button("New Journal");
     newBtn.setOnAction(e -> {
       this.close();
@@ -51,8 +51,8 @@ public class StartDialog extends Dialog {
         this.setResult(file);
       }
     });
-    VBox.getChildren().addAll(newBtn, openBtn);
-    pane.getChildren().add(VBox);
+    vertBox.getChildren().addAll(newBtn, openBtn);
+    pane.getChildren().add(vertBox);
     getDialogPane().setContent(pane);
     getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
   }
