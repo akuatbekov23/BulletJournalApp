@@ -15,9 +15,9 @@ public class Day {
   /**
    * Constructs a day.
    *
-   * @param day      the day of the week
-   * @param events   the list of events
-   * @param tasks    the list of tasks
+   * @param day    the day of the week
+   * @param events the list of events
+   * @param tasks  the list of tasks
    */
   public Day(DayEnum day, List<Events> events, List<Task> tasks) {
     this.day = day;
@@ -97,5 +97,21 @@ public class Day {
    */
   public void removeIfFound(Events e) {
     this.events.removeIf(ev -> ev == e);
+  }
+
+  /**
+   * compares a day and an object to see if they are equal
+   *
+   * @param obj the object to compare to
+   * @return boolean on whether two days are equal
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Day day)) {
+      return false;
+    }
+    return day.getDay().equals(this.getDay())
+        && day.getEvents().equals(this.getEvents())
+        && day.getTasks().equals(this.getTasks());
   }
 }

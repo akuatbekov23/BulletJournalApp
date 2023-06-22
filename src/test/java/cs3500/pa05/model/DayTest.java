@@ -1,4 +1,4 @@
-package cs3500.pa05.viewer.model;
+package cs3500.pa05.model;
 
 import cs3500.pa05.model.Day;
 import cs3500.pa05.model.DayEnum;

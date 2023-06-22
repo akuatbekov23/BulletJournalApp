@@ -1,4 +1,4 @@
-package cs3500.pa05.viewer.model;
+package cs3500.pa05.model;
 
 import cs3500.pa05.model.Theme;
 import javafx.scene.image.Image;

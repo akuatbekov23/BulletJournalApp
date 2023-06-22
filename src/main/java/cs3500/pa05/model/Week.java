@@ -24,13 +24,13 @@ public class Week {
   /**
    * constructs a week
    *
-   * @param title the week title
-   * @param days an array of all the days
-   * @param themes a list of the themes
-   * @param theme the set theme
-   * @param notes the displayed message in quotes and notes
+   * @param title     the week title
+   * @param days      an array of all the days
+   * @param themes    a list of the themes
+   * @param theme     the set theme
+   * @param notes     the displayed message in quotes and notes
    * @param maxEvents the max number of events
-   * @param maxTasks the max number of tasks
+   * @param maxTasks  the max number of tasks
    */
   public Week(String title, Day[] days, List<Theme> themes,
               int theme, String notes, int maxEvents, int maxTasks) {
@@ -291,6 +291,28 @@ public class Week {
    */
   public void setMaxTasks(int newMax) {
     this.maxTasks.set(String.valueOf(newMax));
+  }
+
+  /**
+   * compares a week and object to see if they are equal
+   *
+   * @param obj the object to compare to
+   * @return boolean whether the weeks are equal
+   */
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Week week)) {
+      return false;
+    }
+   return week.title.equals(this.title)
+    && week.days.equals(this.days)
+    && week.taskQueue.equals(this.taskQueue)
+    && (week.currentTheme == (this.currentTheme))
+    && week.themes.equals(this.themes)
+    && week.notes.equals(this.notes)
+    && week.maxEvents.equals(this.maxEvents)
+    && week.maxTasks.equals(this.maxTasks);
+
   }
 
 }
