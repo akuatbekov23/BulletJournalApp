@@ -31,7 +31,6 @@ class JsonConverterTest {
 
   @BeforeEach
   public void setup() {
-    ObjectMapper mapper = new ObjectMapper();
     Day[] days = new Day[] {new Day(DayEnum.SUNDAY,
         new ArrayList<>(List.of(new Events("event", "event",
         DayEnum.SUNDAY, LocalTime.parse("10:10", DateTimeFormatter.ofPattern("HH:mm")),
@@ -65,6 +64,7 @@ class JsonConverterTest {
     themesJson.add(new ThemeJson("0xffffffff", "0x000000ff", "Arial",
         new ArrayList<>(List.of("test.png"))));
     WeekJson weekJson = new WeekJson("Test", dayJsons, taskQueue, themesJson, 0, "notes", 3, 3);
+    ObjectMapper mapper = new ObjectMapper();
     expectedJsonNode = mapper.convertValue(weekJson, JsonNode.class);
   }
 

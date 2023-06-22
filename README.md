@@ -75,22 +75,10 @@ already created classes and functionality.
 
 
 # Deployable Application
-## How to run [gyst.jar](gyst.jar) in the root directory
+## How to run [Gyst.jar](Gyst.jar) in the root directory
 ### Windows
-- Add this to the VM options:
-- --module-path windowModules/lib --add-modules com.fasterxml.jackson.databind --add-modules javafx.fxml --add-modules javafx.controls
+- Intellij - Run by right click, run
+- File Explorer - Open with OpenJDK binary
 ### Mac
-- Add this to the VM options:
-- --module-path macModules/lib --add-modules com.fasterxml.jackson.databind --add-modules javafx.fxml --add-modules javafx.controls
-### How to add VM Options
-- Right click on journal.jar
-- More Run/Debug -> Modify Run Configuration...
-- Add the commands above into the VM options field and press OK
-### Run gyst.jar
-- In IntelliJ, right click on journal.jar and click "Run 'journal.jar'" after adding VM options
-### Run gyst.jar on console
-- Mac
-  - java --module-path windowModules/lib --add-modules com.fasterxml.jackson.databind --add-modules javafx.fxml --add-modules javafx.controls -jar gyst.jar
-- Windows
-  - java --module-path macModules/lib --add-modules com.fasterxml.jackson.databind --add-modules javafx.fxml --add-modules javafx.controls -jar gyst.jar
-
+- Intellij - Run by right click, run
+- 
