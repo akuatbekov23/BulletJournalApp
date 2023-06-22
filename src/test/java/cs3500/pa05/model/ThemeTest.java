@@ -1,5 +1,6 @@
 package cs3500.pa05.model;
 
+import java.util.Collections;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -134,5 +135,36 @@ public class ThemeTest {
       Assertions.assertEquals(images, theme.getImages());
     });
   }
+
+  @Test
+  public void testGetImages() {
+    // Create a list of images
+    List<Image> images = new ArrayList<>();
+    images.add(new Image("L.png"));
+    images.add(new Image("Loveball.png"));
+
+    // Create a theme with the list of images
+    Theme theme = new Theme(Color.WHITE, Color.BLACK, "Arial", images);
+
+    // Retrieve the images from the theme
+    List<Image> retrievedImages = theme.getImages();
+
+    // Assert that the retrieved images match the original images
+    Assertions.assertEquals(images, retrievedImages);
+  }
+
+  @Test
+  public void testGetImagesNull() {
+    // Create a theme with a null list of images
+    Theme theme = new Theme(Color.WHITE, Color.BLACK, "Arial", null);
+
+    // Retrieve the images from the theme
+    List<Image> retrievedImages = theme.getImages();
+
+    // Assert that the retrieved images are an empty list
+    Assertions.assertEquals(Collections.emptyList(), retrievedImages);
+  }
+
+
 
 }
