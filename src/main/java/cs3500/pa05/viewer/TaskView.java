@@ -16,6 +16,7 @@ public class TaskView extends BlockView {
                   Day day, MaxView maxView) {
     super();
     Label taskLabel = new Label("Task");
+    taskLabel.setId("Label");
     Label name = new Label(task.getName());
     CheckBox complete = new CheckBox();
     complete.setSelected(task.getComplete());

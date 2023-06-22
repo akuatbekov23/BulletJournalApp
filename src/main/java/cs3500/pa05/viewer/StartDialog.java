@@ -16,12 +16,14 @@ public class StartDialog extends Dialog {
   public StartDialog(Scene scene) {
     super();
     this.scene = scene;
+    this.setTitle("Journal Setup");
     buildUI();
     this.setResultConverter();
   }
 
   private void buildUI() {
     Pane pane = new Pane();
+    pane.setPrefSize(1280, 720);
     VBox vBox = new VBox();
     Button newBtn = new Button("New Journal");
     newBtn.setOnAction(e -> {
