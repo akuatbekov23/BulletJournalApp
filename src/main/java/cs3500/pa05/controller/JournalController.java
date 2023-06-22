@@ -266,6 +266,7 @@ public class JournalController implements Controller {
     MenuButton themeMenuButton = new MenuButton("Themes");
     List<MenuItem> menuItems = createThemeMenuItems();
     themeMenuButton.getItems().addAll(menuItems);
+    themeMenuButton.setStyle("-fx-background-color: #808080;");
     // Custom Theme Button
     Button customThemeButton = new Button("Custom");
     customThemeButton.setStyle("-fx-background-color: #808080;");

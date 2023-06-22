@@ -46,8 +46,12 @@ public class ReCaptcha extends Dialog {
     imageView.setImage(image);
     imageView.setFitWidth(200);
     imageView.setFitHeight(80);
+    ImageView mark = new ImageView();
+    Image markFontenot = new Image("marck.png");
+    mark.setImage(markFontenot);
+    ImageView mark2 = new ImageView(markFontenot);
     hBox.getChildren().addAll(textField, imageView);
-    vBox.getChildren().addAll(captchaView, hBox);
+    vBox.getChildren().addAll(captchaView, hBox, mark, mark2);
     getDialogPane().setContent(vBox);
     getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.CANCEL);
     getDialogPane().setStyle("-fx-background-color: #DBDADA");

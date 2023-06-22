@@ -72,7 +72,7 @@ public class ChooseNewDialog extends Dialog {
     newEvent.setAlignment(Pos.CENTER);
     Button newTask = new Button("New Task");
     newTask.setStyle(style);
-    newEvent.setAlignment(Pos.CENTER);
+    newTask.setAlignment(Pos.CENTER);
     grid.add(newEvent, 1, 0);
     grid.add(newTask, 1, 1);
     newEvent.setOnAction(new CreateEventHandler(day.getEvents(), week, day, controller, this));
