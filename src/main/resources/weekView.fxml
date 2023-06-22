@@ -89,9 +89,9 @@
                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                        </rowConstraints>
                         <children>
-                           <HBox fx:id="topLeftHBox" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <HBox fx:id="topLeftHBox" alignment="CENTER_LEFT" prefHeight="86.0" prefWidth="178.0">
                               <children>
-                                 <ImageView fx:id="topLeftImage" fitHeight="77.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
+                                 <ImageView fx:id="topLeftImage" fitHeight="67.0" fitWidth="106.0" pickOnBounds="true" preserveRatio="true" />
                               </children>
                            </HBox>
                            <HBox fx:id="titleHbox" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="30.0" prefWidth="283.0" spacing="10.0" GridPane.columnIndex="1">

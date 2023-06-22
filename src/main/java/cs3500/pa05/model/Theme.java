@@ -28,9 +28,9 @@ public class Theme {
       this.backgroundColor = Color.rgb(255, 255, 255);
       this.fontColor = Color.rgb(0, 0, 0);
       this.fontFamily = "Arial";
-      this.images.add(new Image("notesBottomRight.png"));
-      this.images.add(new Image("notesQuotes.png"));
-      this.images.add(new Image("notesTopLeft.png"));
+      this.images.add(new Image("newjeansbunny.png"));
+      this.images.add(new Image("rose.png")); // replace
+      this.images.add(new Image("newjeans.png"));
       return this;
     }
 
@@ -55,12 +55,12 @@ public class Theme {
      * @return the third ThemeBuilder
      */
     public ThemeBuilder theme3() {
-      this.backgroundColor = Color.rgb(192, 192, 192);
-      this.fontColor = Color.rgb(0, 70, 0);
-      this.fontFamily = "Times New Roman";
-      this.images.add(new Image("shrekBottomRight.png"));
-      this.images.add(new Image("shrekQuotes.png"));
-      this.images.add(new Image("shrekTopLeft.png"));
+      this.backgroundColor = Color.rgb(0, 0, 0);
+      this.fontColor = Color.rgb(255, 255, 255);
+      this.fontFamily = "Jokerman";
+      this.images.add(new Image("tomie.png"));
+      this.images.add(new Image("junji_ito.png"));
+      this.images.add(new Image("L.png"));
       return this;
     }
 
