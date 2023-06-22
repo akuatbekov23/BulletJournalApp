@@ -13,6 +13,7 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Color;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +35,16 @@ public class WeekTest {
       days[i] = new Day(dayEnums[i]);
     }
     return days;
+  }
+
+  /**
+   * launches the platform
+   */
+  @BeforeAll
+  public static void launchPlatform() {
+    Platform.startup(() -> {
+      // Initialize JavaFX components here
+    });
   }
 
 
@@ -76,9 +87,6 @@ public class WeekTest {
    */
   @Test
   public void testInitDays() {
-    Platform.startup(() -> {
-      // Initialize JavaFX components here
-    });
     assertDoesNotThrow(() -> new Week("Test", 4));
   }
 
