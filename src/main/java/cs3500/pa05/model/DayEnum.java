@@ -34,7 +34,7 @@ public enum DayEnum {
     SUNDAY("Sunday");
 
     /**
-     * the label representing the day as a String
+     * the label representing the day as String
      */
     public final String label;
 
