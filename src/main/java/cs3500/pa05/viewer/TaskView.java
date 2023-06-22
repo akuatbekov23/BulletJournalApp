@@ -38,6 +38,7 @@ public class TaskView extends BlockView {
     Label name = new Label(task.getName());
     name.setWrapText(true);
     name.setMaxWidth(100);
+    name.setAlignment(Pos.CENTER);
     name.setPadding(new Insets(0, 0, 3, 0));
     HBox horiBox = new HBox();
     horiBox.setAlignment(Pos.CENTER);
@@ -57,6 +58,7 @@ public class TaskView extends BlockView {
     this.getChildren().addAll(taskLabel, name, horiBox);
     if (!task.getDescription().equals("")) {
       Label description = new Label(task.getDescription());
+      description.setAlignment(Pos.CENTER);
       description.setPadding(new Insets(0, 0, 3, 0));
       description.setWrapText(true);
       description.setMaxWidth(100);
