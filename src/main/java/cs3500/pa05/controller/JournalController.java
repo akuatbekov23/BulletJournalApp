@@ -393,6 +393,12 @@ public class JournalController implements Controller {
     }
   }
 
+  /**
+   * Checks whether this node is a Label or textField and change the Theme
+   *
+   * @param node  the node to check
+   * @param theme the theme to set to
+   */
   private void checkNode(Node node, Theme theme) {
     if (node instanceof Label label) {
       label.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
