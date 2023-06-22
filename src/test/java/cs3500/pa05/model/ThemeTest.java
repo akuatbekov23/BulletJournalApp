@@ -21,7 +21,9 @@ public class ThemeTest {
 
 
 
-
+  /**
+   * setup for the tests.
+   */
   @BeforeEach
   public void setUp() {
     Color backgroundColor = Color.rgb(255, 255, 255);

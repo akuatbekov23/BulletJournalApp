@@ -39,9 +39,8 @@ public class TaskView extends BlockView {
     name.setWrapText(true);
     name.setMaxWidth(100);
     name.setPadding(new Insets(0, 0, 3, 0));
-    HBox hBox = new HBox();
-    hBox.setAlignment(Pos.CENTER);
-    Label completed = new Label("Completed?");
+    HBox horiBox = new HBox();
+    horiBox.setAlignment(Pos.CENTER);
     CheckBox complete = new CheckBox();
     complete.setTooltip(new Tooltip("Mark as Complete?"));
     complete.setSelected(task.getComplete());
@@ -53,8 +52,9 @@ public class TaskView extends BlockView {
       taskQueue.addAll(temp);
       controller.initialize();
     });
-    hBox.getChildren().addAll(completed, complete);
-    this.getChildren().addAll(taskLabel, name, hBox);
+    Label completed = new Label("Completed?");
+    horiBox.getChildren().addAll(completed, complete);
+    this.getChildren().addAll(taskLabel, name, horiBox);
     if (!task.getDescription().equals("")) {
       Label description = new Label(task.getDescription());
       description.setPadding(new Insets(0, 0, 3, 0));
