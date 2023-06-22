@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import cs3500.pa05.model.DayEnum;
-import cs3500.pa05.model.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -70,6 +68,41 @@ public class TaskTest {
         DayEnum.TUESDAY, false);
     Task task2 = new Task("Project", "Finish project report",
         DayEnum.WEDNESDAY, true);
+    Task task21 = new Task("Project", "Finish project report",
+        DayEnum.MONDAY, true);
+    Task task22 = new Task("Project", "Finish project report",
+        DayEnum.WEDNESDAY, false);
+    Task task23 = new Task("Projects", "Finish project report",
+        DayEnum.WEDNESDAY, true);
+    Task task24 = new Task("Project", "Finish project reports",
+        DayEnum.WEDNESDAY, true);
+    Task task3 = new Task("Project", "Finish project report",
+        DayEnum.WEDNESDAY, true);
+    Task task4 = new Task("Project", "Finish project report",
+        DayEnum.THURSDAY, true);
+    Task task5 = new Task("Project", "Finish project report",
+        DayEnum.FRIDAY, true);
+    Task task6 = new Task("Project", "Finish project report",
+        DayEnum.SATURDAY, true);
+    Task task7 = new Task("Project", "Finish project report",
+        DayEnum.SUNDAY, false);
+    Task task8 = new Task("Project", "Finish project report",
+        DayEnum.MONDAY, true);
+    assertTrue(task2.equals(task3));
+    assertFalse(task2.equals("Test"));
+    assertFalse(task2.equals(task21));
+    assertFalse(task2.equals(task22));
+    assertFalse(task2.equals(task23));
+    assertFalse(task2.equals(task24));
+
+    assertEquals(995431151, task2.hashCode());
+    assertEquals(995431151, task3.hashCode());
+    assertEquals(995431161, task4.hashCode());
+    assertEquals(995431171, task5.hashCode());
+    assertEquals(995431181, task6.hashCode());
+    assertEquals(995431120, task7.hashCode());
+    assertEquals(995431131, task8.hashCode());
+
     assertEquals(task, task1);
     assertNotEquals(task, task2);
     // Test equality with itself
