@@ -165,12 +165,12 @@ public class CustomThemeDialog extends Dialog<Theme> {
    * @param files the list of files to convert to images
    * @return a List of images
    */
-  public List<Image> convertFilesToImages(List<File> files) {
-    List<Image> images = new ArrayList<>();
+  public List<String> convertFilesToImages(List<File> files) {
+    List<String> images = new ArrayList<>();
 
     for (File file : files) {
       try {
-        Image image = new Image(file.toURI().toString());
+        String image = file.toURI().toString();
         images.add(image);
       } catch (Exception e) {
         // Handle any exceptions that may occur during image loading

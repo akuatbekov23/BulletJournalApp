@@ -62,7 +62,7 @@ public class JsonConverter {
               .setBackgroundColor(Color.web(themeJson.backgroundColor()))
           .setFontColor(Color.web(themeJson.fontColor()))
           .setFontFamily(themeJson.fontFamily())
-          .setImages(parseImages(themeJson.images())).build());
+          .setImages(themeJson.images()).build());
     }
     return new Week(weekJson.title(), days, themes, weekJson.currentTheme(), weekJson.notes(),
         weekJson.maxEvents(), weekJson.maxTasks());
@@ -103,43 +103,11 @@ public class JsonConverter {
       Theme theme = week.getThemes().get(i);
       themeJson.add(new ThemeJson(theme.getBackgroundColor().toString(),
           theme.getFontColor().toString(),
-          theme.getFontFamily(), imagesToStrings(theme.getImages())));
+          theme.getFontFamily(), theme.getImages()));
     }
 
     return JsonUtils.serializeRecord(new WeekJson(week.getTitle(), dayJson, taskQueueJson,
         themeJson, week.getCurrentTheme(),
         week.getNotes(), week.getMaxEvents(), week.getMaxTasks()));
-  }
-
-
-  /**
-   * parse the images from the json array.
-   *
-   * @param imagesJsonArray the images json array
-   * @return the images
-   */
-  private static List<Image> parseImages(List<String> imagesJsonArray) {
-    List<Image> images = new ArrayList<>();
-
-    for (String imageUrl : imagesJsonArray) {
-      Image image = new Image(imageUrl);
-      images.add(image);
-    }
-
-    return images;
-  }
-
-  /**
-   * Turns list of images to lists of strings
-   *
-   * @param images list of images
-   * @return list of strings
-   */
-  private static List<String> imagesToStrings(List<Image> images) {
-    List<String> imageStrings = new ArrayList<>();
-    for (Image image : images) {
-      imageStrings.add(image.getUrl());
-    }
-    return imageStrings;
   }
 }

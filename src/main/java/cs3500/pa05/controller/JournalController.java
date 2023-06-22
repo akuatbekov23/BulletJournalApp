@@ -27,6 +27,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -388,17 +389,17 @@ public class JournalController implements Controller {
       notesImage1.setImage(null);
       notesImage2.setImage(null);
       topLeftImage.setImage(null);
-      bottomRightImage.setImage(theme.getImages().get(0));
+      bottomRightImage.setImage(new Image(theme.getImages().get(0)));
     } else if (theme.getImages().size() < 3) {
-      notesImage1.setImage(theme.getImages().get(1));
-      notesImage2.setImage(theme.getImages().get(1));
+      notesImage1.setImage(new Image(theme.getImages().get(1)));
+      notesImage2.setImage(new Image(theme.getImages().get(1)));
       topLeftImage.setImage(null);
-      bottomRightImage.setImage(theme.getImages().get(0));
+      bottomRightImage.setImage(new Image(theme.getImages().get(0)));
     } else {
-      notesImage1.setImage(theme.getImages().get(1));
-      notesImage2.setImage(theme.getImages().get(1));
-      topLeftImage.setImage(theme.getImages().get(2));
-      bottomRightImage.setImage(theme.getImages().get(0));
+      notesImage1.setImage(new Image(theme.getImages().get(1)));
+      notesImage2.setImage(new Image(theme.getImages().get(1)));
+      topLeftImage.setImage(new Image(theme.getImages().get(2)));
+      bottomRightImage.setImage(new Image(theme.getImages().get(0)));
     }
     traverseSceneGraph(weekScene.getRoot(), theme);
   }

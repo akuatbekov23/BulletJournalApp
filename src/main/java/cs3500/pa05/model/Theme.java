@@ -17,7 +17,7 @@ public class Theme {
     private Color backgroundColor;
     private Color fontColor;
     private String fontFamily;
-    private List<Image> images = new ArrayList<>();
+    private List<String> images = new ArrayList<>();
 
     /**
      * creates the first theme
@@ -28,9 +28,9 @@ public class Theme {
       this.backgroundColor = Color.rgb(255, 255, 255);
       this.fontColor = Color.rgb(0, 0, 0);
       this.fontFamily = "Arial";
-      this.images.add(new Image("newjeansbunny.png"));
-      this.images.add(new Image("rose.png")); // replace
-      this.images.add(new Image("newjeans.png"));
+      this.images.add("newjeansbunny.png");
+      this.images.add("rose.png"); // replace
+      this.images.add("newjeans.png");
       return this;
     }
 
@@ -43,9 +43,9 @@ public class Theme {
       this.backgroundColor = Color.rgb(250, 218, 221);
       this.fontColor = Color.rgb(255, 0, 0);
       this.fontFamily = "Lucida Calligraphy";
-      this.images.add(new Image("ClefairyAmongus.png"));
-      this.images.add(new Image("Loveball.png"));
-      this.images.add(new Image("Sylveon.png"));
+      this.images.add("ClefairyAmongus.png");
+      this.images.add("Loveball.png");
+      this.images.add("Sylveon.png");
       return this;
     }
 
@@ -58,9 +58,9 @@ public class Theme {
       this.backgroundColor = Color.rgb(0, 0, 0);
       this.fontColor = Color.rgb(255, 255, 255);
       this.fontFamily = "Jokerman";
-      this.images.add(new Image("tomie.png"));
-      this.images.add(new Image("junji_ito.png"));
-      this.images.add(new Image("L.png"));
+      this.images.add("tomie.png");
+      this.images.add("junji_ito.png");
+      this.images.add("L.png");
       return this;
     }
 
@@ -113,7 +113,7 @@ public class Theme {
      * @param images the list of images to set
      * @return the ThemeBuilder
      */
-    public ThemeBuilder setImages(List<Image> images) {
+    public ThemeBuilder setImages(List<String> images) {
       this.images = images;
       return this;
     }
@@ -131,7 +131,7 @@ public class Theme {
   private Color backgroundColor;
   private Color fontColor;
   private String fontFamily;
-  private List<Image> images;
+  private List<String> images;
 
 
   /**
@@ -141,7 +141,7 @@ public class Theme {
    * @param fontColor       the font color of the theme
    * @param fontFamily      the font family of the theme
    */
-  public Theme(Color backgroundColor, Color fontColor, String fontFamily, List<Image> images) {
+  public Theme(Color backgroundColor, Color fontColor, String fontFamily, List<String> images) {
     this.backgroundColor = backgroundColor;
     this.fontColor = fontColor;
     this.fontFamily = fontFamily;
@@ -180,7 +180,7 @@ public class Theme {
    *
    * @return the images of the theme
    */
-  public List<Image> getImages() {
+  public List<String> getImages() {
     // if images is null, then return an empty list
     if (this.images == null) {
       return new ArrayList<>();
