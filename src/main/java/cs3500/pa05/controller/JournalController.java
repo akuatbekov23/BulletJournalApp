@@ -320,13 +320,10 @@ public class JournalController implements Controller {
     // Add Custom option
     int customThemeNumber = week.getThemes().size() - 1;
     MenuItem customMenuItem = new MenuItem("Custom Theme " + customThemeNumber);
-
     customMenuItem.setOnAction(e -> {
       setTheme(customThemeNumber);
     });
-
     return customMenuItem;
-
   }
 
 
@@ -387,31 +384,16 @@ public class JournalController implements Controller {
    * @param theme  the theme to set to
    */
   private void traverseSceneGraph(Parent parent, Theme theme) {
-    for (javafx.scene.Node node : parent.getChildrenUnmodifiable()) {
-      if (node instanceof Label label) {
-        label.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
-        label.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
-      }
-      if (node instanceof TextField textField) {
-        textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
-        textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " +
-            toHexString(theme.getFontColor()));
-      } else if (node instanceof ScrollPane) {
-        traverseSceneGraph((ScrollPane) node, theme);
-      } else if (node instanceof Parent) {
-        traverseSceneGraph((Parent) node, theme);
+    if (parent instanceof ScrollPane) {
+      checkNode(((ScrollPane) parent).getContent(), theme);
+    } else {
+      for (javafx.scene.Node node : parent.getChildrenUnmodifiable()) {
+        checkNode(node, theme);
       }
     }
   }
 
-  /**
-   * traverses the scene graph
-   *
-   * @param parent the scrollpane
-   * @param theme the given theme
-   */
-  private void traverseSceneGraph(ScrollPane parent, Theme theme) {
-    Node node = parent.getContent();
+  private void checkNode(Node node, Theme theme) {
     if (node instanceof Label label) {
       label.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
       label.setStyle("-fx-text-fill: " + toHexString(theme.getFontColor()));
@@ -420,12 +402,11 @@ public class JournalController implements Controller {
       textField.setFont(javafx.scene.text.Font.font(theme.getFontFamily()));
       textField.setStyle("-fx-background-color: transparent; -fx-text-fill: " +
           toHexString(theme.getFontColor()));
-    } else if (node instanceof ScrollPane) {
-      traverseSceneGraph((ScrollPane) node, theme);
     } else if (node instanceof Parent) {
       traverseSceneGraph((Parent) node, theme);
     }
   }
+
 
   /**
    * converts a color into a hex string
