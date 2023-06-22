@@ -1,20 +1,20 @@
 package cs3500.pa05.model;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+/**
+ * Tests for the Theme class.
+ */
 public class ThemeTest {
 
   private Theme theme;
@@ -163,6 +163,26 @@ public class ThemeTest {
 
     // Assert that the retrieved images are an empty list
     Assertions.assertEquals(Collections.emptyList(), retrievedImages);
+  }
+
+
+  @Test
+  public void testSetImagesThemeBuilder() {
+    // Create a list of images
+    List<Image> images = new ArrayList<>();
+    images.add(new Image("L.png"));
+    images.add(new Image("Loveball.png"));
+
+    // Create a theme using the ThemeBuilder
+    Theme theme = new Theme.ThemeBuilder()
+        .setImages(images)
+        .build();
+
+    // Retrieve the images from the theme
+    List<Image> retrievedImages = theme.getImages();
+
+    // Assert that the retrieved images match the original images
+    Assertions.assertEquals(images, retrievedImages);
   }
 
 
