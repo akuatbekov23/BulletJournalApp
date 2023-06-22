@@ -52,7 +52,7 @@ the ultimate bullet journaling app.
 
 
 # Deployable Application
-## How to run [journal.jar](journal.jar) in the root directory
+## How to run [gyst.jar](gyst.jar) in the root directory
 ### Windows
 - Add this to the VM options:
 - --module-path windowModules/lib --add-modules javafx.fxml --add-modules javafx.controls
@@ -63,11 +63,11 @@ the ultimate bullet journaling app.
 - Right click on journal.jar
 - More Run/Debug -> Modify Run Configuration...
 - Add the commands above into the VM options field and press OK
-### Run journal.jar
+### Run gyst.jar
 - In IntelliJ, right click on journal.jar and click "Run 'journal.jar'" after adding VM options
-### Run journal.jar on console
+### Run gyst.jar on console
 - Mac
-  - java --module-path macModules/lib --add-modules javafx.fxml --add-modules javafx.controls -jar journal.jar
+  - java --module-path macModules/lib --add-modules javafx.fxml --add-modules javafx.controls -jar gyst.jar
 - Windows
-  - java --module-path macModules/lib --add-modules javafx.fxml --add-modules javafx.controls -jar journal.jar
+  - java --module-path macModules/lib --add-modules javafx.fxml --add-modules javafx.controls -jar gyst.jar
 
